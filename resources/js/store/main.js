@@ -30,15 +30,11 @@ export class Store {
     }
 
     addManipulator() {
-        var node = new ManipulatorNodeModel('___Generic___', '#61dafb');
-        node.addInPort('In');
-        node.addOutPort('Out1');
-        node.addOutPort('Out2');
-        node.addOutPort('Out3');
+        var node = new ManipulatorNodeModel({ color: 'rgb(192,255,0)' });
         node.setPosition(100, 100);
     
         this.diagram.engine.model.addNode(node);
-    
+        console.log(this.diagram.engine)
         this.diagram.refresh++
     }
     

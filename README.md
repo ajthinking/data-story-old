@@ -43,3 +43,21 @@ Make the following modifications
 * Finally rename `ExampleComponent` to `App` and render the Diagram inside :rocket:
 
 
+## Terms
+* Free usage for everyone
+* Please no redistribution or large scale code replication
+* Copyright retained by ajthinking
+
+
+
+
+
+
+
+
+## License DataStory Profesional
+### Contributorware
+* Version `v0.0.1`.
+* Read in full [here]().
+* Free usage for everyone
+* Copyright retained by ajthinking
