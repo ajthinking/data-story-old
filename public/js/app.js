@@ -87279,6 +87279,7 @@ var ManipulatorNodeFactory = /*#__PURE__*/function (_AbstractReactFactory) {
   }, {
     key: "generateReactWidget",
     value: function generateReactWidget(event) {
+      console.log("AHHAS");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_ManipulatorNodeWidget__WEBPACK_IMPORTED_MODULE_3__["default"], {
         engine: this.engine,
         node: event.model

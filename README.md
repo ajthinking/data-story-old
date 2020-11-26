@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## How to use React Diagrams with Laravel
 As of 22th november 2020.
 
@@ -61,3 +62,6 @@ Make the following modifications
 * Read in full [here]().
 * Free usage for everyone
 * Copyright retained by ajthinking
+=======
+![image](https://user-images.githubusercontent.com/3457668/100386374-759bcc80-3025-11eb-9f45-81c8e6f49327.png)
+>>>>>>> 077e5b172713d79ccc9b00220b0f8e9a1a9e5b18
