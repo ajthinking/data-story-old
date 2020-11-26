@@ -1,34 +1,31 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Header from './Header';
+import Toolbar from './Toolbar';
+import StoryWorkbench from './pages/StoryWorkbench'
+import Inspectors from './pages/Inspectors'
 import Diagram from './Diagram';
-import store from "../store/main"
-import { observer } from "mobx-react"
+import { inject, observer } from "mobx-react"
 
-@observer
+let x =StoryWorkbench;
+
+@inject('store') @observer
 export default class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.updateStory = this.updateStory.bind(this);
-      }
-
-    updateStory() {
-        this.props.store.story.set('new-project');
-    }
-
     render() {
         return (
             <div >
                 <Header />
-                <div className="pl-4 bg-gray-300">{ this.props.store.story.get() }</div>
-                <Diagram />
-                <button onClick={this.updateStory}>New story!</button>
+                <Toolbar />
+                {this.renderActivePage()}
             </div>
         );
     }
-}
 
+    renderActivePage()
+    {
+        // Since dynamic <ActivePage /> does not work :|
+        let page = this.props.store.metadata.page
 
-if (document.getElementById('app')) {
-    ReactDOM.render(<App store={store} />, document.getElementById('app'));
+        if(page === 'StoryWorkbench') return (<StoryWorkbench />);
+        if(page === 'Inspectors') return (<Inspectors />);
+    }
 }
