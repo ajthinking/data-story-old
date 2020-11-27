@@ -87279,7 +87279,6 @@ var ManipulatorNodeFactory = /*#__PURE__*/function (_AbstractReactFactory) {
   }, {
     key: "generateReactWidget",
     value: function generateReactWidget(event) {
-      console.log("AHHAS");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_ManipulatorNodeWidget__WEBPACK_IMPORTED_MODULE_3__["default"], {
         engine: this.engine,
         node: event.model
@@ -87364,12 +87363,17 @@ var ManipulatorNodeModel = /*#__PURE__*/function (_NodeModel) {
 
     _this.addPort(new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["DefaultPortModel"]({
       "in": true,
-      name: 'in'
+      name: 'in1'
+    }));
+
+    _this.addPort(new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["DefaultPortModel"]({
+      "in": true,
+      name: 'in2'
     }));
 
     _this.addPort(new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["DefaultPortModel"]({
       "in": false,
-      name: 'out'
+      name: 'out1'
     }));
 
     return _this;
@@ -87452,23 +87456,43 @@ var ManipulatorNodeWidget = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
-        className: "bg-malibu-500 p-4"
-      }, "New Manipulator", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1__["PortWidget"], {
-        engine: this.props.engine,
-        port: this.props.node.getPort('in')
+        className: "font-mono text-xxs text-gray-200"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
-        className: "h-4 bg-yellow-300"
+        className: "flex-grow-0 w-32"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "flex justify-between items-center pl-4 pr-2 py-1 border border-gray-900 font-bold rounded-lg bg-gray-700"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", null, "Route"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("i", {
+        className: "fas fa-cog"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1__["PortWidget"], {
+        className: "",
         engine: this.props.engine,
-        port: this.props.node.getPort('out')
+        port: this.props.node.getPort('in1')
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
-        className: "h-4 bg-red-300"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
-        className: "custom-node-color",
-        style: {
-          backgroundColor: this.props.node.color
-        }
-      }));
+        className: "flex items-center text-gray-200 mx-2 py-1 px-4 border border-gray-900 rounded-lg bg-gray-500"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "w-full"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
+        className: ""
+      }, "input 1")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1__["PortWidget"], {
+        className: "",
+        engine: this.props.engine,
+        port: this.props.node.getPort('in2')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "flex items-center text-gray-200 mx-2 py-1 px-4 border border-gray-900 rounded-lg bg-gray-500"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "w-full"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
+        className: ""
+      }, "input 2")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1__["PortWidget"], {
+        engine: this.props.engine,
+        port: this.props.node.getPort('out1')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "flex items-center text-gray-200 mx-2 py-1 px-4 border border-gray-900 rounded-lg bg-gray-500"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "w-full"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
+        className: ""
+      }, "output 1"))))));
     }
   }]);
 
@@ -88753,10 +88777,6 @@ __webpack_require__.r(__webpack_exports__);
 var engine = _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0___default()();
 engine.getNodeFactories().registerFactory(new _ManipulatorNodeFactory__WEBPACK_IMPORTED_MODULE_1__["default"]());
 var model = new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["DiagramModel"]();
-var node1 = new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["DefaultNodeModel"]('___Users___', '#61dafb');
-node1.setPosition(200, 100);
-var port1 = node1.addOutPort('');
-model.addAll(node1);
 engine.setModel(model);
 /* harmony default export */ __webpack_exports__["default"] = (engine);
 

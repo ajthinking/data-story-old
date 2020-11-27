@@ -13,7 +13,6 @@ export default class ManipulatorNodeFactory extends AbstractReactFactory {
 	}
 
 	generateReactWidget(event) {
-        console.log("AHHAS")
 		return <ManipulatorNodeWidget engine={this.engine} node={event.model} />;
     }
 }

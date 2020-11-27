@@ -6,9 +6,13 @@ module.exports = {
         colors: {            
             malibu: {
                 500: '#61dafb',
-                600: '#57c4e1'
+                600: '#52B8D2',
+                700: '#4499AF',
             },
         },
+        fontSize: {
+            'xxs': '.65rem',
+        }        
     },         
   },
   variants: {
