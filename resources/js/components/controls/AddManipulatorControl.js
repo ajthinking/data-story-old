@@ -88,7 +88,10 @@ export default class AddManipulatorControl extends BaseControl {
         
         Mousetrap.bind(
             '?', // shift+plus 
-            this.onClick
+            (e) => {
+                e.preventDefault()   
+                this.onClick()
+            }
         );
     }
 }

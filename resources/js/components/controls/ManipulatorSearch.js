@@ -7,7 +7,12 @@ export default class ManipulatorSearch extends React.Component {
     render() {
         return (
         <div className="flex flex-col bg-gray-100 -m-5 rounded shadow max-w-md font-mono text-xs">
-            <input className="w-full p-4 rounded mb-4" placeholder="invoker" tabIndex={1}    />
+            <input
+                ref={(input) => { this.nameInput = input; }}
+                className="w-full p-4 rounded mb-4"
+                placeholder="invoker"
+                tabIndex={1}
+            />
             <ul className="divide-y divide-gray-300">
             <li className="py-3 flex" tabIndex={2}>
                 <div className="ml-3">
@@ -47,4 +52,8 @@ export default class ManipulatorSearch extends React.Component {
       </div>
       )
     }
+
+    componentDidMount(){
+        this.nameInput.focus();
+      }    
 }

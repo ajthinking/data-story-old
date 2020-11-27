@@ -91582,8 +91582,14 @@ var AddManipulatorControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       Mousetrap.bind('?', // shift+plus 
-      this.onClick);
+      function (e) {
+        e.preventDefault();
+
+        _this2.onClick();
+      });
     }
   }]);
 
@@ -91816,9 +91822,14 @@ var ManipulatorSearch = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["
   _createClass(ManipulatorSearch, [{
     key: "render",
     value: function render() {
+      var _this = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "flex flex-col bg-gray-100 -m-5 rounded shadow max-w-md font-mono text-xs"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        ref: function ref(input) {
+          _this.nameInput = input;
+        },
         className: "w-full p-4 rounded mb-4",
         placeholder: "invoker",
         tabIndex: 1
@@ -91878,6 +91889,11 @@ var ManipulatorSearch = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["
       }, "Custom"), "::Invoke Contract"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "text-sm text-gray-500"
       }, "Invoke and existing contract")))));
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.nameInput.focus();
     }
   }]);
 
