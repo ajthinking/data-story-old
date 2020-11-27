@@ -6,7 +6,7 @@ import BaseControl from './BaseControl'
 export default class ManipulatorSearch extends React.Component {    
     render() {
         return (
-        <div className="flex flex-col bg-gray-100 -m-5 rounded shadow max-w-md font-mono text-xs">
+        <div className="flex flex-col bg-gray-100 -m-5 rounded shadow max-w-xl font-mono text-xs">
             <input
                 ref={(input) => { this.nameInput = input; }}
                 className="w-full p-4 rounded mb-4"

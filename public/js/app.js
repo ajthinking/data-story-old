@@ -91825,7 +91825,7 @@ var ManipulatorSearch = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["
       var _this = this;
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "flex flex-col bg-gray-100 -m-5 rounded shadow max-w-md font-mono text-xs"
+        className: "flex flex-col bg-gray-100 -m-5 rounded shadow max-w-xl font-mono text-xs"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         ref: function ref(input) {
           _this.nameInput = input;
