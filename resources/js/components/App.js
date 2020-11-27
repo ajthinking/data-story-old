@@ -6,8 +6,6 @@ import Inspectors from './pages/Inspectors'
 import Diagram from './Diagram';
 import { inject, observer } from "mobx-react"
 
-let x =StoryWorkbench;
-
 @inject('store') @observer
 export default class App extends React.Component {
     render() {
@@ -27,5 +25,5 @@ export default class App extends React.Component {
 
         if(page === 'StoryWorkbench') return (<StoryWorkbench />);
         if(page === 'Inspectors') return (<Inspectors />);
-    }
+    }    
 }
