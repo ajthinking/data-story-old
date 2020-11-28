@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AbstractReactFactory } from '@projectstorm/react-canvas-core';
-import ManipulatorNodeModel from './ManipulatorNodeModel'
-import ManipulatorNodeWidget from './ManipulatorNodeWidget'
+import ManipulatorNodeModel from '../nodeModels/ManipulatorNodeModel'
+import ManipulatorNodeWidget from '../nodeWidgets/ManipulatorNodeWidget'
 
 export default class ManipulatorNodeFactory extends AbstractReactFactory {
 	constructor() {
@@ -13,6 +13,8 @@ export default class ManipulatorNodeFactory extends AbstractReactFactory {
 	}
 
 	generateReactWidget(event) {
+        let Widget = event.model
+
 		return <ManipulatorNodeWidget engine={this.engine} node={event.model} />;
     }
 }

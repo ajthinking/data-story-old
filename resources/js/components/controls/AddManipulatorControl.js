@@ -52,6 +52,8 @@ export default class AddManipulatorControl extends BaseControl {
         this.setState({
             isOpen: false
         });
+
+        this.props.store.addManipulator('EloquentNodeModel')
     }
 
     renderIcon() {
@@ -93,5 +95,13 @@ export default class AddManipulatorControl extends BaseControl {
                 this.onClick()
             }
         );
+
+        Mousetrap.bind(
+            'enter',
+            (e) => {
+                e.preventDefault()   
+                this.closeModal()
+            }
+        );        
     }
 }

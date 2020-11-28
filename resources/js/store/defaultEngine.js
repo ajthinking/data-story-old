@@ -1,5 +1,5 @@
 import createEngine, { DiagramModel, DefaultNodeModel } from '@projectstorm/react-diagrams';
-import ManipulatorNodeFactory from '../ManipulatorNodeFactory'
+import ManipulatorNodeFactory from '../nodeFactories/ManipulatorNodeFactory'
 
 var engine = createEngine();
 

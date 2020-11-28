@@ -1,6 +1,7 @@
 import { action, observable, makeObservable } from "mobx"
-import ManipulatorNodeModel from '../ManipulatorNodeModel'
+import ManipulatorNodeModel from '../nodeModels/ManipulatorNodeModel'
 import defaultEngine from './defaultEngine'
+import nodeModels from './nodeModels'
 
 
 export class Store {
@@ -29,8 +30,12 @@ export class Store {
         })
     }
 
-    addManipulator() {
-        var node = new ManipulatorNodeModel({ color: 'rgb(192,255,0)' });
+    addManipulator(name) {
+        let selected = nodeModels[name]
+
+        var node = new selected();
+
+        //var node = new ManipulatorNodeModel({ color: 'rgb(192,255,0)' });
         node.setPosition(100, 100);
     
         this.diagram.engine.model.addNode(node);
