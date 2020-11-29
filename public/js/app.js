@@ -91686,6 +91686,9 @@ var RunControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"
   _createClass(RunControl, [{
     key: "onClick",
     value: function onClick() {
+      var model = this.props.store.diagram.engine.model.serialize();
+      console.log(model.layers[1].models);
+      return;
       axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/datastory/api/run', {
         diagram: {
           nodeType: 'EloquentReader',
@@ -92455,9 +92458,7 @@ var ElouquentNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
     _this = _super.call(this, _objectSpread(_objectSpread({}, options), {}, {
       type: 'manipulator'
     }));
-    _this.color = options.color || {
-      options: 'red'
-    }; // setup an in and out port
+    _this.name = 'Users'; // setup an in and out port
 
     _this.addPort(new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["DefaultPortModel"]({
       "in": true,
@@ -92488,8 +92489,6 @@ var ElouquentNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
     key: "deserialize",
     value: function deserialize(ob, engine) {
       _get(_getPrototypeOf(ElouquentNodeModel.prototype), "deserialize", this).call(this, ob, engine);
-
-      this.color = ob.color;
     }
   }]);
 
@@ -92512,6 +92511,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ManipulatorNodeModel; });
 /* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @projectstorm/react-diagrams */ "./node_modules/@projectstorm/react-diagrams/dist/index.js");
 /* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -92543,6 +92544,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 /**
@@ -92590,7 +92592,8 @@ var ManipulatorNodeModel = /*#__PURE__*/function (_NodeModel) {
     key: "serialize",
     value: function serialize() {
       return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(ManipulatorNodeModel.prototype), "serialize", this).call(this)), {}, {
-        color: this.options.color
+        color: this.options.color,
+        dependencies: this.dependencies()
       });
     }
   }, {
@@ -92599,6 +92602,35 @@ var ManipulatorNodeModel = /*#__PURE__*/function (_NodeModel) {
       _get(_getPrototypeOf(ManipulatorNodeModel.prototype), "deserialize", this).call(this, ob, engine);
 
       this.color = ob.color;
+    }
+  }, {
+    key: "getInPorts",
+    value: function getInPorts() {
+      return lodash__WEBPACK_IMPORTED_MODULE_1___default.a.pickBy(this.getPorts(), function (port, key) {
+        return port.options["in"];
+      });
+    }
+  }, {
+    key: "getOutPorts",
+    value: function getOutPorts() {
+      return lodash__WEBPACK_IMPORTED_MODULE_1___default.a.pickBy(this.getPorts(), function (port, key) {
+        return !port.options["in"];
+      });
+    }
+  }, {
+    key: "dependencies",
+    value: function dependencies() {
+      var inPorts = Object.values(this.getInPorts());
+      var linkLists = inPorts.map(function (port) {
+        return port.links;
+      }).flat();
+      var links = linkLists.map(function (linkList) {
+        return Object.values(linkList);
+      }).flat();
+      var dependencies = links.map(function (link) {
+        return link.sourcePort.parent;
+      });
+      return dependencies;
     }
   }]);
 
@@ -92668,7 +92700,7 @@ var ManipulatorNodeWidget = /*#__PURE__*/function (_React$Component) {
         className: "flex-grow-0 w-32"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
         className: "flex justify-between items-center pl-4 pr-2 py-1 border border-gray-900 font-bold rounded-lg bg-gray-700"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", null, "Route"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("i", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", null, this.props.node.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("i", {
         className: "fas fa-cog"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1__["PortWidget"], {
         className: "",
@@ -92792,7 +92824,6 @@ var Store = /*#__PURE__*/function () {
 
       node.setPosition(100, 100);
       this.diagram.engine.model.addNode(node);
-      console.log(this.diagram.engine);
       this.diagram.refresh++;
     }
   }, {

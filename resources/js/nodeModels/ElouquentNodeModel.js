@@ -9,8 +9,9 @@ export default class ElouquentNodeModel extends ManipulatorNodeModel {
 		super({
 			...options,
 			type: 'manipulator'
-		});
-		this.color = options.color || { options: 'red' };
+        });
+        
+        this.name = 'Users'
 
 		// setup an in and out port
 		this.addPort(
@@ -42,6 +43,5 @@ export default class ElouquentNodeModel extends ManipulatorNodeModel {
 
 	deserialize(ob, engine) {
 		super.deserialize(ob, engine);
-		this.color = ob.color;
 	}
 }

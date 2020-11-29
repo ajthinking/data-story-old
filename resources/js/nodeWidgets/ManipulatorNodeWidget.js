@@ -7,7 +7,7 @@ export default class ManipulatorNodeWidget extends React.Component {
             <div className="font-mono text-xxs text-gray-200">
                 <div className="flex-grow-0 w-32">
                     <div className="flex justify-between items-center pl-4 pr-2 py-1 border border-gray-900 font-bold rounded-lg bg-gray-700">
-                        <span>Route</span>
+                        <span>{this.props.node.name}</span>
                         <i className="fas fa-cog"></i>
                     </div>
                     <PortWidget className="" engine={this.props.engine} port={this.props.node.getPort('in1')}>

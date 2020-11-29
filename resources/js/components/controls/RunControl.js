@@ -13,8 +13,13 @@ export default class RunControl extends BaseControl {
 
     onClick()
     {
+        let model = this.props.store.diagram.engine.model.serialize()
 
+        console.log(
+            model.layers[1].models
+        )
 
+        return
         axios.post('/datastory/api/run', {
             diagram: {
                 nodeType: 'EloquentReader',

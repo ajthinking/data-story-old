@@ -39,7 +39,6 @@ export class Store {
         node.setPosition(100, 100);
     
         this.diagram.engine.model.addNode(node);
-        console.log(this.diagram.engine)
         this.diagram.refresh++
     }
     
