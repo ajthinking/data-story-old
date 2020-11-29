@@ -15,9 +15,7 @@ export default class RunControl extends BaseControl {
     {
         let model = this.props.store.diagram.engine.model.serialize()
 
-        console.log(
-            model.layers[1].models
-        )
+        console.log(model)
 
         return
         axios.post('/datastory/api/run', {
