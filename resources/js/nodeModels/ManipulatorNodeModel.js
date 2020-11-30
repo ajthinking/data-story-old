@@ -10,20 +10,17 @@ export default class ManipulatorNodeModel extends NodeModel {
 			...options,
 			type: 'manipulator'
 		});
-		this.color = options.color || { options: 'red' };
 	}
 
 	serialize() {
 		return {
 			...super.serialize(),
-            color: this.options.color,
             dependencies: this.dependencies()
 		};
 	}
 
 	deserialize(ob, engine) {
 		super.deserialize(ob, engine);
-		this.color = ob.color;
     }
 
     getInPorts() {
@@ -47,5 +44,9 @@ export default class ManipulatorNodeModel extends NodeModel {
         let dependencies = links.map(link => link.sourcePort.parent)
 
         return dependencies
+    }
+
+    dependsOn(n2) {
+        return this.dependencies().map(d => d.options.id).includes(n2.options.id)
     }
 }

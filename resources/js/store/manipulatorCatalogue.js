@@ -24,6 +24,12 @@ export default [
         example: "View results"
     },
     {
+        category: 'Workflow',
+        name: 'Pass',
+        nodeModel: 'PassNodeModel',
+        example: "Do nothing"
+    },    
+    {
         category: 'Collection',
         name: 'filter1',
         nodeModel: 'EloquentNodeModel',

@@ -77,7 +77,7 @@ export default class AddManipulatorControl extends BaseControl {
             style={customStyles}
             contentLabel="Example Modal"
             >            
-                <ManipulatorSearch />
+                <ManipulatorSearch onFinish={this.closeModal.bind(this)}/>
         </Modal>);
     }
     
@@ -96,34 +96,6 @@ export default class AddManipulatorControl extends BaseControl {
                 e.preventDefault()   
                 this.onClick()
             }
-        );
-
-        Mousetrap.bind(
-            'enter',
-            (e) => {
-                let prefix = 'data-node-model-'
-
-                // Get relevant data properties as object { 0: data-key-x }
-                let dataAttributes = _.pickBy(e.target.attributes, function(value, key) {
-                    return (value.name ?? false) && value.name.startsWith(prefix)
-                })
-
-                let options = Object.values(dataAttributes).reduce(
-                    (results, attribute) => {
-                        let optionName = attribute.name.replace(prefix, '')
-                        return {
-                            ...results,
-                            [optionName]: e.target.getAttribute(attribute.name)
-                        }
-                    }, {})
-
-                this.props.store.addManipulator(
-                    options['diagram-node-type']
-                )
-
-                e.preventDefault()   
-                this.closeModal()                
-            }
-        );        
+        );       
     }
 }

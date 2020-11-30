@@ -10,13 +10,10 @@ class RunAction
     public function __invoke()
     {
         $diagram = (object) request()->input('diagram');
-
-        $reader = new EloquentReader(
-            $diagram->class
-        );
+        return;
 
         // Simulate reading only one
-        $results = Runner::make()->run($reader);
+        $results = Runner::make()->run();
 
         file_put_contents(
             storage_path('model'),

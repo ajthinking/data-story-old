@@ -51,7 +51,7 @@ export class Store {
     addManipulator(name) {
         let selected = nodeModels[name]
 
-        var node = new selected();
+        var node = new selected({});
 
         node.setPosition(100, 100 + Math.random() * 100);
 

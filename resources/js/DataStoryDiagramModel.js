@@ -9,13 +9,7 @@ export default class DataStoryDiagramModel extends DiagramModel {
     serialize() {
         return {
             ...super.serialize(),
-            executionTree: this.executionTree()
-        }
-    }
-
-    executionTree(nodeId = null) {
-        return {
-            cool: 'ok'
+            executionOrder: this.executionOrder()
         }
     }
 
@@ -25,6 +19,25 @@ export default class DataStoryDiagramModel extends DiagramModel {
             this.getNode(node.options.id)
         )        
     }
+
+    executionOrder() {
+        let r = this.getNodes().sort(function(n1, n2) {
+
+            if (n2.dependsOn(n1)) {
+                return -1;
+            }
+            
+            if (n1.dependsOn(n2)) {
+              return 1;
+            }
+
+            return 0;
+          });
+
+        console.log(r)
+    }
+    
+    
 }
 
 /*

@@ -1,6 +1,7 @@
 import React from 'react';
 import { inject, observer } from "mobx-react"
 import BaseControl from './BaseControl'
+var Mousetrap = require('mousetrap');
 
 @inject('store') @observer
 export default class ManipulatorSearch extends React.Component {    
@@ -43,6 +44,7 @@ export default class ManipulatorSearch extends React.Component {
 
             <li 
                 key={manipulator.category + manipulator.name}
+                onDoubleClick={this.handleSelect.bind(this)}
                 //data-node-model={'InspectorNodeModel'}
                 //data-node-model-argument={{target: 'Users'}}
 
@@ -83,5 +85,35 @@ export default class ManipulatorSearch extends React.Component {
 
     componentDidMount(){
         this.nameInput.focus();
-    }    
+
+        Mousetrap.bind(
+            'enter',
+            this.handleSelect.bind(this)
+        );        
+    }
+    
+    handleSelect(event) {
+        let prefix = 'data-node-model-'
+
+        // Get relevant data properties as object { 0: data-key-x }
+        let dataAttributes = _.pickBy(event.target.attributes, function(value, key) {
+            return (value.name ?? false) && value.name.startsWith(prefix)
+        })
+
+        let options = Object.values(dataAttributes).reduce(
+            (results, attribute) => {
+                let optionName = attribute.name.replace(prefix, '')
+                return {
+                    ...results,
+                    [optionName]: event.target.getAttribute(attribute.name)
+                }
+            }, {})
+
+        this.props.store.addManipulator(
+            options['diagram-node-type']
+        )
+
+        event.preventDefault()   
+        this.props.onFinish()
+    }
 }
