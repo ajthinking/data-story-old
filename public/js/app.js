@@ -91030,6 +91030,18 @@ var App = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_6__["inject"])('sto
       if (page === 'StoryWorkbench') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_StoryWorkbench__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       if (page === 'Inspectors') return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_Inspectors__WEBPACK_IMPORTED_MODULE_4__["default"], null);
     }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this = this;
+
+      Mousetrap.bind('shift+d', function (e) {
+        _this.props.store.setPage('StoryWorkbench');
+      });
+      Mousetrap.bind('shift+t', function (e) {
+        _this.props.store.setPage('Inspectors');
+      });
+    }
   }]);
 
   return App;
@@ -91815,8 +91827,6 @@ var RunControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"
     key: "onClick",
     value: function onClick() {
       var model = this.props.store.diagram.engine.model.serialize();
-      console.log(model);
-      return;
       axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/datastory/api/run', {
         diagram: {
           nodeType: 'EloquentReader',
@@ -91827,6 +91837,21 @@ var RunControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"
         console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      Mousetrap.bind('?', // shift+plus 
+      function (e) {
+        e.preventDefault();
+
+        _this2.onClick();
+      });
+      Mousetrap.bind('shift+r', function (e) {
+        _this2.onClick();
       });
     }
   }]);
@@ -91967,7 +91992,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var Inspectors = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["inject"])('store'), _dec(_class = /*#__PURE__*/function (_React$Component) {
+var Inspectors = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["inject"])('store'), _dec(_class = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["observer"])(_class = /*#__PURE__*/function (_React$Component) {
   _inherits(Inspectors, _React$Component);
 
   var _super = _createSuper(Inspectors);
@@ -91991,389 +92016,49 @@ var Inspectors = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["inject"
         className: "shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
         className: "min-w-full divide-y divide-gray-200"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col",
-        className: "px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-      }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col",
-        className: "px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-      }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col",
-        className: "px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-      }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col",
-        className: "px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-      }, "Role"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        scope: "col",
-        className: "px-6 py-3 bg-gray-50"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "sr-only"
-      }, "Edit")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Jane Cooper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Regional Paradigm Technician"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "jane.cooper@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Admin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-gray-50"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Cody Fisher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Product Directives Officer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "cody.fisher@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Owner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Jane Cooper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Regional Paradigm Technician"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "jane.cooper@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Admin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-gray-50"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Cody Fisher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Product Directives Officer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "cody.fisher@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Owner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Jane Cooper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Regional Paradigm Technician"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "jane.cooper@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Admin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-gray-50"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Cody Fisher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Product Directives Officer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "cody.fisher@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Owner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Jane Cooper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Regional Paradigm Technician"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "jane.cooper@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Admin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-gray-50"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Cody Fisher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Product Directives Officer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "cody.fisher@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Owner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Jane Cooper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Regional Paradigm Technician"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "jane.cooper@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Admin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-gray-50"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Cody Fisher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Product Directives Officer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "cody.fisher@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Owner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Jane Cooper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Regional Paradigm Technician"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "jane.cooper@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Admin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-gray-50"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Cody Fisher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Product Directives Officer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "cody.fisher@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Owner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Jane Cooper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Regional Paradigm Technician"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "jane.cooper@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Admin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-gray-50"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Cody Fisher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Product Directives Officer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "cody.fisher@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Owner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Jane Cooper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Regional Paradigm Technician"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "jane.cooper@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Admin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-gray-50"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Cody Fisher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Product Directives Officer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "cody.fisher@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Owner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Jane Cooper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Regional Paradigm Technician"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "jane.cooper@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Admin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-gray-50"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Cody Fisher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Product Directives Officer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "cody.fisher@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Owner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Jane Cooper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Regional Paradigm Technician"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "jane.cooper@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Admin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-gray-50"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Cody Fisher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Product Directives Officer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "cody.fisher@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Owner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Jane Cooper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Regional Paradigm Technician"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "jane.cooper@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Admin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-gray-50"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Cody Fisher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Product Directives Officer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "cody.fisher@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Owner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Jane Cooper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Regional Paradigm Technician"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "jane.cooper@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Admin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-gray-50"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-      }, "Cody Fisher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Product Directives Officer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "cody.fisher@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Owner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "text-indigo-600 hover:text-indigo-900"
-      }, "Edit")))))))));
+      }, this.renderTableHead(), this.renderTableBody())))));
     }
+  }, {
+    key: "renderTableHead",
+    value: function renderTableHead() {
+      var headers = this.getHeaders();
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, this.getHeaders().map(function (heading) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+          key: heading,
+          scope: "col",
+          className: "px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        }, heading);
+      })));
+    }
+  }, {
+    key: "renderTableBody",
+    value: function renderTableBody() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+        className: "bg-white"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500"
+      }, "Jane Cooper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+      }, "Regional Paradigm Technician"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+      }, "jane.cooper@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+      }, "Admin")));
+    }
+  }, {
+    key: "getHeaders",
+    value: function getHeaders() {
+      return this.props.store.results.inspectors.users.map(function (user) {
+        return Object.keys(user);
+      }).flat();
+    }
+  }, {
+    key: "getRows",
+    value: function getRows() {}
   }]);
 
   return Inspectors;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component)) || _class);
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component)) || _class) || _class);
 
 
 /***/ }),
@@ -93035,6 +92720,16 @@ var Store = /*#__PURE__*/function () {
       latestNode: null
     });
 
+    _defineProperty(this, "results", {
+      inspectors: {
+        users: [{
+          name: 'Anders',
+          age: 15,
+          favorite_food: 'Hamburger'
+        }]
+      }
+    });
+
     _defineProperty(this, "metadata", {
       page: 'StoryWorkbench'
     });
@@ -93042,11 +92737,13 @@ var Store = /*#__PURE__*/function () {
     Object(mobx__WEBPACK_IMPORTED_MODULE_0__["makeObservable"])(this, {
       diagram: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
       metadata: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
+      results: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
       addManipulator: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       refreshDiagram: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
+      setLatestNode: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       setPage: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
-      setStory: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
-      setLatestNode: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound
+      setResults: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
+      setStory: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound
     });
   }
 
@@ -93104,6 +92801,11 @@ var Store = /*#__PURE__*/function () {
       this.metadata.page = name;
     }
   }, {
+    key: "setResults",
+    value: function setResults(results) {
+      this.results = results;
+    }
+  }, {
     key: "setStory",
     value: function setStory(name) {
       this.metadata.story = name;
@@ -93147,55 +92849,47 @@ __webpack_require__.r(__webpack_exports__);
   name: 'Table',
   nodeModel: 'InspectorNodeModel',
   example: "View results"
-} // {
-//     category: 'Collection',
-//     name: 'filter1',
-//     nodeModel: 'EloquentNodeModel',
-//     example: "$collection->filter(...)"
-// },        
-// {
-//     category: 'Collection',
-//     name: 'filter2',
-//     nodeModel: 'EloquentNodeModel',
-//     example: "$collection->filter(...)"
-// },        
-// {
-//     category: 'Collection',
-//     name: 'filter3',
-//     nodeModel: 'EloquentNodeModel',
-//     example: "$collection->filter(...)"
-// },        
-// {
-//     category: 'Collection',
-//     name: 'filter4',
-//     nodeModel: 'EloquentNodeModel',
-//     example: "$collection->filter(...)"
-// },        
-// {
-//     category: 'Collection',
-//     name: 'filter5',
-//     nodeModel: 'EloquentNodeModel',
-//     example: "$collection->filter(...)"
-// },        
-// {
-//     category: 'Collection',
-//     name: 'filter6',
-//     nodeModel: 'EloquentNodeModel',
-//     example: "$collection->filter(...)"
-// },        
-// {
-//     category: 'Collection',
-//     name: 'filter7',
-//     nodeModel: 'EloquentNodeModel',
-//     example: "$collection->filter(...)"
-// },        
-// {
-//     category: 'Collection',
-//     name: 'filter8',
-//     nodeModel: 'EloquentNodeModel',
-//     example: "$collection->filter(...)"
-// },                                    
-]);
+}, {
+  category: 'Collection',
+  name: 'filter1',
+  nodeModel: 'EloquentNodeModel',
+  example: "$collection->filter(...)"
+}, {
+  category: 'Collection',
+  name: 'filter2',
+  nodeModel: 'EloquentNodeModel',
+  example: "$collection->filter(...)"
+}, {
+  category: 'Collection',
+  name: 'filter3',
+  nodeModel: 'EloquentNodeModel',
+  example: "$collection->filter(...)"
+}, {
+  category: 'Collection',
+  name: 'filter4',
+  nodeModel: 'EloquentNodeModel',
+  example: "$collection->filter(...)"
+}, {
+  category: 'Collection',
+  name: 'filter5',
+  nodeModel: 'EloquentNodeModel',
+  example: "$collection->filter(...)"
+}, {
+  category: 'Collection',
+  name: 'filter6',
+  nodeModel: 'EloquentNodeModel',
+  example: "$collection->filter(...)"
+}, {
+  category: 'Collection',
+  name: 'filter7',
+  nodeModel: 'EloquentNodeModel',
+  example: "$collection->filter(...)"
+}, {
+  category: 'Collection',
+  name: 'filter8',
+  nodeModel: 'EloquentNodeModel',
+  example: "$collection->filter(...)"
+}]);
 
 /***/ }),
 

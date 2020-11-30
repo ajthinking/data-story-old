@@ -23,52 +23,52 @@ export default [
         nodeModel: 'InspectorNodeModel',
         example: "View results"
     },
-    // {
-    //     category: 'Collection',
-    //     name: 'filter1',
-    //     nodeModel: 'EloquentNodeModel',
-    //     example: "$collection->filter(...)"
-    // },        
-    // {
-    //     category: 'Collection',
-    //     name: 'filter2',
-    //     nodeModel: 'EloquentNodeModel',
-    //     example: "$collection->filter(...)"
-    // },        
-    // {
-    //     category: 'Collection',
-    //     name: 'filter3',
-    //     nodeModel: 'EloquentNodeModel',
-    //     example: "$collection->filter(...)"
-    // },        
-    // {
-    //     category: 'Collection',
-    //     name: 'filter4',
-    //     nodeModel: 'EloquentNodeModel',
-    //     example: "$collection->filter(...)"
-    // },        
-    // {
-    //     category: 'Collection',
-    //     name: 'filter5',
-    //     nodeModel: 'EloquentNodeModel',
-    //     example: "$collection->filter(...)"
-    // },        
-    // {
-    //     category: 'Collection',
-    //     name: 'filter6',
-    //     nodeModel: 'EloquentNodeModel',
-    //     example: "$collection->filter(...)"
-    // },        
-    // {
-    //     category: 'Collection',
-    //     name: 'filter7',
-    //     nodeModel: 'EloquentNodeModel',
-    //     example: "$collection->filter(...)"
-    // },        
-    // {
-    //     category: 'Collection',
-    //     name: 'filter8',
-    //     nodeModel: 'EloquentNodeModel',
-    //     example: "$collection->filter(...)"
-    // },                                    
+    {
+        category: 'Collection',
+        name: 'filter1',
+        nodeModel: 'EloquentNodeModel',
+        example: "$collection->filter(...)"
+    },        
+    {
+        category: 'Collection',
+        name: 'filter2',
+        nodeModel: 'EloquentNodeModel',
+        example: "$collection->filter(...)"
+    },        
+    {
+        category: 'Collection',
+        name: 'filter3',
+        nodeModel: 'EloquentNodeModel',
+        example: "$collection->filter(...)"
+    },        
+    {
+        category: 'Collection',
+        name: 'filter4',
+        nodeModel: 'EloquentNodeModel',
+        example: "$collection->filter(...)"
+    },        
+    {
+        category: 'Collection',
+        name: 'filter5',
+        nodeModel: 'EloquentNodeModel',
+        example: "$collection->filter(...)"
+    },        
+    {
+        category: 'Collection',
+        name: 'filter6',
+        nodeModel: 'EloquentNodeModel',
+        example: "$collection->filter(...)"
+    },        
+    {
+        category: 'Collection',
+        name: 'filter7',
+        nodeModel: 'EloquentNodeModel',
+        example: "$collection->filter(...)"
+    },        
+    {
+        category: 'Collection',
+        name: 'filter8',
+        nodeModel: 'EloquentNodeModel',
+        example: "$collection->filter(...)"
+    },                                    
 ]

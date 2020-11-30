@@ -15,9 +15,6 @@ export default class RunControl extends BaseControl {
     {
         let model = this.props.store.diagram.engine.model.serialize()
 
-        console.log(model)
-
-        return
         axios.post('/datastory/api/run', {
             diagram: {
                 nodeType: 'EloquentReader',
@@ -33,4 +30,22 @@ export default class RunControl extends BaseControl {
             console.log(error);
           });
     }
+
+    componentDidMount() {
+        
+        Mousetrap.bind(
+            '?', // shift+plus 
+            (e) => {
+                e.preventDefault()   
+                this.onClick()
+            }
+        );
+
+        Mousetrap.bind(
+            'shift+r',
+            (e) => {
+                this.onClick()
+            }
+        );        
+    }    
 }

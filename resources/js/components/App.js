@@ -25,5 +25,21 @@ export default class App extends React.Component {
 
         if(page === 'StoryWorkbench') return (<StoryWorkbench />);
         if(page === 'Inspectors') return (<Inspectors />);
-    }    
+    }
+    
+    componentDidMount() {
+        Mousetrap.bind(
+            'shift+d',
+            (e) => {
+                this.props.store.setPage('StoryWorkbench')
+            }
+        );
+
+        Mousetrap.bind(
+            'shift+t',
+            (e) => {
+                this.props.store.setPage('Inspectors')
+            }
+        );        
+    }     
 }

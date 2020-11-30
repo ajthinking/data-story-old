@@ -16,6 +16,18 @@ export class Store {
         latestNode: null,
     }
 
+    results = {
+        inspectors: {
+            users: [
+                {
+                    name: 'Anders',
+                    age: 15,
+                    favorite_food : 'Hamburger',
+                }
+            ]
+        }
+    }
+
     metadata = {
         page: 'StoryWorkbench',
     }
@@ -24,12 +36,15 @@ export class Store {
         makeObservable(this, {
             diagram: observable,
             metadata: observable,
+            results: observable,
             
             addManipulator: action.bound,
             refreshDiagram: action.bound,
-            setPage: action.bound,
-            setStory: action.bound,
             setLatestNode: action.bound,
+            setPage: action.bound,
+            setResults: action.bound,
+            setStory: action.bound,
+            
         })
     }
 
@@ -84,7 +99,11 @@ export class Store {
     
     setPage(name) {
         this.metadata.page = name
-    }    
+    }
+    
+    setResults(results) {
+        this.results = results
+    }
 
     setStory(name) {
         this.metadata.story = name
