@@ -1,7 +1,5 @@
 import React from 'react';
-import { inject, observer } from "mobx-react"
 
-@inject('store') @observer
 export default class Header extends React.Component {
     render() {
         return (
@@ -10,7 +8,7 @@ export default class Header extends React.Component {
                     <span className="text-xl text-malibu-500 font-mono">
                         DataStory
                         <span className="ml-4 text-sm text-gray-400">
-                            {this.props.store.metadata.story}
+                            proof of concept
                         </span>
                     </span>          
                 </div>

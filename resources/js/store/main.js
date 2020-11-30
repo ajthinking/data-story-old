@@ -1,22 +1,20 @@
 import { action, observable, makeObservable } from "mobx"
 import ManipulatorNodeModel from '../nodeModels/ManipulatorNodeModel'
-import defaultEngine from './defaultEngine'
+import engine from './defaultEngine'
+import manipulators from './manipulatorCatalogue'
 import nodeModels from './nodeModels'
 
 
 export class Store {
 
     diagram = {
-        engine: defaultEngine,
-        refresh: 0
+        engine,
+        manipulators,
+        refresh: 0,
     }
 
     metadata = {
-        story: 'projects/data/units',
         page: 'StoryWorkbench',
-        dummy: {
-            counter: 0
-        }
     }
 
     constructor() {
@@ -35,10 +33,10 @@ export class Store {
 
         var node = new selected();
 
-        //var node = new ManipulatorNodeModel({ color: 'rgb(192,255,0)' });
         node.setPosition(100, 100);
-    
+        
         this.diagram.engine.model.addNode(node);
+        
         this.diagram.refresh++
     }
     

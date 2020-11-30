@@ -1,7 +1,7 @@
 import EloquentNodeModel from '../nodeModels/ElouquentNodeModel'
-import ManipulatorNodeModel from '../nodeModels/ManipulatorNodeModel'
+import InspectorNodeModel from '../nodeModels/InspectorNodeModel'
 
 export default {
-    ManipulatorNodeModel,
-    EloquentNodeModel
+    EloquentNodeModel,
+    InspectorNodeModel
 }

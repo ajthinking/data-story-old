@@ -11,26 +11,6 @@ export default class ManipulatorNodeModel extends NodeModel {
 			type: 'manipulator'
 		});
 		this.color = options.color || { options: 'red' };
-
-		// setup an in and out port
-		this.addPort(
-			new DefaultPortModel({
-				in: true,
-				name: 'in1'
-			})
-        );
-		this.addPort(
-			new DefaultPortModel({
-				in: true,
-				name: 'in2'
-			})
-		);        
-		this.addPort(
-			new DefaultPortModel({
-				in: false,
-				name: 'out1'
-			})
-		);
 	}
 
 	serialize() {

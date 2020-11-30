@@ -4,7 +4,7 @@ import ManipulatorNodeModel from './ManipulatorNodeModel';
 /**
  * Example of a custom model using pure javascript
  */
-export default class ElouquentNodeModel extends ManipulatorNodeModel {
+export default class InspectorNodeModel extends ManipulatorNodeModel {
 	constructor(options = {}) {
 		super({
 			...options,
@@ -12,18 +12,18 @@ export default class ElouquentNodeModel extends ManipulatorNodeModel {
         });
 
         this.targetElouquentModel = options.targetElouquentModel ?? 'App\\Models\\User'
-      
+
+		// setup an in and out port
 		this.addPort(
 			new DefaultPortModel({
-				in: false,
-				name: 'out1',
+				in: true,
+				name: 'Input'
 			})
-		);
+        );
     }
     
     getDisplayName() {
-        let parts = this.targetElouquentModel.split('\\');
-        return parts.pop() + 's'
+        return 'Inspector'
     }
 
 	serialize() {

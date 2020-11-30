@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 import { inject, observer } from "mobx-react"
 import BaseControl from './BaseControl'
 import axios from 'axios';
@@ -8,12 +9,15 @@ var Mousetrap = require('mousetrap');
 
 const customStyles = {
   content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    'maxWidth': '450px',
+    'top': '110px',
+    'left': '120px',
+    //top                   : '25%',
+    //left                  : '25%',
+    //right                 : 'auto',
+    //bottom                : 'auto',
+    //marginRight           : '-50%',
+    //transform             : 'translate(-50%, -50%)'
   },
   overlay: {
     position: 'fixed',
@@ -52,8 +56,6 @@ export default class AddManipulatorControl extends BaseControl {
         this.setState({
             isOpen: false
         });
-
-        this.props.store.addManipulator('EloquentNodeModel')
     }
 
     renderIcon() {
@@ -99,8 +101,28 @@ export default class AddManipulatorControl extends BaseControl {
         Mousetrap.bind(
             'enter',
             (e) => {
+                let prefix = 'data-node-model-'
+
+                // Get relevant data properties as object { 0: data-key-x }
+                let dataAttributes = _.pickBy(e.target.attributes, function(value, key) {
+                    return (value.name ?? false) && value.name.startsWith(prefix)
+                })
+
+                let options = Object.values(dataAttributes).reduce(
+                    (results, attribute) => {
+                        let optionName = attribute.name.replace(prefix, '')
+                        return {
+                            ...results,
+                            [optionName]: e.target.getAttribute(attribute.name)
+                        }
+                    }, {})
+
+                this.props.store.addManipulator(
+                    options['diagram-node-type']
+                )
+
                 e.preventDefault()   
-                this.closeModal()
+                this.closeModal()                
             }
         );        
     }
