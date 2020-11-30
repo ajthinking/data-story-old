@@ -90907,6 +90907,13 @@ var DataStoryDiagramModel = /*#__PURE__*/function (_DiagramModel) {
         cool: 'ok'
       };
     }
+  }, {
+    key: "hasNode",
+    value: function hasNode(node) {
+      var _node$options;
+
+      return Boolean((node === null || node === void 0 ? void 0 : (_node$options = node.options) === null || _node$options === void 0 ? void 0 : _node$options.id) && this.getNode(node.options.id));
+    }
   }]);
 
   return DataStoryDiagramModel;
@@ -91689,7 +91696,7 @@ var ManipulatorSearch = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["
     key: "renderManipulator",
     value: function renderManipulator(manipulator) {
       var elementDataProperties = {
-        'data-node-model-diagram-node-type': 'InspectorNodeModel',
+        'data-node-model-diagram-node-type': manipulator.nodeModel,
         'data-node-model-elouquent-class': 'User',
         'data-node-model-elouquent-model-id': '1'
       };
@@ -92995,9 +93002,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
 /* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
 /* harmony import */ var _nodeModels_ManipulatorNodeModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../nodeModels/ManipulatorNodeModel */ "./resources/js/nodeModels/ManipulatorNodeModel.js");
-/* harmony import */ var _defaultEngine__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./defaultEngine */ "./resources/js/store/defaultEngine.js");
-/* harmony import */ var _manipulatorCatalogue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./manipulatorCatalogue */ "./resources/js/store/manipulatorCatalogue.js");
-/* harmony import */ var _nodeModels__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./nodeModels */ "./resources/js/store/nodeModels.js");
+/* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @projectstorm/react-diagrams */ "./node_modules/@projectstorm/react-diagrams/dist/index.js");
+/* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _defaultEngine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./defaultEngine */ "./resources/js/store/defaultEngine.js");
+/* harmony import */ var _manipulatorCatalogue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./manipulatorCatalogue */ "./resources/js/store/manipulatorCatalogue.js");
+/* harmony import */ var _nodeModels__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./nodeModels */ "./resources/js/store/nodeModels.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -93011,14 +93022,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
 var Store = /*#__PURE__*/function () {
   function Store() {
     _classCallCheck(this, Store);
 
     _defineProperty(this, "diagram", {
-      engine: _defaultEngine__WEBPACK_IMPORTED_MODULE_2__["default"],
-      manipulators: _manipulatorCatalogue__WEBPACK_IMPORTED_MODULE_3__["default"],
-      refresh: 0
+      engine: _defaultEngine__WEBPACK_IMPORTED_MODULE_3__["default"],
+      manipulators: _manipulatorCatalogue__WEBPACK_IMPORTED_MODULE_4__["default"],
+      refresh: 0,
+      latestNode: null
     });
 
     _defineProperty(this, "metadata", {
@@ -93029,19 +93043,60 @@ var Store = /*#__PURE__*/function () {
       diagram: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
       metadata: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
       addManipulator: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
+      refreshDiagram: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       setPage: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
-      setStory: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound
+      setStory: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
+      setLatestNode: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound
     });
   }
 
   _createClass(Store, [{
     key: "addManipulator",
     value: function addManipulator(name) {
-      var selected = _nodeModels__WEBPACK_IMPORTED_MODULE_4__["default"][name];
+      var selected = _nodeModels__WEBPACK_IMPORTED_MODULE_5__["default"][name];
       var node = new selected();
-      node.setPosition(100, 100);
+      node.setPosition(100, 100 + Math.random() * 100);
+      var latestNode = this.diagram.latestNode;
+
+      if (this.diagram.engine.model.hasNode(latestNode)) {
+        node.setPosition(latestNode.position.x + 200, latestNode.position.y);
+        var link = this.getAutomatedLink(latestNode, node);
+        if (link) this.diagram.engine.model.addAll(link);
+      }
+
       this.diagram.engine.model.addNode(node);
+      this.setLatestNode(node);
+      this.refreshDiagram();
+    }
+  }, {
+    key: "getAutomatedLink",
+    value: function getAutomatedLink(from, to) {
+      var _Object$values$, _Object$values$2;
+
+      if (!from) return; // Ports
+
+      var fromPort = (_Object$values$ = Object.values(from.getOutPorts())[0]) !== null && _Object$values$ !== void 0 ? _Object$values$ : false;
+      var toPort = (_Object$values$2 = Object.values(to.getInPorts())[0]) !== null && _Object$values$2 !== void 0 ? _Object$values$2 : false; // Ensure there are ports to connect to
+
+      if (!fromPort || !toPort) return; // Links
+
+      var link = new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_2__["DefaultLinkModel"]();
+      link.setSourcePort(fromPort);
+      link.setTargetPort(toPort); // Report
+
+      fromPort.reportPosition();
+      toPort.reportPosition();
+      return link;
+    }
+  }, {
+    key: "refreshDiagram",
+    value: function refreshDiagram() {
       this.diagram.refresh++;
+    }
+  }, {
+    key: "setLatestNode",
+    value: function setLatestNode(node) {
+      this.diagram.latestNode = node;
     }
   }, {
     key: "setPage",
@@ -93070,55 +93125,77 @@ var Store = /*#__PURE__*/function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ([{
-  category: 'Eloquent',
-  name: 'Comments',
-  example: "App\\Models\\Comment::where(...)->get()"
-}, {
-  category: 'Eloquent',
-  name: 'Posts',
-  example: "App\\Models\\Post::where(...)->get()"
-}, {
+/* harmony default export */ __webpack_exports__["default"] = ([// {
+//     category: 'Eloquent',
+//     name: 'Comments',
+//     nodeModel: 'EloquentNodeModel',
+//     example: "App\\Models\\Comment::where(...)->get()"
+// },
+// {
+//     category: 'Eloquent',
+//     name: 'Posts',
+//     nodeModel: 'EloquentNodeModel',
+//     example: "App\\Models\\Post::where(...)->get()"
+// },
+{
   category: 'Eloquent',
   name: 'Users',
+  nodeModel: 'EloquentNodeModel',
   example: "App\\Models\\User::where(...)->get()"
 }, {
   category: 'Inspector',
   name: 'Table',
+  nodeModel: 'InspectorNodeModel',
   example: "View results"
-}, {
-  category: 'Collection',
-  name: 'filter1',
-  example: "$collection->filter(...)"
-}, {
-  category: 'Collection',
-  name: 'filter2',
-  example: "$collection->filter(...)"
-}, {
-  category: 'Collection',
-  name: 'filter3',
-  example: "$collection->filter(...)"
-}, {
-  category: 'Collection',
-  name: 'filter4',
-  example: "$collection->filter(...)"
-}, {
-  category: 'Collection',
-  name: 'filter5',
-  example: "$collection->filter(...)"
-}, {
-  category: 'Collection',
-  name: 'filter6',
-  example: "$collection->filter(...)"
-}, {
-  category: 'Collection',
-  name: 'filter7',
-  example: "$collection->filter(...)"
-}, {
-  category: 'Collection',
-  name: 'filter8',
-  example: "$collection->filter(...)"
-}]);
+} // {
+//     category: 'Collection',
+//     name: 'filter1',
+//     nodeModel: 'EloquentNodeModel',
+//     example: "$collection->filter(...)"
+// },        
+// {
+//     category: 'Collection',
+//     name: 'filter2',
+//     nodeModel: 'EloquentNodeModel',
+//     example: "$collection->filter(...)"
+// },        
+// {
+//     category: 'Collection',
+//     name: 'filter3',
+//     nodeModel: 'EloquentNodeModel',
+//     example: "$collection->filter(...)"
+// },        
+// {
+//     category: 'Collection',
+//     name: 'filter4',
+//     nodeModel: 'EloquentNodeModel',
+//     example: "$collection->filter(...)"
+// },        
+// {
+//     category: 'Collection',
+//     name: 'filter5',
+//     nodeModel: 'EloquentNodeModel',
+//     example: "$collection->filter(...)"
+// },        
+// {
+//     category: 'Collection',
+//     name: 'filter6',
+//     nodeModel: 'EloquentNodeModel',
+//     example: "$collection->filter(...)"
+// },        
+// {
+//     category: 'Collection',
+//     name: 'filter7',
+//     nodeModel: 'EloquentNodeModel',
+//     example: "$collection->filter(...)"
+// },        
+// {
+//     category: 'Collection',
+//     name: 'filter8',
+//     nodeModel: 'EloquentNodeModel',
+//     example: "$collection->filter(...)"
+// },                                    
+]);
 
 /***/ }),
 

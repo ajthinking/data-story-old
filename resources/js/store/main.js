@@ -1,8 +1,10 @@
 import { action, observable, makeObservable } from "mobx"
 import ManipulatorNodeModel from '../nodeModels/ManipulatorNodeModel'
+import { DefaultLinkModel } from '@projectstorm/react-diagrams'
 import engine from './defaultEngine'
 import manipulators from './manipulatorCatalogue'
 import nodeModels from './nodeModels'
+import _ from 'lodash'
 
 
 export class Store {
@@ -11,6 +13,7 @@ export class Store {
         engine,
         manipulators,
         refresh: 0,
+        latestNode: null,
     }
 
     metadata = {
@@ -23,8 +26,10 @@ export class Store {
             metadata: observable,
             
             addManipulator: action.bound,
+            refreshDiagram: action.bound,
             setPage: action.bound,
             setStory: action.bound,
+            setLatestNode: action.bound,
         })
     }
 
@@ -33,11 +38,48 @@ export class Store {
 
         var node = new selected();
 
-        node.setPosition(100, 100);
+        node.setPosition(100, 100 + Math.random() * 100);
+
+        let latestNode = this.diagram.latestNode
+
+        if(this.diagram.engine.model.hasNode(latestNode)) {
+            node.setPosition(latestNode.position.x+200, latestNode.position.y);
+            let link = this.getAutomatedLink(latestNode, node)
+            if(link) this.diagram.engine.model.addAll(link);
+        }
         
         this.diagram.engine.model.addNode(node);
+        this.setLatestNode(node)
+        this.refreshDiagram()
+    }
+
+    getAutomatedLink(from, to) {
+        if(!from) return
+        // Ports
+        let fromPort = Object.values(from.getOutPorts())[0] ?? false;
+        let toPort = Object.values(to.getInPorts())[0] ?? false;
+
+        // Ensure there are ports to connect to
+        if(!fromPort || !toPort) return;
         
-        this.diagram.refresh++
+        // Links
+        let link = new DefaultLinkModel()
+        link.setSourcePort(fromPort);
+        link.setTargetPort(toPort);            
+        
+        // Report
+        fromPort.reportPosition()
+        toPort.reportPosition()
+
+        return link
+    }
+
+    refreshDiagram() {
+        this.diagram.refresh++        
+    }
+
+    setLatestNode(node) {
+        this.diagram.latestNode = node
     }
     
     setPage(name) {

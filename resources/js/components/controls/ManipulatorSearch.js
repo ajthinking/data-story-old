@@ -33,7 +33,7 @@ export default class ManipulatorSearch extends React.Component {
 
     renderManipulator(manipulator) {
         const elementDataProperties = {
-            'data-node-model-diagram-node-type' : 'InspectorNodeModel',
+            'data-node-model-diagram-node-type' : manipulator.nodeModel,
             'data-node-model-elouquent-class'      : 'User',
             'data-node-model-elouquent-model-id'   : '1',
         }

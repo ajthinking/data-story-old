@@ -18,6 +18,13 @@ export default class DataStoryDiagramModel extends DiagramModel {
             cool: 'ok'
         }
     }
+
+    hasNode(node) {
+        return Boolean(
+            node?.options?.id &&
+            this.getNode(node.options.id)
+        )        
+    }
 }
 
 /*
