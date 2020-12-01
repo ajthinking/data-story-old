@@ -90895,9 +90895,16 @@ var DataStoryDiagramModel = /*#__PURE__*/function (_DiagramModel) {
   _createClass(DataStoryDiagramModel, [{
     key: "serialize",
     value: function serialize() {
-      return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(DataStoryDiagramModel.prototype), "serialize", this).call(this)), {}, {
-        executionOrder: this.executionOrder()
-      });
+      return _objectSpread({}, _get(_getPrototypeOf(DataStoryDiagramModel.prototype), "serialize", this).call(this));
+    }
+  }, {
+    key: "simpleSerialize",
+    value: function simpleSerialize() {
+      return {
+        nodes: this.getNodes().map(function (node) {
+          return node.simpleSerialize();
+        })
+      };
     }
   }, {
     key: "hasNode",
@@ -91792,6 +91799,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BaseControl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BaseControl */ "./resources/js/components/controls/BaseControl.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/nonCircularJsonStringify */ "./resources/js/utils/nonCircularJsonStringify.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var _dec, _class;
@@ -91820,6 +91828,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var RunControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"])('store'), _dec(_class = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["observer"])(_class = /*#__PURE__*/function (_BaseControl) {
   _inherits(RunControl, _BaseControl);
 
@@ -91839,14 +91848,12 @@ var RunControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"
   _createClass(RunControl, [{
     key: "onClick",
     value: function onClick() {
-      console.log(this.props.store.diagram.engine.model.executionOrder().map(function (node) {
-        return parseInt(node.getDisplayName().replace(/(.*)#/, ''));
-      }));
-      return;
+      console.log(this.props.store.diagram.engine.model, Object(_utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_4__["nonCircularJsonStringify"])(this.props.store.diagram.engine.model.simpleSerialize()));
       axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/datastory/api/run', {
-        diagram: {
-          model: this.props.store.diagram.engine.model.serialize()
-        }
+        model: Object(_utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_4__["nonCircularJsonStringify"])(this.props.store.diagram.engine.model),
+        executionOrder: this.props.store.diagram.engine.model.executionOrder().map(function (node) {
+          return node.options.id;
+        })
       }).then(function (response) {
         console.log("WOW", response.data);
       })["catch"](function (error) {
@@ -92508,6 +92515,13 @@ var ManipulatorNodeModel = /*#__PURE__*/function (_NodeModel) {
       });
     }
   }, {
+    key: "simpleSerialize",
+    value: function simpleSerialize() {
+      return {
+        hey: 'Some data'
+      };
+    }
+  }, {
     key: "deserialize",
     value: function deserialize(ob, engine) {
       _get(_getPrototypeOf(ManipulatorNodeModel.prototype), "deserialize", this).call(this, ob, engine);
@@ -93125,6 +93139,39 @@ __webpack_require__.r(__webpack_exports__);
   InspectorNodeModel: _nodeModels_InspectorNodeModel__WEBPACK_IMPORTED_MODULE_1__["default"],
   PassNodeModel: _nodeModels_PassNodeModel__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
+
+/***/ }),
+
+/***/ "./resources/js/utils/nonCircularJsonStringify.js":
+/*!********************************************************!*\
+  !*** ./resources/js/utils/nonCircularJsonStringify.js ***!
+  \********************************************************/
+/*! exports provided: nonCircularJsonStringify */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nonCircularJsonStringify", function() { return nonCircularJsonStringify; });
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var nonCircularJsonStringify = function nonCircularJsonStringify(data) {
+  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  var indentation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 4;
+  var cache = [];
+  return JSON.stringify(data, function (key, value) {
+    if (_typeof(value) === 'object' && value !== null) {
+      if (cache.indexOf(value) !== -1) {
+        // Circular reference found, discard key
+        return;
+      } // Store value in our collection
+
+
+      cache.push(value);
+    }
+
+    return value;
+  }, indentation);
+};
 
 /***/ }),
 

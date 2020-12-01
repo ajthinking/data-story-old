@@ -20,7 +20,13 @@ export default class ManipulatorNodeModel extends NodeModel {
             dependencies: this.dependencies(),
             //serial: this.serial,
 		};
-	}
+    }
+    
+    simpleSerialize() {
+        return {
+            hey: 'Some data'
+        }
+    }
 
 	deserialize(ob, engine) {
 		super.deserialize(ob, engine);
@@ -42,7 +48,7 @@ export default class ManipulatorNodeModel extends NodeModel {
         let inPorts = Object.values(this.getInPorts())
         let linkLists = inPorts.map(port => port.links).flat()
         let links = linkLists.map(linkList => Object.values(linkList)).flat()
-        
+
         let dependencies = links.map(link => link.sourcePort.parent)
 
         let deepDependencies = dependencies.map(d => d.dependencies())

@@ -9,7 +9,12 @@ export default class DataStoryDiagramModel extends DiagramModel {
     serialize() {
         return {
             ...super.serialize(),
-            executionOrder: this.executionOrder()
+        }
+    }
+
+    simpleSerialize() {
+        return {
+            nodes: this.getNodes().map(node => node.simpleSerialize()) 
         }
     }
 

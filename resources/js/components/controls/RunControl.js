@@ -2,6 +2,7 @@ import React from 'react';
 import { inject, observer } from "mobx-react"
 import BaseControl from './BaseControl'
 import axios from 'axios';
+import {nonCircularJsonStringify} from '../../utils/nonCircularJsonStringify'
 
 @inject('store') @observer
 export default class RunControl extends BaseControl {
@@ -14,23 +15,18 @@ export default class RunControl extends BaseControl {
     onClick()
     {
         console.log(
-            this.props.store.diagram.engine.model
-                .executionOrder()
-                .map((node) => {
-                    return parseInt(
-                        node.getDisplayName().replace(/(.*)#/, '')
-                    )
-                })
+            this.props.store.diagram.engine.model,
+            nonCircularJsonStringify(
+                this.props.store.diagram.engine.model.simpleSerialize()
+            )
         )
 
-
-
-        return;
-
         axios.post('/datastory/api/run', {
-            diagram: {
-                model: this.props.store.diagram.engine.model.serialize()
-            }
+            model: nonCircularJsonStringify(
+                this.props.store.diagram.engine.model
+            ),
+            executionOrder: this.props.store.diagram.engine.model.executionOrder()
+                .map(node => node.options.id)
           })
           .then(function (response) {
             console.log("WOW", response.data);
