@@ -90909,7 +90909,7 @@ var DataStoryDiagramModel = /*#__PURE__*/function (_DiagramModel) {
   }, {
     key: "executionOrder",
     value: function executionOrder() {
-      var r = this.getNodes().sort(function (n1, n2) {
+      return this.getNodes().sort(function (n1, n2) {
         if (n2.dependsOn(n1)) {
           return -1;
         }
@@ -90920,7 +90920,6 @@ var DataStoryDiagramModel = /*#__PURE__*/function (_DiagramModel) {
 
         return 0;
       });
-      console.log(r);
     }
   }]);
 
@@ -91840,6 +91839,10 @@ var RunControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"
   _createClass(RunControl, [{
     key: "onClick",
     value: function onClick() {
+      console.log(this.props.store.diagram.engine.model.executionOrder().map(function (node) {
+        return parseInt(node.getDisplayName().replace(/(.*)#/, ''));
+      }));
+      return;
       axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/datastory/api/run', {
         diagram: {
           model: this.props.store.diagram.engine.model.serialize()
@@ -92298,7 +92301,7 @@ var ElouquentNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
     key: "getDisplayName",
     value: function getDisplayName() {
       var parts = this.targetElouquentModel.split('\\');
-      return parts.pop() + 's';
+      return parts.pop() + 's' + " #" + this.serial;
     }
   }, {
     key: "serialize",
@@ -92402,7 +92405,7 @@ var InspectorNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
   _createClass(InspectorNodeModel, [{
     key: "getDisplayName",
     value: function getDisplayName() {
-      return 'Inspector';
+      return 'Inspector' + " #" + this.serial;
     }
   }, {
     key: "serialize",
@@ -92483,20 +92486,25 @@ var ManipulatorNodeModel = /*#__PURE__*/function (_NodeModel) {
   var _super = _createSuper(ManipulatorNodeModel);
 
   function ManipulatorNodeModel() {
+    var _this;
+
     var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     _classCallCheck(this, ManipulatorNodeModel);
 
-    return _super.call(this, _objectSpread(_objectSpread({}, options), {}, {
+    _this = _super.call(this, _objectSpread(_objectSpread({}, options), {}, {
       type: 'manipulator'
     }));
+    _this.serial = options.serial;
+    return _this;
   }
 
   _createClass(ManipulatorNodeModel, [{
     key: "serialize",
     value: function serialize() {
       return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(ManipulatorNodeModel.prototype), "serialize", this).call(this)), {}, {
-        dependencies: this.dependencies()
+        dependencies: this.dependencies() //serial: this.serial,
+
       });
     }
   }, {
@@ -92531,7 +92539,10 @@ var ManipulatorNodeModel = /*#__PURE__*/function (_NodeModel) {
       var dependencies = links.map(function (link) {
         return link.sourcePort.parent;
       });
-      return dependencies;
+      var deepDependencies = dependencies.map(function (d) {
+        return d.dependencies();
+      });
+      return dependencies.concat(deepDependencies.flat());
     }
   }, {
     key: "dependsOn",
@@ -92632,7 +92643,7 @@ var PassNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
   _createClass(PassNodeModel, [{
     key: "getDisplayName",
     value: function getDisplayName() {
-      return 'Pass';
+      return 'Pass' + " #" + this.serial;
     }
   }, {
     key: "serialize",
@@ -92904,7 +92915,8 @@ var Store = /*#__PURE__*/function () {
       engine: _defaultEngine__WEBPACK_IMPORTED_MODULE_3__["default"],
       manipulators: _manipulatorCatalogue__WEBPACK_IMPORTED_MODULE_4__["default"],
       refresh: 0,
-      latestNode: null
+      latestNode: null,
+      nodeSerial: 1
     });
 
     _defineProperty(this, "results", {
@@ -92926,6 +92938,7 @@ var Store = /*#__PURE__*/function () {
       metadata: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
       results: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
       addManipulator: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
+      increaseNodeSerial: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       refreshDiagram: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       setLatestNode: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       setPage: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
@@ -92938,7 +92951,9 @@ var Store = /*#__PURE__*/function () {
     key: "addManipulator",
     value: function addManipulator(name) {
       var selected = _nodeModels__WEBPACK_IMPORTED_MODULE_5__["default"][name];
-      var node = new selected({});
+      var node = new selected({
+        serial: this.diagram.nodeSerial++
+      });
       node.setPosition(100, 100 + Math.random() * 100);
       var latestNode = this.diagram.latestNode;
 
@@ -92976,6 +92991,11 @@ var Store = /*#__PURE__*/function () {
     key: "refreshDiagram",
     value: function refreshDiagram() {
       this.diagram.refresh++;
+    }
+  }, {
+    key: "increaseNodeSerial",
+    value: function increaseNodeSerial() {
+      this.diagram.nodeSerial++;
     }
   }, {
     key: "setLatestNode",

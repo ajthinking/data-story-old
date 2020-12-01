@@ -23,7 +23,7 @@ export default class ElouquentNodeModel extends ManipulatorNodeModel {
     
     getDisplayName() {
         let parts = this.targetElouquentModel.split('\\');
-        return parts.pop() + 's'
+        return parts.pop() + 's' + " #" + this.serial
     }
 
 	serialize() {

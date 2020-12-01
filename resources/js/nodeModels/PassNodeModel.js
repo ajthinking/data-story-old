@@ -27,7 +27,7 @@ export default class PassNodeModel extends ManipulatorNodeModel {
     }
     
     getDisplayName() {
-        return 'Pass'
+        return 'Pass' + " #" + this.serial
     }
 
 	serialize() {

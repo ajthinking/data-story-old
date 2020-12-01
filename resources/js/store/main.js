@@ -14,6 +14,7 @@ export class Store {
         manipulators,
         refresh: 0,
         latestNode: null,
+        nodeSerial: 1,
     }
 
     results = {
@@ -39,6 +40,7 @@ export class Store {
             results: observable,
             
             addManipulator: action.bound,
+            increaseNodeSerial: action.bound,
             refreshDiagram: action.bound,
             setLatestNode: action.bound,
             setPage: action.bound,
@@ -51,7 +53,9 @@ export class Store {
     addManipulator(name) {
         let selected = nodeModels[name]
 
-        var node = new selected({});
+        var node = new selected({
+           serial: this.diagram.nodeSerial++ 
+        });
 
         node.setPosition(100, 100 + Math.random() * 100);
 
@@ -91,6 +95,10 @@ export class Store {
 
     refreshDiagram() {
         this.diagram.refresh++        
+    }
+
+    increaseNodeSerial() {
+        this.diagram.nodeSerial++        
     }
 
     setLatestNode(node) {

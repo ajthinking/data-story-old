@@ -23,7 +23,7 @@ export default class InspectorNodeModel extends ManipulatorNodeModel {
     }
     
     getDisplayName() {
-        return 'Inspector'
+        return 'Inspector' + " #" + this.serial
     }
 
 	serialize() {

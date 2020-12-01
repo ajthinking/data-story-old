@@ -9,13 +9,16 @@ export default class ManipulatorNodeModel extends NodeModel {
 		super({
 			...options,
 			type: 'manipulator'
-		});
+        });
+        
+        this.serial = options.serial
 	}
 
 	serialize() {
 		return {
 			...super.serialize(),
-            dependencies: this.dependencies()
+            dependencies: this.dependencies(),
+            //serial: this.serial,
 		};
 	}
 
@@ -38,12 +41,13 @@ export default class ManipulatorNodeModel extends NodeModel {
     dependencies() {
         let inPorts = Object.values(this.getInPorts())
         let linkLists = inPorts.map(port => port.links).flat()
-
         let links = linkLists.map(linkList => Object.values(linkList)).flat()
-
+        
         let dependencies = links.map(link => link.sourcePort.parent)
 
-        return dependencies
+        let deepDependencies = dependencies.map(d => d.dependencies())
+
+        return dependencies.concat(deepDependencies.flat())
     }
 
     dependsOn(n2) {
