@@ -13,6 +13,16 @@ class DiagramModel
 
     public function find($id)
     {
-        return $this->data->layers[1]->models->$id;    
+        return $this->nodeLayer()->models->$id;    
+    }
+
+    public function bindDataToPort($portId, $data)
+    {
+        $this->nodeLayer()->models;
+    }
+
+    protected function nodeLayer()
+    {
+        return $this->data->layers[1];
     }
 }

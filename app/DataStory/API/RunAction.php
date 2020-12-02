@@ -20,10 +20,13 @@ class RunAction
         // Front end has sorted the manipulators
         $executionOrder = request()->input('executionOrder');
 
-        foreach($executionOrder as $nodeId) {
-            $runner = $diagram->find($nodeId)->dataStoryAction;
+        //return [$diagram];
 
-            (new $runner())->run();
+        foreach($executionOrder as $nodeId) {
+            $node = $diagram->find($nodeId);
+            $runner = $node->dataStoryAction;
+
+            (new $runner($node))->run();
 
             return [
                 'hey101' => 'The story ran successfully!'

@@ -10,25 +10,24 @@ class EloquentReader
 
     public array $whereStatements;
 
-    // public function __construct(
-    //         string $eloquentModel,
-    //         array $scopes = [],
-    //         array $whereStatements = []
-    //     )
-    // {
-    //     $this->eloquentModel = $eloquentModel;
-    //     $this->scopes = $scopes;
-    //     $this->whereStatements = $whereStatements;
-    // }
-
-    public static function make(...$args)
+    public $node;
+    
+    public function __construct($node)
     {
-        return new static(...$args);
+        $this->node = $node;
+        $this->eloquentModel = $node->targetElouquentModel;
+        $this->scopes = [];
+        $this->whereStatements = [];
     }
 
     public function run()
     {
-        //return $this->getQueryResults();
+        $this->node->ports[0]->executionData = $this->getQueryResults();
+
+        // app('DiagramModel')->bindDataToPort(
+        //     'out1',
+        //     $this->getQueryResults()
+        // );
     }
 
     protected function getQueryResults()

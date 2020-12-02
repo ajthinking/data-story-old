@@ -16,7 +16,8 @@ export default class ManipulatorNodeModel extends NodeModel {
 
 	serialize() {
 		return {
-			...super.serialize(),
+            ...super.serialize(),
+            incomingPortOrigins: this.incomingPortOrigins()
 		};
     }
 
@@ -38,6 +39,13 @@ export default class ManipulatorNodeModel extends NodeModel {
         return _.pickBy(this.getPorts(), function(port, key) {
             return !port.options.in
         });        
+    }
+
+    incomingPortOrigins() {
+        return Object.values(this.getInPorts()).reduce((origins, port) => {
+            origins[port.options.id] = Object.values(port.links).map(link => link.sourcePort.options.id)
+            return origins
+        }, {})
     }
     
     dependencies() {

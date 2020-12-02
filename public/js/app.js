@@ -92532,7 +92532,9 @@ var ManipulatorNodeModel = /*#__PURE__*/function (_NodeModel) {
   _createClass(ManipulatorNodeModel, [{
     key: "serialize",
     value: function serialize() {
-      return _objectSpread({}, _get(_getPrototypeOf(ManipulatorNodeModel.prototype), "serialize", this).call(this));
+      return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(ManipulatorNodeModel.prototype), "serialize", this).call(this)), {}, {
+        incomingPortOrigins: this.incomingPortOrigins()
+      });
     }
   }, {
     key: "deserialize",
@@ -92557,6 +92559,16 @@ var ManipulatorNodeModel = /*#__PURE__*/function (_NodeModel) {
       return lodash__WEBPACK_IMPORTED_MODULE_1___default.a.pickBy(this.getPorts(), function (port, key) {
         return !port.options["in"];
       });
+    }
+  }, {
+    key: "incomingPortOrigins",
+    value: function incomingPortOrigins() {
+      return Object.values(this.getInPorts()).reduce(function (origins, port) {
+        origins[port.options.id] = Object.values(port.links).map(function (link) {
+          return link.sourcePort.options.id;
+        });
+        return origins;
+      }, {});
     }
   }, {
     key: "dependencies",
