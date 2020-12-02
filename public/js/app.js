@@ -90849,8 +90849,6 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -90875,6 +90873,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 /**
  * Sorts model in execution order based on their dependencies
@@ -90887,24 +90887,43 @@ var DataStoryDiagramModel = /*#__PURE__*/function (_DiagramModel) {
   var _super = _createSuper(DataStoryDiagramModel);
 
   function DataStoryDiagramModel() {
+    var _this;
+
     _classCallCheck(this, DataStoryDiagramModel);
 
-    return _super.apply(this, arguments);
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "cachedNodeDependencyMap", {// id1: [d1, d2, ...]
+    });
+
+    return _this;
   }
 
   _createClass(DataStoryDiagramModel, [{
+    key: "getCachedNodeDependencies",
+    value: function getCachedNodeDependencies(id) {
+      var _this$cachedNodeDepen;
+
+      return (_this$cachedNodeDepen = this.cachedNodeDependencyMap[id]) !== null && _this$cachedNodeDepen !== void 0 ? _this$cachedNodeDepen : null;
+    }
+  }, {
+    key: "setCachedNodeDependencies",
+    value: function setCachedNodeDependencies(id, dependencies) {
+      this.cachedNodeDependencyMap[id] = dependencies;
+    }
+  }, {
+    key: "clearCachedNodeDependencies",
+    value: function clearCachedNodeDependencies() {
+      this.cachedNodeDependencyMap = {};
+    }
+  }, {
     key: "serialize",
     value: function serialize() {
       return _objectSpread({}, _get(_getPrototypeOf(DataStoryDiagramModel.prototype), "serialize", this).call(this));
-    }
-  }, {
-    key: "simpleSerialize",
-    value: function simpleSerialize() {
-      return {
-        nodes: this.getNodes().map(function (node) {
-          return node.simpleSerialize();
-        })
-      };
     }
   }, {
     key: "hasNode",
@@ -90916,6 +90935,7 @@ var DataStoryDiagramModel = /*#__PURE__*/function (_DiagramModel) {
   }, {
     key: "executionOrder",
     value: function executionOrder() {
+      this.clearCachedNodeDependencies();
       return this.getNodes().sort(function (n1, n2) {
         if (n2.dependsOn(n1)) {
           return -1;
@@ -91848,9 +91868,8 @@ var RunControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"
   _createClass(RunControl, [{
     key: "onClick",
     value: function onClick() {
-      console.log(this.props.store.diagram.engine.model, Object(_utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_4__["nonCircularJsonStringify"])(this.props.store.diagram.engine.model.simpleSerialize()));
       axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/datastory/api/run', {
-        model: Object(_utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_4__["nonCircularJsonStringify"])(this.props.store.diagram.engine.model),
+        model: Object(_utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_4__["nonCircularJsonStringify"])(this.props.store.diagram.engine.model.serialize()),
         executionOrder: this.props.store.diagram.engine.model.executionOrder().map(function (node) {
           return node.options.id;
         })
@@ -92294,6 +92313,7 @@ var ElouquentNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
     _this = _super.call(this, _objectSpread(_objectSpread({}, options), {}, {
       type: 'manipulator'
     }));
+    _this.dataStoryAction = 'App\\DataStory\\EloquentReader';
     _this.targetElouquentModel = (_options$targetElouqu = options.targetElouquentModel) !== null && _options$targetElouqu !== void 0 ? _options$targetElouqu : "App\\Models\\User";
 
     _this.addPort(new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["DefaultPortModel"]({
@@ -92314,7 +92334,8 @@ var ElouquentNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
     key: "serialize",
     value: function serialize() {
       return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(ElouquentNodeModel.prototype), "serialize", this).call(this)), {}, {
-        targetElouquentModel: this.targetElouquentModel
+        targetElouquentModel: this.targetElouquentModel,
+        dataStoryAction: this.dataStoryAction
       });
     }
   }, {
@@ -92399,7 +92420,8 @@ var InspectorNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
     _this = _super.call(this, _objectSpread(_objectSpread({}, options), {}, {
       type: 'manipulator'
     }));
-    _this.targetElouquentModel = (_options$targetElouqu = options.targetElouquentModel) !== null && _options$targetElouqu !== void 0 ? _options$targetElouqu : "App\\Models\\User"; // setup an in and out port
+    _this.targetElouquentModel = (_options$targetElouqu = options.targetElouquentModel) !== null && _options$targetElouqu !== void 0 ? _options$targetElouqu : "App\\Models\\User";
+    _this.dataStoryAction = 'App\\DataStory\\Inspector'; // setup an in and out port
 
     _this.addPort(new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["DefaultPortModel"]({
       "in": true,
@@ -92418,7 +92440,8 @@ var InspectorNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
     key: "serialize",
     value: function serialize() {
       return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(InspectorNodeModel.prototype), "serialize", this).call(this)), {}, {
-        targetElouquentModel: this.targetElouquentModel
+        targetElouquentModel: this.targetElouquentModel,
+        dataStoryAction: this.dataStoryAction
       });
     }
   }, {
@@ -92509,22 +92532,17 @@ var ManipulatorNodeModel = /*#__PURE__*/function (_NodeModel) {
   _createClass(ManipulatorNodeModel, [{
     key: "serialize",
     value: function serialize() {
-      return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(ManipulatorNodeModel.prototype), "serialize", this).call(this)), {}, {
-        dependencies: this.dependencies() //serial: this.serial,
-
-      });
-    }
-  }, {
-    key: "simpleSerialize",
-    value: function simpleSerialize() {
-      return {
-        hey: 'Some data'
-      };
+      return _objectSpread({}, _get(_getPrototypeOf(ManipulatorNodeModel.prototype), "serialize", this).call(this));
     }
   }, {
     key: "deserialize",
     value: function deserialize(ob, engine) {
       _get(_getPrototypeOf(ManipulatorNodeModel.prototype), "deserialize", this).call(this, ob, engine);
+    }
+  }, {
+    key: "getDiagramModel",
+    value: function getDiagramModel() {
+      return this.parent.parent;
     }
   }, {
     key: "getInPorts",
@@ -92543,6 +92561,12 @@ var ManipulatorNodeModel = /*#__PURE__*/function (_NodeModel) {
   }, {
     key: "dependencies",
     value: function dependencies() {
+      var cached = this.getDiagramModel().getCachedNodeDependencies(this.options.id);
+
+      if (cached !== null) {
+        return cached;
+      }
+
       var inPorts = Object.values(this.getInPorts());
       var linkLists = inPorts.map(function (port) {
         return port.links;
@@ -92556,7 +92580,9 @@ var ManipulatorNodeModel = /*#__PURE__*/function (_NodeModel) {
       var deepDependencies = dependencies.map(function (d) {
         return d.dependencies();
       });
-      return dependencies.concat(deepDependencies.flat());
+      var result = dependencies.concat(deepDependencies.flat());
+      this.getDiagramModel().setCachedNodeDependencies(this.options.id, result);
+      return result;
     }
   }, {
     key: "dependsOn",
@@ -92651,6 +92677,7 @@ var PassNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
       name: 'Output'
     }));
 
+    _this.dataStoryAction = 'App\\DataStory\\Pass';
     return _this;
   }
 
@@ -92662,7 +92689,9 @@ var PassNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
   }, {
     key: "serialize",
     value: function serialize() {
-      return _objectSpread({}, _get(_getPrototypeOf(PassNodeModel.prototype), "serialize", this).call(this));
+      return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(PassNodeModel.prototype), "serialize", this).call(this)), {}, {
+        dataStoryAction: this.dataStoryAction
+      });
     }
   }, {
     key: "deserialize",
@@ -93156,7 +93185,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 var nonCircularJsonStringify = function nonCircularJsonStringify(data) {
   var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  var indentation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 4;
+  var indentation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
   var cache = [];
   return JSON.stringify(data, function (key, value) {
     if (_typeof(value) === 'object' && value !== null) {

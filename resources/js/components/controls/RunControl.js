@@ -14,16 +14,9 @@ export default class RunControl extends BaseControl {
 
     onClick()
     {
-        console.log(
-            this.props.store.diagram.engine.model,
-            nonCircularJsonStringify(
-                this.props.store.diagram.engine.model.simpleSerialize()
-            )
-        )
-
         axios.post('/datastory/api/run', {
             model: nonCircularJsonStringify(
-                this.props.store.diagram.engine.model
+                this.props.store.diagram.engine.model.serialize()
             ),
             executionOrder: this.props.store.diagram.engine.model.executionOrder()
                 .map(node => node.options.id)

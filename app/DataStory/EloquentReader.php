@@ -10,16 +10,16 @@ class EloquentReader
 
     public array $whereStatements;
 
-    public function __construct(
-            string $eloquentModel,
-            array $scopes = [],
-            array $whereStatements = []
-        )
-    {
-        $this->eloquentModel = $eloquentModel;
-        $this->scopes = $scopes;
-        $this->whereStatements = $whereStatements;
-    }
+    // public function __construct(
+    //         string $eloquentModel,
+    //         array $scopes = [],
+    //         array $whereStatements = []
+    //     )
+    // {
+    //     $this->eloquentModel = $eloquentModel;
+    //     $this->scopes = $scopes;
+    //     $this->whereStatements = $whereStatements;
+    // }
 
     public static function make(...$args)
     {
@@ -28,7 +28,7 @@ class EloquentReader
 
     public function run()
     {
-        return $this->getQueryResults();
+        //return $this->getQueryResults();
     }
 
     protected function getQueryResults()

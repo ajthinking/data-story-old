@@ -21,21 +21,13 @@ class RunAction
         $executionOrder = request()->input('executionOrder');
 
         foreach($executionOrder as $nodeId) {
-            $runner = $this->getRunner(
-                $diagram->find($nodeId)
-            );
+            $runner = $diagram->find($nodeId)->dataStoryAction;
 
-            //$runner::run();
+            (new $runner())->run();
+
+            return [
+                'hey101' => 'The story ran successfully!'
+            ];
         }
-
-        return [
-            'diagram' => $diagram
-        ];
-    }
-
-    protected function getRunner($nodeId)
-    {
-        $node = app('DiagramModel')->find($nodeId);
-        logger(json_encode($node));
     }
 }

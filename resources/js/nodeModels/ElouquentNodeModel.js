@@ -11,6 +11,8 @@ export default class ElouquentNodeModel extends ManipulatorNodeModel {
 			type: 'manipulator'
         });
 
+        this.dataStoryAction =  'App\\DataStory\\EloquentReader'
+
         this.targetElouquentModel = options.targetElouquentModel ?? 'App\\Models\\User'
       
 		this.addPort(
@@ -29,7 +31,8 @@ export default class ElouquentNodeModel extends ManipulatorNodeModel {
 	serialize() {
 		return {
             ...super.serialize(),
-            targetElouquentModel: this.targetElouquentModel
+            targetElouquentModel: this.targetElouquentModel,
+            dataStoryAction: this.dataStoryAction,
 		};
 	}
 

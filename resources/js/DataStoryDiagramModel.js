@@ -6,15 +6,25 @@ import { DiagramModel } from '@projectstorm/react-diagrams'
  */
 export default class DataStoryDiagramModel extends DiagramModel {
 
+    cachedNodeDependencyMap = {
+        // id1: [d1, d2, ...]
+    }
+
+    getCachedNodeDependencies(id) {
+        return this.cachedNodeDependencyMap[id] ?? null
+    }
+
+    setCachedNodeDependencies(id, dependencies) {
+        this.cachedNodeDependencyMap[id] = dependencies
+    }
+
+    clearCachedNodeDependencies() {
+        this.cachedNodeDependencyMap = {}
+    }
+
     serialize() {
         return {
             ...super.serialize(),
-        }
-    }
-
-    simpleSerialize() {
-        return {
-            nodes: this.getNodes().map(node => node.simpleSerialize()) 
         }
     }
 
@@ -26,6 +36,8 @@ export default class DataStoryDiagramModel extends DiagramModel {
     }
 
     executionOrder() {
+        this.clearCachedNodeDependencies();
+
         return this.getNodes().sort(function(n1, n2) {
 
             if (n2.dependsOn(n1)) {

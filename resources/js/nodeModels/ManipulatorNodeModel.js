@@ -12,24 +12,20 @@ export default class ManipulatorNodeModel extends NodeModel {
         });
         
         this.serial = options.serial
-	}
+    }
 
 	serialize() {
 		return {
 			...super.serialize(),
-            dependencies: this.dependencies(),
-            //serial: this.serial,
 		};
-    }
-    
-    simpleSerialize() {
-        return {
-            hey: 'Some data'
-        }
     }
 
 	deserialize(ob, engine) {
 		super.deserialize(ob, engine);
+    }
+
+    getDiagramModel() {
+        return this.parent.parent
     }
 
     getInPorts() {
@@ -45,6 +41,11 @@ export default class ManipulatorNodeModel extends NodeModel {
     }
     
     dependencies() {
+        let cached = this.getDiagramModel().getCachedNodeDependencies(this.options.id)
+        if(cached !== null) {
+            return cached;
+        }
+
         let inPorts = Object.values(this.getInPorts())
         let linkLists = inPorts.map(port => port.links).flat()
         let links = linkLists.map(linkList => Object.values(linkList)).flat()
@@ -53,7 +54,11 @@ export default class ManipulatorNodeModel extends NodeModel {
 
         let deepDependencies = dependencies.map(d => d.dependencies())
 
-        return dependencies.concat(deepDependencies.flat())
+        let result = dependencies.concat(deepDependencies.flat())
+
+        this.getDiagramModel().setCachedNodeDependencies(this.options.id, result)
+
+        return result
     }
 
     dependsOn(n2) {

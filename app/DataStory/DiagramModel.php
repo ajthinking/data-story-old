@@ -13,6 +13,6 @@ class DiagramModel
 
     public function find($id)
     {
-        return $this->data->layers[1];    
+        return $this->data->layers[1]->models->$id;    
     }
 }
