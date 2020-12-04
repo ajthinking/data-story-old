@@ -25,7 +25,7 @@ export default class PassNodeModel extends ManipulatorNodeModel {
 			})
         );
         
-        this.dataStoryAction =  'App\\DataStory\\Pass'
+        this.runner =  'App\\DataStory\\Pass'
     }
     
     getDisplayName() {
@@ -35,7 +35,7 @@ export default class PassNodeModel extends ManipulatorNodeModel {
 	serialize() {
 		return {
             ...super.serialize(),
-            dataStoryAction: this.dataStoryAction,
+            runner: this.runner,
 		};
 	}
 

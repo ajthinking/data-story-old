@@ -11,7 +11,7 @@ export default class ElouquentNodeModel extends ManipulatorNodeModel {
 			type: 'manipulator'
         });
 
-        this.dataStoryAction =  'App\\DataStory\\EloquentReader'
+        this.runner =  'App\\DataStory\\EloquentReader'
 
         this.targetElouquentModel = options.targetElouquentModel ?? 'App\\Models\\User'
       
@@ -32,7 +32,7 @@ export default class ElouquentNodeModel extends ManipulatorNodeModel {
 		return {
             ...super.serialize(),
             targetElouquentModel: this.targetElouquentModel,
-            dataStoryAction: this.dataStoryAction,
+            runner: this.runner,
 		};
 	}
 

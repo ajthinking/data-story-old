@@ -9,13 +9,16 @@ class Inspector
         $this->node = $node;
     }
 
-    public function getIncomingData()
-    {
-        $this->node->incomingPortOrigins;
-    }
-
     public function run()
     {
-        //
+        $returns = [
+            'features' => $this->node->getDataAtPortNamed('Input')
+        ];
+
+
+        app('DiagramModel')->tag(
+            $this->node->id,
+            $returns
+        );
     }
 }

@@ -15,19 +15,15 @@ class EloquentReader
     public function __construct($node)
     {
         $this->node = $node;
-        $this->eloquentModel = $node->targetElouquentModel;
+        $this->eloquentModel = $node->data->targetElouquentModel;
         $this->scopes = [];
         $this->whereStatements = [];
     }
 
     public function run()
     {
-        $this->node->ports[0]->executionData = $this->getQueryResults();
-
-        // app('DiagramModel')->bindDataToPort(
-        //     'out1',
-        //     $this->getQueryResults()
-        // );
+        $out = $this->node->portNamed('out1');
+        $out->data = $this->getQueryResults();
     }
 
     protected function getQueryResults()

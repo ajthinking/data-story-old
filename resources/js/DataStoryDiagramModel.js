@@ -25,6 +25,8 @@ export default class DataStoryDiagramModel extends DiagramModel {
     serialize() {
         return {
             ...super.serialize(),
+            executionOrder: this.executionOrder()
+                .map(node => node.options.id)            
         }
     }
 

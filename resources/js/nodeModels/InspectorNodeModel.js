@@ -13,7 +13,7 @@ export default class InspectorNodeModel extends ManipulatorNodeModel {
 
         this.targetElouquentModel = options.targetElouquentModel ?? 'App\\Models\\User'
 
-        this.dataStoryAction =  'App\\DataStory\\Inspector'
+        this.runner =  'App\\DataStory\\Inspector'
 
 		// setup an in and out port
 		this.addPort(
@@ -32,7 +32,7 @@ export default class InspectorNodeModel extends ManipulatorNodeModel {
 		return {
             ...super.serialize(),
             targetElouquentModel: this.targetElouquentModel,
-            dataStoryAction: this.dataStoryAction,
+            runner: this.runner,
 		};
 	}
 

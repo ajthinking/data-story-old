@@ -90923,7 +90923,11 @@ var DataStoryDiagramModel = /*#__PURE__*/function (_DiagramModel) {
   }, {
     key: "serialize",
     value: function serialize() {
-      return _objectSpread({}, _get(_getPrototypeOf(DataStoryDiagramModel.prototype), "serialize", this).call(this));
+      return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(DataStoryDiagramModel.prototype), "serialize", this).call(this)), {}, {
+        executionOrder: this.executionOrder().map(function (node) {
+          return node.options.id;
+        })
+      });
     }
   }, {
     key: "hasNode",
@@ -91869,10 +91873,7 @@ var RunControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"
     key: "onClick",
     value: function onClick() {
       axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/datastory/api/run', {
-        model: Object(_utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_4__["nonCircularJsonStringify"])(this.props.store.diagram.engine.model.serialize()),
-        executionOrder: this.props.store.diagram.engine.model.executionOrder().map(function (node) {
-          return node.options.id;
-        })
+        model: Object(_utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_4__["nonCircularJsonStringify"])(this.props.store.diagram.engine.model.serialize())
       }).then(function (response) {
         console.log("WOW", response.data);
       })["catch"](function (error) {
@@ -92313,7 +92314,7 @@ var ElouquentNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
     _this = _super.call(this, _objectSpread(_objectSpread({}, options), {}, {
       type: 'manipulator'
     }));
-    _this.dataStoryAction = 'App\\DataStory\\EloquentReader';
+    _this.runner = 'App\\DataStory\\EloquentReader';
     _this.targetElouquentModel = (_options$targetElouqu = options.targetElouquentModel) !== null && _options$targetElouqu !== void 0 ? _options$targetElouqu : "App\\Models\\User";
 
     _this.addPort(new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["DefaultPortModel"]({
@@ -92335,7 +92336,7 @@ var ElouquentNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
     value: function serialize() {
       return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(ElouquentNodeModel.prototype), "serialize", this).call(this)), {}, {
         targetElouquentModel: this.targetElouquentModel,
-        dataStoryAction: this.dataStoryAction
+        runner: this.runner
       });
     }
   }, {
@@ -92421,7 +92422,7 @@ var InspectorNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
       type: 'manipulator'
     }));
     _this.targetElouquentModel = (_options$targetElouqu = options.targetElouquentModel) !== null && _options$targetElouqu !== void 0 ? _options$targetElouqu : "App\\Models\\User";
-    _this.dataStoryAction = 'App\\DataStory\\Inspector'; // setup an in and out port
+    _this.runner = 'App\\DataStory\\Inspector'; // setup an in and out port
 
     _this.addPort(new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["DefaultPortModel"]({
       "in": true,
@@ -92441,7 +92442,7 @@ var InspectorNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
     value: function serialize() {
       return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(InspectorNodeModel.prototype), "serialize", this).call(this)), {}, {
         targetElouquentModel: this.targetElouquentModel,
-        dataStoryAction: this.dataStoryAction
+        runner: this.runner
       });
     }
   }, {
@@ -92689,7 +92690,7 @@ var PassNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
       name: 'Output'
     }));
 
-    _this.dataStoryAction = 'App\\DataStory\\Pass';
+    _this.runner = 'App\\DataStory\\Pass';
     return _this;
   }
 
@@ -92702,7 +92703,7 @@ var PassNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
     key: "serialize",
     value: function serialize() {
       return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(PassNodeModel.prototype), "serialize", this).call(this)), {}, {
-        dataStoryAction: this.dataStoryAction
+        runner: this.runner
       });
     }
   }, {

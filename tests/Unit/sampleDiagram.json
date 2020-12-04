@@ -1,0 +1,250 @@
+{
+    "id": "e81a9908-1f9d-4d53-a4f1-f52128066324",
+    "offsetX": 0,
+    "offsetY": 0,
+    "zoom": 100,
+    "gridSize": 0,
+    "layers": [
+      {
+        "id": "a8cdc5c7-d585-4916-9a10-1b8f234d5f5b",
+        "type": "diagram-links",
+        "isSvg": true,
+        "transformed": true,
+        "models": {
+          "c65cd701-8865-4776-abd0-5e1d525c64e4": {
+            "id": "c65cd701-8865-4776-abd0-5e1d525c64e4",
+            "type": "default",
+            "source": "865794d0-c9ad-4206-a3c7-98582de43c9e",
+            "sourcePort": "07a3ca4c-ce12-467a-aa7f-1acdd5bf006a",
+            "target": "ae7d790a-3714-4c41-8883-76865105a0b9",
+            "targetPort": "cff67bd7-ba47-4586-9ee2-ff138683e82a",
+            "points": [
+              {
+                "id": "0108e785-d57f-4c29-96aa-cae05ac17c95",
+                "type": "point",
+                "x": 164,
+                "y": 231.625
+              },
+              {
+                "id": "483753e1-8a94-413e-a315-b882e102ccd0",
+                "type": "point",
+                "x": 364,
+                "y": 231.625
+              }
+            ],
+            "labels": [],
+            "width": 3,
+            "color": "gray",
+            "curvyness": 50,
+            "selectedColor": "rgb(0,192,255)"
+          },
+          "5d93ec36-ef1a-4f6f-8369-e7fef47f4f47": {
+            "id": "5d93ec36-ef1a-4f6f-8369-e7fef47f4f47",
+            "type": "default",
+            "source": "ae7d790a-3714-4c41-8883-76865105a0b9",
+            "sourcePort": "6119e498-9567-446c-b6ca-75a348844e1c",
+            "target": "fab8b5b3-03e1-4423-a624-76e78cd07103",
+            "targetPort": "57cd0508-cbc6-4f24-a188-1a0a3bbb915d",
+            "points": [
+              {
+                "id": "441480d5-54fe-4b83-9e63-4f7646875d28",
+                "type": "point",
+                "x": 364,
+                "y": 256.625
+              },
+              {
+                "id": "14e43c86-16c9-46f4-86cd-7448044dc906",
+                "type": "point",
+                "x": 564,
+                "y": 231.625
+              }
+            ],
+            "labels": [],
+            "width": 3,
+            "color": "gray",
+            "curvyness": 50,
+            "selectedColor": "rgb(0,192,255)"
+          },
+          "9d76f475-7a76-49d9-881c-52f4e18b9ced": {
+            "id": "9d76f475-7a76-49d9-881c-52f4e18b9ced",
+            "type": "default",
+            "selected": true,
+            "source": "7ab3fca0-2b54-4e99-b978-76cf0fe6cf9e",
+            "sourcePort": "22443950-4fe8-4d7d-b068-a9f7fe9ca7ca",
+            "target": "fab8b5b3-03e1-4423-a624-76e78cd07103",
+            "targetPort": "57cd0508-cbc6-4f24-a188-1a0a3bbb915d",
+            "points": [
+              {
+                "id": "fc7f331a-39bb-4394-bc21-6abb0c28ec09",
+                "type": "point",
+                "x": 353,
+                "y": 403.62499999999994
+              },
+              {
+                "id": "cc9c459b-2b6b-4c02-a198-7875d9f29a79",
+                "type": "point",
+                "x": 564,
+                "y": 231.625
+              }
+            ],
+            "labels": [],
+            "width": 3,
+            "color": "gray",
+            "curvyness": 50,
+            "selectedColor": "rgb(0,192,255)"
+          }
+        }
+      },
+      {
+        "id": "e10124b8-5f94-4495-b1c1-64c4f89f1284",
+        "type": "diagram-nodes",
+        "isSvg": false,
+        "transformed": true,
+        "models": {
+          "865794d0-c9ad-4206-a3c7-98582de43c9e": {
+            "id": "865794d0-c9ad-4206-a3c7-98582de43c9e",
+            "type": "manipulator",
+            "x": 100,
+            "y": 194.14022265116893,
+            "ports": [
+              {
+                "id": "07a3ca4c-ce12-467a-aa7f-1acdd5bf006a",
+                "type": "default",
+                "x": 100,
+                "y": 219.125,
+                "name": "out1",
+                "alignment": "right",
+                "parentNode": "865794d0-c9ad-4206-a3c7-98582de43c9e",
+                "links": [
+                  "c65cd701-8865-4776-abd0-5e1d525c64e4"
+                ],
+                "in": false,
+                "label": "out1"
+              }
+            ],
+            "incomingPortOrigins": {},
+            "targetElouquentModel": "App\\Models\\User",
+            "runner": "App\\DataStory\\EloquentReader"
+          },
+          "ae7d790a-3714-4c41-8883-76865105a0b9": {
+            "id": "ae7d790a-3714-4c41-8883-76865105a0b9",
+            "type": "manipulator",
+            "x": 300,
+            "y": 194.14022265116893,
+            "ports": [
+              {
+                "id": "cff67bd7-ba47-4586-9ee2-ff138683e82a",
+                "type": "default",
+                "x": 300,
+                "y": 219.125,
+                "name": "Input",
+                "alignment": "left",
+                "parentNode": "ae7d790a-3714-4c41-8883-76865105a0b9",
+                "links": [
+                  "c65cd701-8865-4776-abd0-5e1d525c64e4"
+                ],
+                "in": true,
+                "label": "Input"
+              },
+              {
+                "id": "6119e498-9567-446c-b6ca-75a348844e1c",
+                "type": "default",
+                "x": 300,
+                "y": 244.125,
+                "name": "Output",
+                "alignment": "right",
+                "parentNode": "ae7d790a-3714-4c41-8883-76865105a0b9",
+                "links": [
+                  "5d93ec36-ef1a-4f6f-8369-e7fef47f4f47"
+                ],
+                "in": false,
+                "label": "Output"
+              }
+            ],
+            "incomingPortOrigins": {
+              "cff67bd7-ba47-4586-9ee2-ff138683e82a": [
+                "07a3ca4c-ce12-467a-aa7f-1acdd5bf006a"
+              ]
+            },
+            "runner": "App\\DataStory\\Pass"
+          },
+          "fab8b5b3-03e1-4423-a624-76e78cd07103": {
+            "id": "fab8b5b3-03e1-4423-a624-76e78cd07103",
+            "type": "manipulator",
+            "x": 500,
+            "y": 194.14022265116893,
+            "ports": [
+              {
+                "id": "57cd0508-cbc6-4f24-a188-1a0a3bbb915d",
+                "type": "default",
+                "x": 500,
+                "y": 219.125,
+                "name": "Input",
+                "alignment": "left",
+                "parentNode": "fab8b5b3-03e1-4423-a624-76e78cd07103",
+                "links": [
+                  "5d93ec36-ef1a-4f6f-8369-e7fef47f4f47",
+                  "9d76f475-7a76-49d9-881c-52f4e18b9ced"
+                ],
+                "in": true,
+                "label": "Input"
+              }
+            ],
+            "incomingPortOrigins": {
+              "57cd0508-cbc6-4f24-a188-1a0a3bbb915d": [
+                "6119e498-9567-446c-b6ca-75a348844e1c",
+                "22443950-4fe8-4d7d-b068-a9f7fe9ca7ca"
+              ]
+            },
+            "targetElouquentModel": "App\\Models\\User",
+            "runner": "App\\DataStory\\Inspector"
+          },
+          "7ab3fca0-2b54-4e99-b978-76cf0fe6cf9e": {
+            "id": "7ab3fca0-2b54-4e99-b978-76cf0fe6cf9e",
+            "type": "manipulator",
+            "selected": true,
+            "x": 289,
+            "y": 341.1402226511689,
+            "ports": [
+              {
+                "id": "7aa91c13-0ac1-406f-a43a-f9da67b5bfc6",
+                "type": "default",
+                "x": 289,
+                "y": 366.12499999999994,
+                "name": "Input",
+                "alignment": "left",
+                "parentNode": "7ab3fca0-2b54-4e99-b978-76cf0fe6cf9e",
+                "links": [],
+                "in": true,
+                "label": "Input"
+              },
+              {
+                "id": "22443950-4fe8-4d7d-b068-a9f7fe9ca7ca",
+                "type": "default",
+                "x": 289,
+                "y": 391.12499999999994,
+                "name": "Output",
+                "alignment": "right",
+                "parentNode": "7ab3fca0-2b54-4e99-b978-76cf0fe6cf9e",
+                "links": [
+                  "9d76f475-7a76-49d9-881c-52f4e18b9ced"
+                ],
+                "in": false,
+                "label": "Output"
+              }
+            ],
+            "incomingPortOrigins": {
+              "7aa91c13-0ac1-406f-a43a-f9da67b5bfc6": []
+            },
+            "runner": "App\\DataStory\\Pass"
+          }
+        }
+      }
+    ],
+    "executionOrder": [
+      "865794d0-c9ad-4206-a3c7-98582de43c9e",
+      "ae7d790a-3714-4c41-8883-76865105a0b9",
+      "7ab3fca0-2b54-4e99-b978-76cf0fe6cf9e",
+      "fab8b5b3-03e1-4423-a624-76e78cd07103"
+    ]
+  }
