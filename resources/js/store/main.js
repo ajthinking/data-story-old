@@ -90,6 +90,8 @@ export class Store {
         fromPort.reportPosition()
         toPort.reportPosition()
 
+        link.addLabel(Math.floor(Math.random()*1000));
+
         return link
     }
 

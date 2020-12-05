@@ -31705,6 +31705,13 @@ video {
   height: 70vh;
 }
 
+foreignObject > div > div {
+  background-color: transparent !important;
+  padding: 0px !important;
+  position: absolute !important;
+  top: 3px !important;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
