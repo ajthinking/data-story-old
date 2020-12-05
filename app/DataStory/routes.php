@@ -24,6 +24,9 @@ Route::post('datastory/api/run', function() {
     $diagram = $runner($diagram);
 
     return [
-        'tags' => $diagram->tags()
+        'status' => 200,
+        'diagram' => $diagram,
+        'logs' => [],
+        'executionTime' => 0.31,
     ];
 });

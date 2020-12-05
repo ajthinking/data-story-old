@@ -23,7 +23,7 @@ export default class Toolbar extends React.Component {
         ]
 
         return (
-            <div className="flex w-full bg-gray-600 border-t-2 border-gray-500 shadow shadow-xl">
+            <div className={this.style()}>
                 <div className="px-2 py-2">
                     <StoryWorkbenchControl />
                     <InspectorsControl />
@@ -32,5 +32,15 @@ export default class Toolbar extends React.Component {
                 </div>               
             </div>
         );
+    }
+
+    style() {
+        let style = "flex w-full bg-gray-600 border-t-2 border-gray-500 shadow shadow-xl"
+
+        if(this.props.store.metadata.running) {
+            style += " bg-malibu-700 animate-pulse" 
+        }
+
+        return style
     }
 }

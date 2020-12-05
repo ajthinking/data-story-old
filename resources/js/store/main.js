@@ -17,7 +17,10 @@ export class Store {
         nodeSerial: 1,
     }
 
+    inspectables = []
+
     metadata = {
+        running: false,
         page: 'StoryWorkbench',
     }
 
@@ -25,13 +28,17 @@ export class Store {
         makeObservable(this, {
             diagram: observable,
             metadata: observable,
+            inspectables: observable,
             
             addManipulator: action.bound,
             increaseNodeSerial: action.bound,
             refreshDiagram: action.bound,
+            setInspectables: action.bound,
             setLatestNode: action.bound,
             setPage: action.bound,
             setResults: action.bound,
+            setNotRunning: action.bound,
+            setRunning: action.bound,
             setStory: action.bound,
             
         })
@@ -91,6 +98,10 @@ export class Store {
         this.diagram.nodeSerial++        
     }
 
+    setInspectables(inspectables) {
+        this.inspectables = inspectables;
+    }
+
     setLatestNode(node) {
         this.diagram.latestNode = node
     }
@@ -101,6 +112,14 @@ export class Store {
     
     setResults(results) {
         this.results = results
+    }
+
+    setNotRunning() {
+        this.metadata.running = false
+    }
+
+    setRunning() {
+        this.metadata.running = true
     }
 
     setStory(name) {

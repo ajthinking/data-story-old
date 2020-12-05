@@ -91147,8 +91147,13 @@ var Diagram = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["inject"])(
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_1__["CanvasWidget"], {
         engine: this.props.store.diagram.engine,
         refresh: this.props.store.diagram.refresh,
-        className: "fullsize bg-gray-600"
+        className: this.style()
       }));
+    }
+  }, {
+    key: "style",
+    value: function style() {
+      return 'fullsize bg-gray-600';
     }
   }]);
 
@@ -91291,10 +91296,21 @@ var Toolbar = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"])(
       var navigation = ["fas fa-project-diagram", "fas fa-table", "fas fa-cog"];
       var controls = ["fas fa-play", "fas fa-plus", "fas fa-folder-open", "fab fa-github"];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "flex w-full bg-gray-600 border-t-2 border-gray-500 shadow shadow-xl"
+        className: this.style()
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "px-2 py-2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_StoryWorkbenchControl__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_InspectorsControl__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_RunControl__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_AddManipulatorControl__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
+    }
+  }, {
+    key: "style",
+    value: function style() {
+      var style = "flex w-full bg-gray-600 border-t-2 border-gray-500 shadow shadow-xl";
+
+      if (this.props.store.metadata.running) {
+        style += " bg-malibu-700 animate-pulse";
+      }
+
+      return style;
     }
   }]);
 
@@ -91872,27 +91888,38 @@ var RunControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"
   _createClass(RunControl, [{
     key: "onClick",
     value: function onClick() {
+      var _this2 = this;
+
+      this.props.store.setRunning();
       axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/datastory/api/run', {
         model: Object(_utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_4__["nonCircularJsonStringify"])(this.props.store.diagram.engine.model.serialize())
       }).then(function (response) {
-        console.log("WOW", response.data);
+        var processedDiagram = response.data.diagram;
+        var inspectables = processedDiagram.nodes.filter(function (node) {
+          return node.features;
+        });
+
+        _this2.props.store.setInspectables(inspectables);
+
+        _this2.props.store.setNotRunning();
       })["catch"](function (error) {
+        this.props.store.setNotRunning();
         console.log(error);
       });
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
+      var _this3 = this;
 
       Mousetrap.bind('?', // shift+plus 
       function (e) {
         e.preventDefault();
 
-        _this2.onClick();
+        _this3.onClick();
       });
       Mousetrap.bind('shift+r', function (e) {
-        _this2.onClick();
+        _this3.onClick();
       });
     }
   }]);
@@ -92048,20 +92075,13 @@ var Inspectors = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["inject"
     key: "sample",
     value: function sample() {
       return {
-        users: [{
-          name: 'Jenn',
-          age: 15,
-          favorite_food: 'Hamburger'
-        }, {
-          name: 'Jerry',
-          age: 15,
-          favorite_food: 'Sallad'
-        }]
+        users: this.props.store.inspectables[0].features
       };
     }
   }, {
     key: "render",
     value: function render() {
+      //console.log('INSPECTABLES', this.props.store.inspectables[0].features)
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "flex flex-col"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -92992,19 +93012,26 @@ var Store = /*#__PURE__*/function () {
       nodeSerial: 1
     });
 
+    _defineProperty(this, "inspectables", []);
+
     _defineProperty(this, "metadata", {
+      running: false,
       page: 'StoryWorkbench'
     });
 
     Object(mobx__WEBPACK_IMPORTED_MODULE_0__["makeObservable"])(this, {
       diagram: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
       metadata: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
+      inspectables: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
       addManipulator: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       increaseNodeSerial: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       refreshDiagram: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
+      setInspectables: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       setLatestNode: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       setPage: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       setResults: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
+      setNotRunning: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
+      setRunning: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       setStory: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound
     });
   }
@@ -93062,6 +93089,11 @@ var Store = /*#__PURE__*/function () {
       this.diagram.nodeSerial++;
     }
   }, {
+    key: "setInspectables",
+    value: function setInspectables(inspectables) {
+      this.inspectables = inspectables;
+    }
+  }, {
     key: "setLatestNode",
     value: function setLatestNode(node) {
       this.diagram.latestNode = node;
@@ -93075,6 +93107,16 @@ var Store = /*#__PURE__*/function () {
     key: "setResults",
     value: function setResults(results) {
       this.results = results;
+    }
+  }, {
+    key: "setNotRunning",
+    value: function setNotRunning() {
+      this.metadata.running = false;
+    }
+  }, {
+    key: "setRunning",
+    value: function setRunning() {
+      this.metadata.running = true;
     }
   }, {
     key: "setStory",

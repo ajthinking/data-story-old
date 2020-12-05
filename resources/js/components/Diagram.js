@@ -10,9 +10,13 @@ export default class Diagram extends React.Component {
                 <CanvasWidget
                     engine={this.props.store.diagram.engine}
                     refresh={this.props.store.diagram.refresh}
-                    className='fullsize bg-gray-600'
+                    className={this.style()}
                 />
             </div>
         )
+    }
+
+    style() {
+        return 'fullsize bg-gray-600'
     }
 }

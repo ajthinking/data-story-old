@@ -7,22 +7,14 @@ export default class Inspectors extends React.Component {
 
     sample() {
         return {
-            users: [
-                {
-                    name: 'Jenn',
-                    age: 15,
-                    favorite_food : 'Hamburger',
-                },
-                {
-                    name: 'Jerry',
-                    age: 15,
-                    favorite_food : 'Sallad',
-                }                
-            ]
+            users: this.props.store.inspectables[0].features
         }
     }
 
     render() {
+
+        //console.log('INSPECTABLES', this.props.store.inspectables[0].features)
+
         return (
             <div className="flex flex-col">
               <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

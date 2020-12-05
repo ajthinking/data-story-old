@@ -14,15 +14,29 @@ export default class RunControl extends BaseControl {
 
     onClick()
     {
+        this.props.store.setRunning()
+
         axios.post('/datastory/api/run', {
-            model: nonCircularJsonStringify(
-                this.props.store.diagram.engine.model.serialize()
-            )
+                model: nonCircularJsonStringify(
+                    this.props.store.diagram.engine.model.serialize()
+                )
           })
-          .then(function (response) {
-            console.log("WOW", response.data);
+          .then((response) => {
+                let processedDiagram = response.data.diagram;
+
+                let inspectables = processedDiagram.nodes.filter(node => {
+                    return node.features
+                })
+
+                this.props.store.setInspectables(
+                    inspectables
+                )
+
+                this.props.store.setNotRunning()
           })
           .catch(function (error) {
+
+            this.props.store.setNotRunning()
             console.log(error);
           });
     }

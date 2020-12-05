@@ -10,8 +10,6 @@ class DiagramModel
 
     public array $links;
 
-    public array $tags;
-
     public static function make()
     {
         return new static;
@@ -45,16 +43,6 @@ class DiagramModel
     public function ports() 
     {
         return collect($this->nodes)->pluck('ports')->flatten()->toArray();
-    }
-
-    public function tag($id, $data)
-    {
-        $this->tags[$id] = $data;
-    }
-
-    public function tags()
-    {
-        return $this->tags;
     }
 
     public function bindDataToPort($portId, $data)

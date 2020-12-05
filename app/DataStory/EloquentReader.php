@@ -22,6 +22,7 @@ class EloquentReader
 
     public function run()
     {
+        sleep(4);
         $out = $this->node->portNamed('out1');
         $out->data = $this->getQueryResults();
     }

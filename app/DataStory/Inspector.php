@@ -11,14 +11,6 @@ class Inspector
 
     public function run()
     {
-        $returns = [
-            'features' => $this->node->getDataAtPortNamed('Input')
-        ];
-
-
-        app('DiagramModel')->tag(
-            $this->node->id,
-            $returns
-        );
+        $this->node->features = $this->node->getDataAtPortNamed('Input');
     }
 }
