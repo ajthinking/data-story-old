@@ -92095,7 +92095,11 @@ var Inspectors = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["inject"
     }
   }, {
     key: "getRows",
-    value: function getRows() {}
+    value: function getRows() {
+      return this.props.store.results.inspectors.users.map(function (user) {
+        return Object.values(user);
+      }).flat();
+    }
   }]);
 
   return Inspectors;

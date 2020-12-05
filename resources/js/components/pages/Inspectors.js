@@ -68,7 +68,9 @@ export default class Inspectors extends React.Component {
     }
 
     getRows() {
-
+        return this.props.store.results.inspectors.users.map(user => {
+            return Object.values(user)
+        }).flat()
     }
 }
 
