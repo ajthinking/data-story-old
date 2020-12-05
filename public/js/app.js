@@ -92045,6 +92045,21 @@ var Inspectors = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["inject"
   }
 
   _createClass(Inspectors, [{
+    key: "sample",
+    value: function sample() {
+      return {
+        users: [{
+          name: 'Jenn',
+          age: 15,
+          favorite_food: 'Hamburger'
+        }, {
+          name: 'Jerry',
+          age: 15,
+          favorite_food: 'Sallad'
+        }]
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -92074,31 +92089,29 @@ var Inspectors = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["inject"
   }, {
     key: "renderTableBody",
     value: function renderTableBody() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-        className: "bg-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500"
-      }, "Jane Cooper"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Regional Paradigm Technician"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "jane.cooper@example.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-      }, "Admin")));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.getRows().map(function (row, rowIndex) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+          key: rowIndex,
+          className: "bg-white"
+        }, row.map(function (column, columnIndex) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+            key: columnIndex,
+            className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500"
+          }, column);
+        }));
+      }));
     }
   }, {
     key: "getHeaders",
     value: function getHeaders() {
-      return this.props.store.results.inspectors.users.map(function (user) {
-        return Object.keys(user);
-      }).flat();
+      return Object.keys(this.sample().users[0]);
     }
   }, {
     key: "getRows",
     value: function getRows() {
-      return this.props.store.results.inspectors.users.map(function (user) {
+      return this.sample().users.map(function (user) {
         return Object.values(user);
-      }).flat();
+      });
     }
   }]);
 
@@ -92979,16 +92992,6 @@ var Store = /*#__PURE__*/function () {
       nodeSerial: 1
     });
 
-    _defineProperty(this, "results", {
-      inspectors: {
-        users: [{
-          name: 'Anders',
-          age: 15,
-          favorite_food: 'Hamburger'
-        }]
-      }
-    });
-
     _defineProperty(this, "metadata", {
       page: 'StoryWorkbench'
     });
@@ -92996,7 +92999,6 @@ var Store = /*#__PURE__*/function () {
     Object(mobx__WEBPACK_IMPORTED_MODULE_0__["makeObservable"])(this, {
       diagram: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
       metadata: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
-      results: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
       addManipulator: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       increaseNodeSerial: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       refreshDiagram: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,

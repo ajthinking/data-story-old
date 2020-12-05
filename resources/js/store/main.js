@@ -17,18 +17,6 @@ export class Store {
         nodeSerial: 1,
     }
 
-    results = {
-        inspectors: {
-            users: [
-                {
-                    name: 'Anders',
-                    age: 15,
-                    favorite_food : 'Hamburger',
-                }
-            ]
-        }
-    }
-
     metadata = {
         page: 'StoryWorkbench',
     }
@@ -37,7 +25,6 @@ export class Store {
         makeObservable(this, {
             diagram: observable,
             metadata: observable,
-            results: observable,
             
             addManipulator: action.bound,
             increaseNodeSerial: action.bound,

@@ -4,6 +4,24 @@ import { inject, observer } from "mobx-react"
 
 @inject('store') @observer
 export default class Inspectors extends React.Component {
+
+    sample() {
+        return {
+            users: [
+                {
+                    name: 'Jenn',
+                    age: 15,
+                    favorite_food : 'Hamburger',
+                },
+                {
+                    name: 'Jerry',
+                    age: 15,
+                    favorite_food : 'Sallad',
+                }                
+            ]
+        }
+    }
+
     render() {
         return (
             <div className="flex flex-col">
@@ -43,34 +61,33 @@ export default class Inspectors extends React.Component {
     renderTableBody() {
         return (
             <tbody>
-                <tr className="bg-white">
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
-                Jane Cooper
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                Regional Paradigm Technician
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                jane.cooper@example.com
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                Admin
-                </td>
-            </tr>
+                {this.getRows().map((row, rowIndex) => {
+                    return (
+                        <tr key={rowIndex} className="bg-white">
+                            {row.map((column, columnIndex) => {
+                                return (
+                                    <td key={columnIndex} className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+                                        {column}
+                                    </td>                            
+                                )
+                            })}
+                        </tr>
+                    )
+                })}
+
+                
             </tbody>
         )
     }
 
     getHeaders() {
-        return this.props.store.results.inspectors.users.map(user => {
-            return Object.keys(user)
-        }).flat()
+        return Object.keys(this.sample().users[0])
     }
 
     getRows() {
-        return this.props.store.results.inspectors.users.map(user => {
+        return this.sample().users.map(user => {
             return Object.values(user)
-        }).flat()
+        })
     }
 }
 
