@@ -73,11 +73,12 @@ export class Store {
         link.setSourcePort(fromPort);
         link.setTargetPort(toPort);            
         
+        // track: https://github.com/projectstorm/react-diagrams/issues/617
+        //link.addLabel(Math.floor(Math.random()*1000));
+
         // Report
         fromPort.reportPosition()
         toPort.reportPosition()
-
-        link.addLabel(Math.floor(Math.random()*1000));
 
         return link
     }

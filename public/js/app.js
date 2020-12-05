@@ -93043,11 +93043,12 @@ var Store = /*#__PURE__*/function () {
 
       var link = new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_2__["DefaultLinkModel"]();
       link.setSourcePort(fromPort);
-      link.setTargetPort(toPort); // Report
+      link.setTargetPort(toPort); // track: https://github.com/projectstorm/react-diagrams/issues/617
+      //link.addLabel(Math.floor(Math.random()*1000));
+      // Report
 
       fromPort.reportPosition();
       toPort.reportPosition();
-      link.addLabel(Math.floor(Math.random() * 1000));
       return link;
     }
   }, {
