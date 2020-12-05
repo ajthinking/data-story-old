@@ -8,6 +8,13 @@ import AddManipulatorControl from './controls/AddManipulatorControl'
 
 @inject('store') @observer
 export default class Toolbar extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            progressTick: 0
+        }
+    }
+
     render() {
         let navigation = [
             "fas fa-project-diagram",
@@ -24,12 +31,22 @@ export default class Toolbar extends React.Component {
 
         return (
             <div className={this.style()}>
-                <div className="px-2 py-2">
+                <div className="flex flex-1 w-full px-2 py-2">
                     <StoryWorkbenchControl />
                     <InspectorsControl />
                     <RunControl />
-                    <AddManipulatorControl />
-                </div>               
+                    <AddManipulatorControl />                                       
+                </div>
+                {this.props.store.metadata.running ? (
+                    <div className="ml-12 w-full">
+                        <div className="relative pt-1">
+                            <div className="h-8 mb-4 text-xs flex rounded bg-malibu-600">
+                                <div style={this.progressWidth()} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-malibu-700"></div>
+                            </div>
+                        </div>                    
+                    </div>) : ''
+                }
+
             </div>
         );
     }
@@ -37,10 +54,23 @@ export default class Toolbar extends React.Component {
     style() {
         let style = "flex w-full bg-gray-600 border-t-2 border-gray-500 shadow shadow-xl"
 
-        if(this.props.store.metadata.running) {
-            style += " bg-malibu-700 animate-pulse" 
-        }
-
         return style
+    }
+
+    componentDidMount() {
+        setInterval(() => {
+            let newTick = (this.state.progressTick + 1) % 100
+
+            this.setState({
+                progressTick: newTick
+            })
+
+        }, 10)
+    }
+
+    progressWidth() {
+        return {
+            width: this.state.progressTick + '%'
+        }
     }
 }

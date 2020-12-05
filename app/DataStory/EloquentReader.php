@@ -2,8 +2,14 @@
 
 namespace App\DataStory;
 
+use App\DataStory\Categories\Eloquent;
+
 class EloquentReader
 {
+    const IN_PORTS = ['Input'];
+
+    const OUT_PORTS = ['Output'];
+
     public string $eloquentModel;
 
     public array $scopes;
@@ -18,6 +24,17 @@ class EloquentReader
         $this->eloquentModel = $node->data->targetElouquentModel;
         $this->scopes = [];
         $this->whereStatements = [];
+    }
+
+    public static function describe()
+    {
+        return [
+            'class' => static::class,
+            'category' => Eloquent::class,
+            'signature' => 'Eloquent::User::find()',
+            'inPorts' => static::IN_PORTS,
+            'outPorts' => static::OUT_PORTS,
+        ];
     }
 
     public function run()

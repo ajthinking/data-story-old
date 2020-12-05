@@ -91284,10 +91284,16 @@ var Toolbar = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"])(
 
   var _super = _createSuper(Toolbar);
 
-  function Toolbar() {
+  function Toolbar(props) {
+    var _this;
+
     _classCallCheck(this, Toolbar);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.state = {
+      progressTick: 0
+    };
+    return _this;
   }
 
   _createClass(Toolbar, [{
@@ -91298,19 +91304,43 @@ var Toolbar = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"])(
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: this.style()
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "px-2 py-2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_StoryWorkbenchControl__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_InspectorsControl__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_RunControl__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_AddManipulatorControl__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
+        className: "flex flex-1 w-full px-2 py-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_StoryWorkbenchControl__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_InspectorsControl__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_RunControl__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_AddManipulatorControl__WEBPACK_IMPORTED_MODULE_5__["default"], null)), this.props.store.metadata.running ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "ml-12 w-full"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "relative pt-1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "h-8 mb-4 text-xs flex rounded bg-malibu-600"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: this.progressWidth(),
+        className: "shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-malibu-700"
+      })))) : '');
     }
   }, {
     key: "style",
     value: function style() {
       var style = "flex w-full bg-gray-600 border-t-2 border-gray-500 shadow shadow-xl";
-
-      if (this.props.store.metadata.running) {
-        style += " bg-malibu-700 animate-pulse";
-      }
-
       return style;
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      setInterval(function () {
+        var newTick = (_this2.state.progressTick + 1) % 100;
+
+        _this2.setState({
+          progressTick: newTick
+        });
+      }, 10);
+    }
+  }, {
+    key: "progressWidth",
+    value: function progressWidth() {
+      return {
+        width: this.state.progressTick + '%'
+      };
     }
   }]);
 
