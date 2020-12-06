@@ -1,6 +1,6 @@
 <?php
 
-use App\DataStory\EloquentReader;
+use App\DataStory\Nodes\EloquentReader;
 use Illuminate\Support\Facades\Route;
 
 /**

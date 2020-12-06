@@ -4,8 +4,14 @@ namespace App\DataStory;
 
 use stdClass;
 
-class NodeModel
+abstract class NodeModel
 {
+    const IN_PORTS = ['Input'];
+
+    const OUT_PORTS = ['Output'];
+
+    const CATEGORY = 'UNCATEGORIZED';
+
     public string $id;
 
     public stdClass $data;
@@ -46,6 +52,24 @@ class NodeModel
 
     public function run()
     {
-        
+
+    }
+
+    public static function describe($data = [])
+    {
+        return (object) [
+            'class' => self::class,
+            'category' => static::CATEGORY,
+            'signature' => 'SIGNATURE',
+            'inPorts' => self::IN_PORTS,
+            'outPorts' => self::OUT_PORTS,
+        ];
+    }
+    
+    public static function describeVariations($data = [])
+    {
+        return [
+            static::describe()
+        ];
     }
 }

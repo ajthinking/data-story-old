@@ -92,4 +92,11 @@ class DiagramModel
 
         return $this;
     }
+
+    public static function capabilities()
+    {
+        return [
+            'availableNodes' => config('data-story.nodes')
+        ];
+    }
 }

@@ -1,8 +1,10 @@
 <?php
 
-namespace App\DataStory;
+namespace App\DataStory\Nodes;
 
-class Inspector
+use App\DataStory\NodeModel;
+
+class Inspector extends NodeModel
 {
     public function __construct($node)
     {

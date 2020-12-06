@@ -1,8 +1,10 @@
 <?php
 
-namespace App\DataStory;
+namespace App\DataStory\Nodes;
 
-class Pass
+use App\DataStory\NodeModel;
+
+class Pass extends NodeModel
 {
     public function __construct($node)
     {

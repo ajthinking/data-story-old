@@ -1,14 +1,17 @@
 <?php
 
-namespace App\DataStory;
+namespace App\DataStory\Nodes;
 
 use App\DataStory\Categories\Eloquent;
+use App\DataStory\NodeModel;
 
-class EloquentReader
+class EloquentReader extends NodeModel
 {
     const IN_PORTS = ['Input'];
 
     const OUT_PORTS = ['Output'];
+
+    const CATEGORY = Eloquent::class;
 
     public string $eloquentModel;
 
@@ -26,20 +29,8 @@ class EloquentReader
         $this->whereStatements = [];
     }
 
-    public static function describe()
-    {
-        return [
-            'class' => static::class,
-            'category' => Eloquent::class,
-            'signature' => 'Eloquent::User::find()',
-            'inPorts' => static::IN_PORTS,
-            'outPorts' => static::OUT_PORTS,
-        ];
-    }
-
     public function run()
     {
-        sleep(4);
         $out = $this->node->portNamed('out1');
         $out->data = $this->getQueryResults();
     }
@@ -63,5 +54,38 @@ class EloquentReader
         
         // Return results
         return $query->get();
+    }
+
+    public static function describe($data = [])
+    {
+        $shortCategory = class_basename(static::CATEGORY);
+        $shortModel = class_basename($data['model']);
+        $shortModelPlural = \Illuminate\Support\Str::of($shortModel)->plural();
+        $signature = "$shortCategory::$shortModelPlural";
+
+        return (object) [
+            'class' => self::class,
+            'category' => $shortCategory,
+            'signature' => $signature,
+            'inPorts' => self::IN_PORTS,
+            'outPorts' => self::OUT_PORTS,
+        ];
+    }
+    
+    public static function describeVariations($data = [])
+    {
+        $models = [
+            \App\Models\User::class,
+            \App\Models\Comment::class,
+            \App\Models\Post::class,
+        ];
+
+        return [
+            ...collect($models)->map(function($model) {
+                return static::describe([
+                    'model' => $model
+                ]);
+            })->toArray()
+        ];
     }
 }
