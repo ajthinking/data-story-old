@@ -18,7 +18,7 @@
 
         <!-- attaching view data -->
         <script>
-            window.dataStoryCapabilities = {!! $dataStoryCapabilities !!}
+            window.dataStoryCapabilities = {!! json_encode($dataStoryCapabilities) !!}
         </script>
     </body>
 </html>

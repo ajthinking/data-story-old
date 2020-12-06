@@ -43,4 +43,9 @@ class NodeModel
     {
         return app('DiagramModel');
     }
+
+    public function run()
+    {
+        
+    }
 }

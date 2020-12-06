@@ -57,15 +57,16 @@ class DiagramModel
         $diagram->links(
             collect(
                 array_values((array) $serialized->layers[0]->models)
-            )->map(function($link) {
-                return $link;
-            })->toArray()
+            )->toArray()
         );
 
         $diagram->nodes(
             collect(
                 array_values((array) $serialized->layers[1]->models)
             )->map(function($serializedNode) {
+                // CHANGE HERE!
+                // ElouquentQuery
+                // NodeModel implements Runnable
                 return NodeModel::deserialize($serializedNode);
             })->toArray()
         );
@@ -73,5 +74,22 @@ class DiagramModel
         $diagram->data = $serialized;
 
         return $diagram;        
+    }
+
+    public function registerGlobal()
+    {
+        return app()->instance('DiagramModel', $this);
+    }
+
+    public function run()
+    {
+        foreach($this->data->executionOrder as $nodeId) {
+            
+            $node = $this->find($nodeId);
+
+            $node->run();
+        }
+
+        return $this;
     }
 }

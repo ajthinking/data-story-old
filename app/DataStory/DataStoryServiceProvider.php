@@ -23,6 +23,7 @@ class DataStoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__.'/routes.php');
+        require __DIR__ . '/routes/web.php';
+        require __DIR__ . '/routes/api.php';
     }
 }
