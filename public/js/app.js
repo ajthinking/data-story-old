@@ -92594,6 +92594,7 @@ var NodeModel = /*#__PURE__*/function (_DefaultNodeModel) {
     key: "serialize",
     value: function serialize() {
       return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(NodeModel.prototype), "serialize", this).call(this)), {}, {
+        options: this.options,
         incomingPortOrigins: this.incomingPortOrigins()
       });
     }
@@ -92828,7 +92829,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 var customStyles = {
   content: {
-    'maxWidth': '450px',
+    'maxWidth': '800px',
     'top': '110px',
     'left': '120px',
     'padding': '0px' //top                   : '25%',
@@ -92928,24 +92929,75 @@ var ManipulatorNodeWidget = /*#__PURE__*/function (_React$Component) {
         style: customStyles,
         contentLabel: "HEY EDIT MANIPULATOR"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
-        className: "bg-gray-200 h-full p-4"
+        className: "w-full bg-gray-100 p-8 font-mono font-bold border-b"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "ml-3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", {
         className: "text-sm mb-2 font-medium text-gray-900 text-bold"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
         className: "text-indigo-500"
-      }, "Elouquent"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
+      }, "Eloquent"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
         className: ""
-      }, "::Users")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", {
-        className: "text-xs text-gray-500"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
-        className: "ml-2"
-      }, "#aobnabfnadfbaofnbaodfbnaofbnanoafb")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("input", {
-        className: "text-xs px-4 py-2",
-        placeholder: "Users"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("input", {
-        className: "text-xs px-4 py-2",
-        placeholder: "Users"
-      })));
+      }, "::User::find(32)")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "w-full bg-gray-100 p-8"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "flex justify-center w-full text-gray-400 text-xs font-mono -my-1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("input", {
+        className: "px-2 py-1 m-2 w-full rounded",
+        placeholder: "App\\Models\\User"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "w-full bg-gray-100 p-8"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "flex justify-center w-full text-gray-400 text-xs font-mono -my-1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("input", {
+        className: "w-full px-2 py-1 m-2 rounded",
+        placeholder: "attribute"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("select", {
+        className: "w-full px-2 py-1 m-2 rounded"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "EQUALS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "EQUALS STRICT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LIKE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LESS THAN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LESS THAN OR EQUAL TO"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LARGER THAN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LARGER THAN OR EQUAL TO"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "CONTAINS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "STARTS WITH"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "ENDS WITH")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("input", {
+        className: "w-full px-2 py-1 m-2 rounded",
+        placeholder: "text"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "flex justify-center w-full text-gray-400 text-xs font-mono -my-1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("input", {
+        className: "w-full px-2 py-1 m-2 rounded",
+        placeholder: "attribute"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("select", {
+        className: "w-full px-2 py-1 m-2 rounded"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "EQUALS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "EQUALS STRICT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LIKE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LESS THAN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LESS THAN OR EQUAL TO"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LARGER THAN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LARGER THAN OR EQUAL TO"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "CONTAINS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "STARTS WITH"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "ENDS WITH")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("input", {
+        className: "w-full px-2 py-1 m-2 rounded",
+        placeholder: "text"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "flex justify-center w-full text-gray-400 text-xs font-mono -my-1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("input", {
+        className: "w-full px-2 py-1 m-2 rounded",
+        placeholder: "attribute"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("select", {
+        className: "w-full px-2 py-1 m-2 rounded"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "EQUALS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "EQUALS STRICT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LIKE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LESS THAN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LESS THAN OR EQUAL TO"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LARGER THAN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LARGER THAN OR EQUAL TO"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "CONTAINS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "STARTS WITH"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "ENDS WITH")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("input", {
+        className: "w-full px-2 py-1 m-2 rounded",
+        placeholder: "text"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "flex justify-center w-full mt-8 px-2 text-gray-400 text-xs font-mono -my-1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", {
+        className: "hover:text-gray-500"
+      }, "+ add where clause")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("hr", {
+        className: "my-8"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "flex justify-center w-full text-gray-400 text-xs font-mono -my-1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("input", {
+        className: "w-full px-2 py-1 m-2 rounded",
+        placeholder: "attribute"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("select", {
+        className: "w-full px-2 py-1 m-2 rounded"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "withTrashed"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "EQUALS STRICT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LIKE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LESS THAN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LESS THAN OR EQUAL TO"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LARGER THAN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "LARGER THAN OR EQUAL TO"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "CONTAINS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "STARTS WITH"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("option", null, "ENDS WITH")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("input", {
+        className: "w-full px-2 py-1 m-2 rounded",
+        placeholder: "text"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+        className: "flex justify-center w-full mt-8 px-2 text-gray-400 text-xs font-mono -my-1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", {
+        className: "hover:text-gray-500"
+      }, "+ add scope"))));
     }
   }, {
     key: "open",
@@ -93067,7 +93119,8 @@ var Store = /*#__PURE__*/function () {
   _createClass(Store, [{
     key: "addNode",
     value: function addNode(data) {
-      var nodeType = _nodeModels__WEBPACK_IMPORTED_MODULE_3__["default"][data.nodeModelReact];
+      console.log(data);
+      var nodeType = _nodeModels__WEBPACK_IMPORTED_MODULE_3__["default"][data.nodeReact];
       var node = new nodeType(_objectSpread({
         serial: this.diagram.nodeSerial++
       }, data));

@@ -12,8 +12,9 @@
         <!-- attaching view data -->
         <script>
             window.dataStoryCapabilities = {!! json_encode($dataStoryCapabilities) !!}
+            console.log(window.dataStoryCapabilities)
         </script>
-            
+
         <!-- the react app -->
         <div id="app"></div>
         <script type="text/javascript" src="/js/app.js"></script>

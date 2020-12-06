@@ -43,7 +43,8 @@ export class Store {
     }
 
     addNode(data) {
-        let nodeType = nodeModels[data.nodeModelReact]
+        console.log(data)
+        let nodeType = nodeModels[data.nodeReact]
 
         var node = new nodeType({
            serial: this.diagram.nodeSerial++,

@@ -35,6 +35,7 @@ export default class NodeModel extends DefaultNodeModel {
 	serialize() {
 		return {
             ...super.serialize(),
+            options: this.options,
             incomingPortOrigins: this.incomingPortOrigins()
 		};
     }

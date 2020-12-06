@@ -20,7 +20,7 @@ abstract class NodeModel
 
     public static function deserialize(stdClass $serialized)
     {
-        $node = new static();
+        $node = new static($serialized->options);
 
         $node->id = $serialized->id;
 
@@ -59,15 +59,13 @@ abstract class NodeModel
 
     public static function describe($data = [])
     {
-        return (object) [
+        return [
             'name' => class_basename(static::class),
             'category' => class_basename(static::CATEGORY),
-            'summary' => 'This node is not documented yet.',
+            'summary' => 'This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet.',
             'key' => class_basename(static::CATEGORY) . class_basename(static::class),
-            
             'nodePhp' => static::class,
-            'nodeModelReact' => static::NODE_MODEL_REACT,
-            
+            'nodeReact' => static::NODE_MODEL_REACT,
             'inPorts' => static::IN_PORTS,
             'outPorts' => static::OUT_PORTS,
         ];

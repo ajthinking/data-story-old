@@ -13,7 +13,7 @@ class NodeCatalogue
     {
         return collect(config('data-story.nodes'))->map(function($class) {
             return $class::describeVariations();
-        })->flatten()->toArray();
+        })->flatten(1)->toArray();
     }
 
     public function spawners()

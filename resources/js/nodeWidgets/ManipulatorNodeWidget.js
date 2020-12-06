@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 
 const customStyles = {
     content : {
-      'maxWidth': '450px',
+      'maxWidth': '800px',
       'top': '110px',
       'left': '120px',
       'padding': '0px',
@@ -93,20 +93,93 @@ export default class ManipulatorNodeWidget extends React.Component {
             style={customStyles}
             contentLabel="HEY EDIT MANIPULATOR"
             >
-
-                <div className="bg-gray-200 h-full p-4">
-                    <p className="text-sm mb-2 font-medium text-gray-900 text-bold">
-                        <span className="text-indigo-500">Elouquent</span>
-                        <span className="">::Users</span>
-                        
-                    </p>
-                    <p className="text-xs text-gray-500">
-                        <span className="ml-2">#aobnabfnadfbaofnbaodfbnaofbnanoafb</span>
-                    </p>
-
-                    <input className="text-xs px-4 py-2" placeholder="Users"></input>
-                    <input className="text-xs px-4 py-2" placeholder="Users"></input>
+                <div className="w-full bg-gray-100 p-8 font-mono font-bold border-b">
+                    <div className="ml-3">
+                        <p className="text-sm mb-2 font-medium text-gray-900 text-bold">
+                            <span className="text-indigo-500">Eloquent</span>
+                            <span className="">::User::find(32)</span>
+                        </p>
+                    </div>                    
                 </div>
+                <div className="w-full bg-gray-100 p-8">
+                    <div className="flex justify-center w-full text-gray-400 text-xs font-mono -my-1">
+                        <input className="px-2 py-1 m-2 w-full rounded" placeholder="App\Models\User" />
+                    </div>                     
+                </div>                
+                <div className="w-full bg-gray-100 p-8">
+                    <div className="flex justify-center w-full text-gray-400 text-xs font-mono -my-1">
+                        <input className="w-full px-2 py-1 m-2 rounded" placeholder="attribute" />
+                        <select className="w-full px-2 py-1 m-2 rounded">
+                        <option>EQUALS</option>
+                        <option>EQUALS STRICT</option>
+                        <option>LIKE</option>
+                        <option>LESS THAN</option>
+                        <option>LESS THAN OR EQUAL TO</option>
+                        <option>LARGER THAN</option>
+                        <option>LARGER THAN OR EQUAL TO</option>
+                        <option>CONTAINS</option>
+                        <option>STARTS WITH</option>
+                        <option>ENDS WITH</option>
+                        </select>
+                        <input className="w-full px-2 py-1 m-2 rounded" placeholder="text" />
+                    </div>
+                    <div className="flex justify-center w-full text-gray-400 text-xs font-mono -my-1">
+                        <input className="w-full px-2 py-1 m-2 rounded" placeholder="attribute" />
+                        <select className="w-full px-2 py-1 m-2 rounded">
+                        <option>EQUALS</option>
+                        <option>EQUALS STRICT</option>
+                        <option>LIKE</option>
+                        <option>LESS THAN</option>
+                        <option>LESS THAN OR EQUAL TO</option>
+                        <option>LARGER THAN</option>
+                        <option>LARGER THAN OR EQUAL TO</option>
+                        <option>CONTAINS</option>
+                        <option>STARTS WITH</option>
+                        <option>ENDS WITH</option>
+                        </select>
+                        <input className="w-full px-2 py-1 m-2 rounded" placeholder="text" />
+                    </div>
+                    <div className="flex justify-center w-full text-gray-400 text-xs font-mono -my-1">
+                        <input className="w-full px-2 py-1 m-2 rounded" placeholder="attribute" />
+                        <select className="w-full px-2 py-1 m-2 rounded">
+                        <option>EQUALS</option>
+                        <option>EQUALS STRICT</option>
+                        <option>LIKE</option>
+                        <option>LESS THAN</option>
+                        <option>LESS THAN OR EQUAL TO</option>
+                        <option>LARGER THAN</option>
+                        <option>LARGER THAN OR EQUAL TO</option>
+                        <option>CONTAINS</option>
+                        <option>STARTS WITH</option>
+                        <option>ENDS WITH</option>
+                        </select>
+                        <input className="w-full px-2 py-1 m-2 rounded" placeholder="text" />
+                    </div>  
+                    <div className="flex justify-center w-full mt-8 px-2 text-gray-400 text-xs font-mono -my-1">
+                        <button className="hover:text-gray-500">+ add where clause</button>
+                    </div>
+                    <hr className="my-8"></hr>
+                    <div className="flex justify-center w-full text-gray-400 text-xs font-mono -my-1">
+                        <input className="w-full px-2 py-1 m-2 rounded" placeholder="attribute" />
+                        <select className="w-full px-2 py-1 m-2 rounded">
+                        <option>withTrashed</option>
+                        <option>EQUALS STRICT</option>
+                        <option>LIKE</option>
+                        <option>LESS THAN</option>
+                        <option>LESS THAN OR EQUAL TO</option>
+                        <option>LARGER THAN</option>
+                        <option>LARGER THAN OR EQUAL TO</option>
+                        <option>CONTAINS</option>
+                        <option>STARTS WITH</option>
+                        <option>ENDS WITH</option>
+                        </select>
+                        <input className="w-full px-2 py-1 m-2 rounded" placeholder="text" />
+                    </div>  
+                    <div className="flex justify-center w-full mt-8 px-2 text-gray-400 text-xs font-mono -my-1">
+                        <button className="hover:text-gray-500">+ add scope</button>
+                    </div>                    
+                </div>
+
 
         </Modal>);
     }    

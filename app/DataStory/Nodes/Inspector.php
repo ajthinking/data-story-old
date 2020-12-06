@@ -12,6 +12,6 @@ class Inspector extends NodeModel
 
     public function run()
     {
-        $this->node->features = $this->node->getDataAtPortNamed('Input');
+        $this->features = $this->getDataAtPortNamed('Input');
     }
 }

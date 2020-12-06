@@ -64,10 +64,8 @@ class DiagramModel
             collect(
                 array_values((array) $serialized->layers[1]->models)
             )->map(function($serializedNode) {
-                // CHANGE HERE!
-                // ElouquentQuery
-                // NodeModel implements Runnable
-                return NodeModel::deserialize($serializedNode);
+                $nodeType = $serializedNode->options->nodePhp;
+                return $nodeType::deserialize($serializedNode);
             })->toArray()
         );
 
