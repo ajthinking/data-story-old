@@ -96,7 +96,7 @@ class DiagramModel
     public static function capabilities()
     {
         return [
-            'availableNodes' => config('data-story.nodes')
+            'availableNodes' => NodeCatalogue::make()->toArray()
         ];
     }
 }

@@ -12,6 +12,8 @@ abstract class NodeModel
 
     const CATEGORY = 'UNCATEGORIZED';
 
+    const NODE_MODEL_REACT = 'NodeModel';
+
     public string $id;
 
     public stdClass $data;
@@ -58,11 +60,16 @@ abstract class NodeModel
     public static function describe($data = [])
     {
         return (object) [
-            'class' => self::class,
-            'category' => static::CATEGORY,
-            'signature' => 'SIGNATURE',
-            'inPorts' => self::IN_PORTS,
-            'outPorts' => self::OUT_PORTS,
+            'name' => class_basename(static::class),
+            'category' => class_basename(static::CATEGORY),
+            'summary' => 'This node is not documented yet.',
+            'key' => class_basename(static::CATEGORY) . class_basename(static::class),
+            
+            'nodePhp' => static::class,
+            'nodeModelReact' => static::NODE_MODEL_REACT,
+            
+            'inPorts' => static::IN_PORTS,
+            'outPorts' => static::OUT_PORTS,
         ];
     }
     

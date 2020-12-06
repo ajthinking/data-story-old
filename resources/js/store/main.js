@@ -1,8 +1,6 @@
 import { action, observable, makeObservable } from "mobx"
-import ManipulatorNodeModel from '../nodeModels/ManipulatorNodeModel'
 import { DefaultLinkModel } from '@projectstorm/react-diagrams'
 import engine from './defaultEngine'
-import manipulators from './manipulatorCatalogue'
 import nodeModels from './nodeModels'
 import _ from 'lodash'
 
@@ -11,7 +9,7 @@ export class Store {
 
     diagram = {
         engine,
-        manipulators,
+        availableNodes: window.dataStoryCapabilities.availableNodes,
         refresh: 0,
         latestNode: null,
         nodeSerial: 1,
@@ -30,7 +28,7 @@ export class Store {
             metadata: observable,
             inspectables: observable,
             
-            addManipulator: action.bound,
+            addNode: action.bound,
             increaseNodeSerial: action.bound,
             refreshDiagram: action.bound,
             setInspectables: action.bound,
@@ -44,11 +42,12 @@ export class Store {
         })
     }
 
-    addManipulator(name) {
-        let selected = nodeModels[name]
+    addNode(data) {
+        let nodeType = nodeModels[data.nodeModelReact]
 
-        var node = new selected({
-           serial: this.diagram.nodeSerial++ 
+        var node = new nodeType({
+           serial: this.diagram.nodeSerial++,
+           ...data
         });
 
         node.setPosition(100, 100 + Math.random() * 100);

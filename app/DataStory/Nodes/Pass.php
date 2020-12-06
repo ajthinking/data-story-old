@@ -2,14 +2,12 @@
 
 namespace App\DataStory\Nodes;
 
+use App\DataStory\Categories\Workflow;
 use App\DataStory\NodeModel;
 
 class Pass extends NodeModel
 {
-    public function __construct($node)
-    {
-        $this->node = $node;
-    }
+    const CATEGORY = Workflow::class;
 
     public function run()
     {

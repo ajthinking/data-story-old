@@ -4,7 +4,7 @@ import BaseControl from './BaseControl'
 var Mousetrap = require('mousetrap');
 
 @inject('store') @observer
-export default class ManipulatorSearch extends React.Component {    
+export default class NodeSearch extends React.Component {    
     constructor(props) {
         super(props)
         this.state = {
@@ -24,26 +24,24 @@ export default class ManipulatorSearch extends React.Component {
                 tabIndex={1}
             />
             <ul className="divide-y divide-gray-300">
-                {this.filteredManipulators().map(manipulator => {
-                    return this.renderManipulator(manipulator)
+                {this.filteredNodes().map(node => {
+                    return this.renderNode(node)
                 })}
             </ul>
       </div>
       )
     }
 
-    renderManipulator(manipulator) {
+    renderNode(node) {
         const elementDataProperties = {
-            'data-node-model-diagram-node-type' : manipulator.nodeModel,
-            'data-node-model-elouquent-class'      : 'User',
-            'data-node-model-elouquent-model-id'   : '1',
+            'data-node-model-variation-key': node.key,
         }
 
         return (
             
 
             <li 
-                key={manipulator.category + manipulator.name}
+                key={node.category + node.name}
                 onDoubleClick={this.handleSelect.bind(this)}
                 //data-node-model={'InspectorNodeModel'}
                 //data-node-model-argument={{target: 'Users'}}
@@ -55,13 +53,13 @@ export default class ManipulatorSearch extends React.Component {
             >
                 <div className="ml-3">
                 <p className="text-sm mb-2 font-medium text-gray-900 text-bold">
-                    <span className="text-indigo-500">{manipulator.category}</span>
-                    <span className="">::{manipulator.name}</span>
+                    <span className="text-indigo-500">{node.category}</span>
+                    <span className="">::{node.name}</span>
                     
                 </p>
                 <p className="text-xs text-gray-500">
                     
-                    <span className="ml-2">{manipulator.example}</span>
+                    <span className="ml-2">{node.summary}</span>
                 </p>
                 </div>
             </li>             
@@ -74,9 +72,10 @@ export default class ManipulatorSearch extends React.Component {
         })       
     }
 
-    filteredManipulators() {
-        return this.props.store.diagram.manipulators.filter((manipulator) => {
-            let content = manipulator.category + manipulator.name + manipulator.help
+    filteredNodes() {
+        return this.props.store.diagram.availableNodes.filter((node) => {
+            let content = node.category + node.name + node.summary
+            
             return content.toLowerCase().includes(
                 this.state.search.toLowerCase()
             )
@@ -93,25 +92,10 @@ export default class ManipulatorSearch extends React.Component {
     }
     
     handleSelect(event) {
-        let prefix = 'data-node-model-'
-
-        // Get relevant data properties as object { 0: data-key-x }
-        let dataAttributes = _.pickBy(event.target.attributes, function(value, key) {
-            return (value.name ?? false) && value.name.startsWith(prefix)
-        })
-
-        let options = Object.values(dataAttributes).reduce(
-            (results, attribute) => {
-                let optionName = attribute.name.replace(prefix, '')
-                return {
-                    ...results,
-                    [optionName]: event.target.getAttribute(attribute.name)
-                }
-            }, {})
-
-        this.props.store.addManipulator(
-            options['diagram-node-type']
-        )
+        let key = event.target.getAttribute('data-node-model-variation-key')
+        let nodeData = this.props.store.diagram.availableNodes.find(node => node.key == key)
+        
+        this.props.store.addNode(nodeData)
 
         event.preventDefault()   
         this.props.onFinish()

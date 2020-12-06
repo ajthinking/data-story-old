@@ -4,7 +4,7 @@ import { inject, observer } from "mobx-react"
 import StoryWorkbenchControl from './controls/StoryWorkbenchControl';
 import InspectorsControl from './controls/InspectorsControl';
 import RunControl from './controls/RunControl';
-import AddManipulatorControl from './controls/AddManipulatorControl'
+import AddNodeControl from './controls/AddNodeControl'
 
 @inject('store') @observer
 export default class Toolbar extends React.Component {
@@ -35,7 +35,7 @@ export default class Toolbar extends React.Component {
                     <StoryWorkbenchControl />
                     <InspectorsControl />
                     <RunControl />
-                    <AddManipulatorControl />                                       
+                    <AddNodeControl />                                       
                 </div>
                 {this.props.store.metadata.running ? (
                     <div className="ml-12 w-full">

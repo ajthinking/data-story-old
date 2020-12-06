@@ -7,9 +7,7 @@ use App\DataStory\NodeModel;
 
 class EloquentReader extends NodeModel
 {
-    const IN_PORTS = ['Input'];
-
-    const OUT_PORTS = ['Output'];
+    const IN_PORTS = [];
 
     const CATEGORY = Eloquent::class;
 
@@ -64,11 +62,17 @@ class EloquentReader extends NodeModel
         $signature = "$shortCategory::$shortModelPlural";
 
         return (object) [
-            'class' => self::class,
+            'nodePhp' => static::class,
+            'nodeModelReact' => static::NODE_MODEL_REACT,
+            'key' => $shortCategory . static::class . (string) $shortModelPlural,
+
+            'name' => (string) $shortModelPlural,
+            'class' => static::class,
             'category' => $shortCategory,
+            'summary' => "$shortModel::where(...)",
             'signature' => $signature,
-            'inPorts' => self::IN_PORTS,
-            'outPorts' => self::OUT_PORTS,
+            'inPorts' => static::IN_PORTS,
+            'outPorts' => static::OUT_PORTS,
         ];
     }
     

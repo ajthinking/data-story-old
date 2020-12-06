@@ -1,10 +1,10 @@
-import { DefaultPortModel, NodeModel } from '@projectstorm/react-diagrams';
-import ManipulatorNodeModel from './ManipulatorNodeModel';
+import { DefaultPortModel, NodeModel as DefaultNodeModel } from '@projectstorm/react-diagrams';
+import NodeModel from './NodeModel';
 
 /**
  * Example of a custom model using pure javascript
  */
-export default class InspectorNodeModel extends ManipulatorNodeModel {
+export default class InspectorNodeModel extends DefaultNodeModel {
 	constructor(options = {}) {
 		super({
 			...options,

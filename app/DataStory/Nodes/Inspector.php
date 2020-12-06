@@ -6,10 +6,9 @@ use App\DataStory\NodeModel;
 
 class Inspector extends NodeModel
 {
-    public function __construct($node)
-    {
-        $this->node = $node;
-    }
+    const OUT_PORTS = [];
+
+    const CATEGORY = Workflow::class;
 
     public function run()
     {

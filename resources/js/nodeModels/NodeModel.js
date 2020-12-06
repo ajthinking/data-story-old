@@ -1,10 +1,10 @@
-import { DefaultPortModel, NodeModel } from '@projectstorm/react-diagrams';
+import { DefaultPortModel, NodeModel as DefaultNodeModel } from '@projectstorm/react-diagrams';
 import _ from 'lodash'
 
 /**
  * Example of a custom model using pure javascript
  */
-export default class ManipulatorNodeModel extends NodeModel {
+export default class NodeModel extends DefaultNodeModel {
 	constructor(options = {}) {
 		super({
 			...options,
@@ -12,6 +12,24 @@ export default class ManipulatorNodeModel extends NodeModel {
         });
         
         this.serial = options.serial
+
+        this.options.inPorts.map(name => {
+            this.addPort(
+                new DefaultPortModel({
+                    in: true,
+                    name: name,
+                })
+            );  
+        })
+
+        this.options.outPorts.map(name => {
+            this.addPort(
+                new DefaultPortModel({
+                    in: false,
+                    name: name,
+                })
+            );  
+        })        
     }
 
 	serialize() {
@@ -23,6 +41,10 @@ export default class ManipulatorNodeModel extends NodeModel {
 
 	deserialize(ob, engine) {
 		super.deserialize(ob, engine);
+    }
+
+    getDisplayName() {
+        return this.options.name
     }
 
     getDiagramModel() {

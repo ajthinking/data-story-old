@@ -4,7 +4,7 @@ import { inject, observer } from "mobx-react"
 import BaseControl from './BaseControl'
 import axios from 'axios';
 import Modal from 'react-modal';
-import ManipulatorSearch from './ManipulatorSearch'
+import NodeSearch from './NodeSearch'
 var Mousetrap = require('mousetrap');
 
 const customStyles = {
@@ -34,7 +34,7 @@ Modal.setAppElement('#app')
 
 
 @inject('store') @observer
-export default class AddManipulatorControl extends BaseControl {
+export default class AddNodeControl extends BaseControl {
     constructor(props) {
         super(props);
         this.title = 'Add manipulator'
@@ -77,7 +77,7 @@ export default class AddManipulatorControl extends BaseControl {
             style={customStyles}
             contentLabel="Example Modal"
             >            
-                <ManipulatorSearch onFinish={this.closeModal.bind(this)}/>
+                <NodeSearch onFinish={this.closeModal.bind(this)}/>
         </Modal>);
     }
     

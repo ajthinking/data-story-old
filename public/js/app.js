@@ -91248,7 +91248,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _controls_StoryWorkbenchControl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./controls/StoryWorkbenchControl */ "./resources/js/components/controls/StoryWorkbenchControl.js");
 /* harmony import */ var _controls_InspectorsControl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./controls/InspectorsControl */ "./resources/js/components/controls/InspectorsControl.js");
 /* harmony import */ var _controls_RunControl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controls/RunControl */ "./resources/js/components/controls/RunControl.js");
-/* harmony import */ var _controls_AddManipulatorControl__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./controls/AddManipulatorControl */ "./resources/js/components/controls/AddManipulatorControl.js");
+/* harmony import */ var _controls_AddNodeControl__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./controls/AddNodeControl */ "./resources/js/components/controls/AddNodeControl.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var _dec, _class;
@@ -91305,7 +91305,7 @@ var Toolbar = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"])(
         className: this.style()
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "flex flex-1 w-full px-2 py-2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_StoryWorkbenchControl__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_InspectorsControl__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_RunControl__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_AddManipulatorControl__WEBPACK_IMPORTED_MODULE_5__["default"], null)), this.props.store.metadata.running ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_StoryWorkbenchControl__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_InspectorsControl__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_RunControl__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_AddNodeControl__WEBPACK_IMPORTED_MODULE_5__["default"], null)), this.props.store.metadata.running ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "ml-12 w-full"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "relative pt-1"
@@ -91350,16 +91350,16 @@ var Toolbar = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"])(
 
 /***/ }),
 
-/***/ "./resources/js/components/controls/AddManipulatorControl.js":
-/*!*******************************************************************!*\
-  !*** ./resources/js/components/controls/AddManipulatorControl.js ***!
-  \*******************************************************************/
+/***/ "./resources/js/components/controls/AddNodeControl.js":
+/*!************************************************************!*\
+  !*** ./resources/js/components/controls/AddNodeControl.js ***!
+  \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddManipulatorControl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddNodeControl; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
@@ -91370,7 +91370,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _ManipulatorSearch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ManipulatorSearch */ "./resources/js/components/controls/ManipulatorSearch.js");
+/* harmony import */ var _NodeSearch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./NodeSearch */ "./resources/js/components/controls/NodeSearch.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var _dec, _class;
@@ -91432,15 +91432,15 @@ var customStyles = {
 }; // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 
 react_modal__WEBPACK_IMPORTED_MODULE_5___default.a.setAppElement('#app');
-var AddManipulatorControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["inject"])('store'), _dec(_class = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["observer"])(_class = /*#__PURE__*/function (_BaseControl) {
-  _inherits(AddManipulatorControl, _BaseControl);
+var AddNodeControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["inject"])('store'), _dec(_class = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["observer"])(_class = /*#__PURE__*/function (_BaseControl) {
+  _inherits(AddNodeControl, _BaseControl);
 
-  var _super = _createSuper(AddManipulatorControl);
+  var _super = _createSuper(AddNodeControl);
 
-  function AddManipulatorControl(props) {
+  function AddNodeControl(props) {
     var _this;
 
-    _classCallCheck(this, AddManipulatorControl);
+    _classCallCheck(this, AddNodeControl);
 
     _this = _super.call(this, props);
     _this.title = 'Add manipulator';
@@ -91452,7 +91452,7 @@ var AddManipulatorControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2
     return _this;
   }
 
-  _createClass(AddManipulatorControl, [{
+  _createClass(AddNodeControl, [{
     key: "onClick",
     value: function onClick() {
       this.setState({
@@ -91485,14 +91485,14 @@ var AddManipulatorControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2
         onRequestClose: this.closeModal.bind(this),
         style: customStyles,
         contentLabel: "Example Modal"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ManipulatorSearch__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NodeSearch__WEBPACK_IMPORTED_MODULE_6__["default"], {
         onFinish: this.closeModal.bind(this)
       }));
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _get(_getPrototypeOf(AddManipulatorControl.prototype), "render", this).call(this), this.renderModal());
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, _get(_getPrototypeOf(AddNodeControl.prototype), "render", this).call(this), this.renderModal());
     }
   }, {
     key: "componentDidMount",
@@ -91508,7 +91508,7 @@ var AddManipulatorControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2
     }
   }]);
 
-  return AddManipulatorControl;
+  return AddNodeControl;
 }(_BaseControl__WEBPACK_IMPORTED_MODULE_3__["default"])) || _class) || _class);
 
 
@@ -91682,16 +91682,16 @@ var StoryWorkbenchControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1
 
 /***/ }),
 
-/***/ "./resources/js/components/controls/ManipulatorSearch.js":
-/*!***************************************************************!*\
-  !*** ./resources/js/components/controls/ManipulatorSearch.js ***!
-  \***************************************************************/
+/***/ "./resources/js/components/controls/NodeSearch.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/controls/NodeSearch.js ***!
+  \********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ManipulatorSearch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NodeSearch; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react */ "./node_modules/mobx-react/dist/mobxreact.esm.js");
@@ -91699,12 +91699,6 @@ __webpack_require__.r(__webpack_exports__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var _dec, _class;
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -91734,15 +91728,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 var Mousetrap = __webpack_require__(/*! mousetrap */ "./node_modules/mousetrap/mousetrap.js");
 
-var ManipulatorSearch = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"])('store'), _dec(_class = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["observer"])(_class = /*#__PURE__*/function (_React$Component) {
-  _inherits(ManipulatorSearch, _React$Component);
+var NodeSearch = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"])('store'), _dec(_class = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["observer"])(_class = /*#__PURE__*/function (_React$Component) {
+  _inherits(NodeSearch, _React$Component);
 
-  var _super = _createSuper(ManipulatorSearch);
+  var _super = _createSuper(NodeSearch);
 
-  function ManipulatorSearch(props) {
+  function NodeSearch(props) {
     var _this;
 
-    _classCallCheck(this, ManipulatorSearch);
+    _classCallCheck(this, NodeSearch);
 
     _this = _super.call(this, props);
     _this.state = {
@@ -91751,7 +91745,7 @@ var ManipulatorSearch = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["
     return _this;
   }
 
-  _createClass(ManipulatorSearch, [{
+  _createClass(NodeSearch, [{
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -91769,20 +91763,18 @@ var ManipulatorSearch = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["
         tabIndex: 1
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "divide-y divide-gray-300"
-      }, this.filteredManipulators().map(function (manipulator) {
-        return _this2.renderManipulator(manipulator);
+      }, this.filteredNodes().map(function (node) {
+        return _this2.renderNode(node);
       })));
     }
   }, {
-    key: "renderManipulator",
-    value: function renderManipulator(manipulator) {
+    key: "renderNode",
+    value: function renderNode(node) {
       var elementDataProperties = {
-        'data-node-model-diagram-node-type': manipulator.nodeModel,
-        'data-node-model-elouquent-class': 'User',
-        'data-node-model-elouquent-model-id': '1'
+        'data-node-model-variation-key': node.key
       };
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", _extends({
-        key: manipulator.category + manipulator.name,
+        key: node.category + node.name,
         onDoubleClick: this.handleSelect.bind(this) //data-node-model={'InspectorNodeModel'}
         //data-node-model-argument={{target: 'Users'}}
 
@@ -91795,13 +91787,13 @@ var ManipulatorSearch = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["
         className: "text-sm mb-2 font-medium text-gray-900 text-bold"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "text-indigo-500"
-      }, manipulator.category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, node.category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: ""
-      }, "::", manipulator.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, "::", node.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "text-xs text-gray-500"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "ml-2"
-      }, manipulator.example))));
+      }, node.summary))));
     }
   }, {
     key: "searchChange",
@@ -91811,12 +91803,12 @@ var ManipulatorSearch = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["
       });
     }
   }, {
-    key: "filteredManipulators",
-    value: function filteredManipulators() {
+    key: "filteredNodes",
+    value: function filteredNodes() {
       var _this3 = this;
 
-      return this.props.store.diagram.manipulators.filter(function (manipulator) {
-        var content = manipulator.category + manipulator.name + manipulator.help;
+      return this.props.store.diagram.availableNodes.filter(function (node) {
+        var content = node.category + node.name + node.summary;
         return content.toLowerCase().includes(_this3.state.search.toLowerCase());
       });
     }
@@ -91829,25 +91821,17 @@ var ManipulatorSearch = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["
   }, {
     key: "handleSelect",
     value: function handleSelect(event) {
-      var prefix = 'data-node-model-'; // Get relevant data properties as object { 0: data-key-x }
-
-      var dataAttributes = _.pickBy(event.target.attributes, function (value, key) {
-        var _value$name;
-
-        return ((_value$name = value.name) !== null && _value$name !== void 0 ? _value$name : false) && value.name.startsWith(prefix);
+      var key = event.target.getAttribute('data-node-model-variation-key');
+      var nodeData = this.props.store.diagram.availableNodes.find(function (node) {
+        return node.key == key;
       });
-
-      var options = Object.values(dataAttributes).reduce(function (results, attribute) {
-        var optionName = attribute.name.replace(prefix, '');
-        return _objectSpread(_objectSpread({}, results), {}, _defineProperty({}, optionName, event.target.getAttribute(attribute.name)));
-      }, {});
-      this.props.store.addManipulator(options['diagram-node-type']);
+      this.props.store.addNode(nodeData);
       event.preventDefault();
       this.props.onFinish();
     }
   }]);
 
-  return ManipulatorSearch;
+  return NodeSearch;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component)) || _class) || _class);
 
 
@@ -92250,7 +92234,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @projectstorm/react-canvas-core */ "./node_modules/@projectstorm/react-canvas-core/dist/es/index.js");
 /* harmony import */ var _projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_canvas_core__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _nodeModels_ManipulatorNodeModel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../nodeModels/ManipulatorNodeModel */ "./resources/js/nodeModels/ManipulatorNodeModel.js");
+/* harmony import */ var _nodeModels_NodeModel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../nodeModels/NodeModel */ "./resources/js/nodeModels/NodeModel.js");
 /* harmony import */ var _nodeWidgets_ManipulatorNodeWidget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../nodeWidgets/ManipulatorNodeWidget */ "./resources/js/nodeWidgets/ManipulatorNodeWidget.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -92293,7 +92277,7 @@ var ManipulatorNodeFactory = /*#__PURE__*/function (_AbstractReactFactory) {
   _createClass(ManipulatorNodeFactory, [{
     key: "generateModel",
     value: function generateModel(event) {
-      return new _nodeModels_ManipulatorNodeModel__WEBPACK_IMPORTED_MODULE_2__["default"]();
+      return new _nodeModels_NodeModel__WEBPACK_IMPORTED_MODULE_2__["default"]();
     }
   }, {
     key: "generateReactWidget",
@@ -92325,7 +92309,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ElouquentNodeModel; });
 /* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @projectstorm/react-diagrams */ "./node_modules/@projectstorm/react-diagrams/dist/index.js");
 /* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ManipulatorNodeModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ManipulatorNodeModel */ "./resources/js/nodeModels/ManipulatorNodeModel.js");
+/* harmony import */ var _NodeModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NodeModel */ "./resources/js/nodeModels/NodeModel.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -92364,8 +92348,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
  * Example of a custom model using pure javascript
  */
 
-var ElouquentNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
-  _inherits(ElouquentNodeModel, _ManipulatorNodeModel);
+var ElouquentNodeModel = /*#__PURE__*/function (_DefaultNodeModel) {
+  _inherits(ElouquentNodeModel, _DefaultNodeModel);
 
   var _super = _createSuper(ElouquentNodeModel);
 
@@ -92383,12 +92367,6 @@ var ElouquentNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
     }));
     _this.runner = 'App\\DataStory\\EloquentReader';
     _this.targetElouquentModel = (_options$targetElouqu = options.targetElouquentModel) !== null && _options$targetElouqu !== void 0 ? _options$targetElouqu : "App\\Models\\User";
-
-    _this.addPort(new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["DefaultPortModel"]({
-      "in": false,
-      name: 'out1'
-    }));
-
     return _this;
   }
 
@@ -92414,7 +92392,7 @@ var ElouquentNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
   }]);
 
   return ElouquentNodeModel;
-}(_ManipulatorNodeModel__WEBPACK_IMPORTED_MODULE_1__["default"]);
+}(_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["NodeModel"]);
 
 
 
@@ -92432,7 +92410,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return InspectorNodeModel; });
 /* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @projectstorm/react-diagrams */ "./node_modules/@projectstorm/react-diagrams/dist/index.js");
 /* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ManipulatorNodeModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ManipulatorNodeModel */ "./resources/js/nodeModels/ManipulatorNodeModel.js");
+/* harmony import */ var _NodeModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NodeModel */ "./resources/js/nodeModels/NodeModel.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -92471,8 +92449,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
  * Example of a custom model using pure javascript
  */
 
-var InspectorNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
-  _inherits(InspectorNodeModel, _ManipulatorNodeModel);
+var InspectorNodeModel = /*#__PURE__*/function (_DefaultNodeModel) {
+  _inherits(InspectorNodeModel, _DefaultNodeModel);
 
   var _super = _createSuper(InspectorNodeModel);
 
@@ -92520,22 +92498,22 @@ var InspectorNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
   }]);
 
   return InspectorNodeModel;
-}(_ManipulatorNodeModel__WEBPACK_IMPORTED_MODULE_1__["default"]);
+}(_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["NodeModel"]);
 
 
 
 /***/ }),
 
-/***/ "./resources/js/nodeModels/ManipulatorNodeModel.js":
-/*!*********************************************************!*\
-  !*** ./resources/js/nodeModels/ManipulatorNodeModel.js ***!
-  \*********************************************************/
+/***/ "./resources/js/nodeModels/NodeModel.js":
+/*!**********************************************!*\
+  !*** ./resources/js/nodeModels/NodeModel.js ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ManipulatorNodeModel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NodeModel; });
 /* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @projectstorm/react-diagrams */ "./node_modules/@projectstorm/react-diagrams/dist/index.js");
 /* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
@@ -92578,36 +92556,56 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
  * Example of a custom model using pure javascript
  */
 
-var ManipulatorNodeModel = /*#__PURE__*/function (_NodeModel) {
-  _inherits(ManipulatorNodeModel, _NodeModel);
+var NodeModel = /*#__PURE__*/function (_DefaultNodeModel) {
+  _inherits(NodeModel, _DefaultNodeModel);
 
-  var _super = _createSuper(ManipulatorNodeModel);
+  var _super = _createSuper(NodeModel);
 
-  function ManipulatorNodeModel() {
+  function NodeModel() {
     var _this;
 
     var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-    _classCallCheck(this, ManipulatorNodeModel);
+    _classCallCheck(this, NodeModel);
 
     _this = _super.call(this, _objectSpread(_objectSpread({}, options), {}, {
       type: 'manipulator'
     }));
     _this.serial = options.serial;
+
+    _this.options.inPorts.map(function (name) {
+      _this.addPort(new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["DefaultPortModel"]({
+        "in": true,
+        name: name
+      }));
+    });
+
+    _this.options.outPorts.map(function (name) {
+      _this.addPort(new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["DefaultPortModel"]({
+        "in": false,
+        name: name
+      }));
+    });
+
     return _this;
   }
 
-  _createClass(ManipulatorNodeModel, [{
+  _createClass(NodeModel, [{
     key: "serialize",
     value: function serialize() {
-      return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(ManipulatorNodeModel.prototype), "serialize", this).call(this)), {}, {
+      return _objectSpread(_objectSpread({}, _get(_getPrototypeOf(NodeModel.prototype), "serialize", this).call(this)), {}, {
         incomingPortOrigins: this.incomingPortOrigins()
       });
     }
   }, {
     key: "deserialize",
     value: function deserialize(ob, engine) {
-      _get(_getPrototypeOf(ManipulatorNodeModel.prototype), "deserialize", this).call(this, ob, engine);
+      _get(_getPrototypeOf(NodeModel.prototype), "deserialize", this).call(this, ob, engine);
+    }
+  }, {
+    key: "getDisplayName",
+    value: function getDisplayName() {
+      return this.options.name;
     }
   }, {
     key: "getDiagramModel",
@@ -92673,7 +92671,7 @@ var ManipulatorNodeModel = /*#__PURE__*/function (_NodeModel) {
     }
   }]);
 
-  return ManipulatorNodeModel;
+  return NodeModel;
 }(_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["NodeModel"]);
 
 
@@ -92692,7 +92690,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PassNodeModel; });
 /* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @projectstorm/react-diagrams */ "./node_modules/@projectstorm/react-diagrams/dist/index.js");
 /* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ManipulatorNodeModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ManipulatorNodeModel */ "./resources/js/nodeModels/ManipulatorNodeModel.js");
+/* harmony import */ var _NodeModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NodeModel */ "./resources/js/nodeModels/NodeModel.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -92731,8 +92729,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
  * Example of a custom model using pure javascript
  */
 
-var PassNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
-  _inherits(PassNodeModel, _ManipulatorNodeModel);
+var PassNodeModel = /*#__PURE__*/function (_DefaultNodeModel) {
+  _inherits(PassNodeModel, _DefaultNodeModel);
 
   var _super = _createSuper(PassNodeModel);
 
@@ -92781,7 +92779,7 @@ var PassNodeModel = /*#__PURE__*/function (_ManipulatorNodeModel) {
   }]);
 
   return PassNodeModel;
-}(_ManipulatorNodeModel__WEBPACK_IMPORTED_MODULE_1__["default"]);
+}(_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0__["NodeModel"]);
 
 
 
@@ -93007,14 +93005,16 @@ engine.setModel(model);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
 /* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mobx */ "./node_modules/mobx/dist/mobx.esm.js");
-/* harmony import */ var _nodeModels_ManipulatorNodeModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../nodeModels/ManipulatorNodeModel */ "./resources/js/nodeModels/ManipulatorNodeModel.js");
-/* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @projectstorm/react-diagrams */ "./node_modules/@projectstorm/react-diagrams/dist/index.js");
-/* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _defaultEngine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./defaultEngine */ "./resources/js/store/defaultEngine.js");
-/* harmony import */ var _manipulatorCatalogue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./manipulatorCatalogue */ "./resources/js/store/manipulatorCatalogue.js");
-/* harmony import */ var _nodeModels__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./nodeModels */ "./resources/js/store/nodeModels.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @projectstorm/react-diagrams */ "./node_modules/@projectstorm/react-diagrams/dist/index.js");
+/* harmony import */ var _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _defaultEngine__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./defaultEngine */ "./resources/js/store/defaultEngine.js");
+/* harmony import */ var _nodeModels__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./nodeModels */ "./resources/js/store/nodeModels.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -93028,15 +93028,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-
 var Store = /*#__PURE__*/function () {
   function Store() {
     _classCallCheck(this, Store);
 
     _defineProperty(this, "diagram", {
-      engine: _defaultEngine__WEBPACK_IMPORTED_MODULE_3__["default"],
-      manipulators: _manipulatorCatalogue__WEBPACK_IMPORTED_MODULE_4__["default"],
+      engine: _defaultEngine__WEBPACK_IMPORTED_MODULE_2__["default"],
+      availableNodes: window.dataStoryCapabilities.availableNodes,
       refresh: 0,
       latestNode: null,
       nodeSerial: 1
@@ -93053,7 +93051,7 @@ var Store = /*#__PURE__*/function () {
       diagram: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
       metadata: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
       inspectables: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"],
-      addManipulator: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
+      addNode: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       increaseNodeSerial: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       refreshDiagram: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
       setInspectables: mobx__WEBPACK_IMPORTED_MODULE_0__["action"].bound,
@@ -93067,12 +93065,12 @@ var Store = /*#__PURE__*/function () {
   }
 
   _createClass(Store, [{
-    key: "addManipulator",
-    value: function addManipulator(name) {
-      var selected = _nodeModels__WEBPACK_IMPORTED_MODULE_5__["default"][name];
-      var node = new selected({
+    key: "addNode",
+    value: function addNode(data) {
+      var nodeType = _nodeModels__WEBPACK_IMPORTED_MODULE_3__["default"][data.nodeModelReact];
+      var node = new nodeType(_objectSpread({
         serial: this.diagram.nodeSerial++
-      });
+      }, data));
       node.setPosition(100, 100 + Math.random() * 100);
       var latestNode = this.diagram.latestNode;
 
@@ -93098,7 +93096,7 @@ var Store = /*#__PURE__*/function () {
 
       if (!fromPort || !toPort) return; // Links
 
-      var link = new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_2__["DefaultLinkModel"]();
+      var link = new _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1__["DefaultLinkModel"]();
       link.setSourcePort(fromPort);
       link.setTargetPort(toPort); // track: https://github.com/projectstorm/react-diagrams/issues/617
       //link.addLabel(Math.floor(Math.random()*1000));
@@ -93161,86 +93159,6 @@ var Store = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./resources/js/store/manipulatorCatalogue.js":
-/*!****************************************************!*\
-  !*** ./resources/js/store/manipulatorCatalogue.js ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ([// {
-//     category: 'Eloquent',
-//     name: 'Comments',
-//     nodeModel: 'EloquentNodeModel',
-//     example: "App\\Models\\Comment::where(...)->get()"
-// },
-// {
-//     category: 'Eloquent',
-//     name: 'Posts',
-//     nodeModel: 'EloquentNodeModel',
-//     example: "App\\Models\\Post::where(...)->get()"
-// },
-{
-  category: 'Eloquent',
-  name: 'Users',
-  nodeModel: 'EloquentNodeModel',
-  example: "App\\Models\\User::where(...)->get()"
-}, {
-  category: 'Inspector',
-  name: 'Table',
-  nodeModel: 'InspectorNodeModel',
-  example: "View results"
-}, {
-  category: 'Workflow',
-  name: 'Pass',
-  nodeModel: 'PassNodeModel',
-  example: "Do nothing"
-}, {
-  category: 'Collection',
-  name: 'filter1',
-  nodeModel: 'EloquentNodeModel',
-  example: "$collection->filter(...)"
-}, {
-  category: 'Collection',
-  name: 'filter2',
-  nodeModel: 'EloquentNodeModel',
-  example: "$collection->filter(...)"
-}, {
-  category: 'Collection',
-  name: 'filter3',
-  nodeModel: 'EloquentNodeModel',
-  example: "$collection->filter(...)"
-}, {
-  category: 'Collection',
-  name: 'filter4',
-  nodeModel: 'EloquentNodeModel',
-  example: "$collection->filter(...)"
-}, {
-  category: 'Collection',
-  name: 'filter5',
-  nodeModel: 'EloquentNodeModel',
-  example: "$collection->filter(...)"
-}, {
-  category: 'Collection',
-  name: 'filter6',
-  nodeModel: 'EloquentNodeModel',
-  example: "$collection->filter(...)"
-}, {
-  category: 'Collection',
-  name: 'filter7',
-  nodeModel: 'EloquentNodeModel',
-  example: "$collection->filter(...)"
-}, {
-  category: 'Collection',
-  name: 'filter8',
-  nodeModel: 'EloquentNodeModel',
-  example: "$collection->filter(...)"
-}]);
-
-/***/ }),
-
 /***/ "./resources/js/store/nodeModels.js":
 /*!******************************************!*\
   !*** ./resources/js/store/nodeModels.js ***!
@@ -93253,13 +93171,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _nodeModels_ElouquentNodeModel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../nodeModels/ElouquentNodeModel */ "./resources/js/nodeModels/ElouquentNodeModel.js");
 /* harmony import */ var _nodeModels_InspectorNodeModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../nodeModels/InspectorNodeModel */ "./resources/js/nodeModels/InspectorNodeModel.js");
 /* harmony import */ var _nodeModels_PassNodeModel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../nodeModels/PassNodeModel */ "./resources/js/nodeModels/PassNodeModel.js");
+/* harmony import */ var _nodeModels_NodeModel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../nodeModels/NodeModel */ "./resources/js/nodeModels/NodeModel.js");
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   EloquentNodeModel: _nodeModels_ElouquentNodeModel__WEBPACK_IMPORTED_MODULE_0__["default"],
   InspectorNodeModel: _nodeModels_InspectorNodeModel__WEBPACK_IMPORTED_MODULE_1__["default"],
-  PassNodeModel: _nodeModels_PassNodeModel__WEBPACK_IMPORTED_MODULE_2__["default"]
+  PassNodeModel: _nodeModels_PassNodeModel__WEBPACK_IMPORTED_MODULE_2__["default"],
+  NodeModel: _nodeModels_NodeModel__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 
 /***/ }),
