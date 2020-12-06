@@ -18,10 +18,10 @@ class DiagramModelTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function test_diagram_capabilities()
-    {
-        $capabilities = DiagramModel::capabilities();
-    }
+    // public function test_diagram_capabilities()
+    // {
+    //     $capabilities = DiagramModel::capabilities();
+    // }
 
     protected function sampleDiagram()
     {

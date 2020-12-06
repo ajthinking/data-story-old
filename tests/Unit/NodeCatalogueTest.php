@@ -12,7 +12,5 @@ class NodeCatalogueTest extends TestCase
         $catalogue = NodeCatalogue::make()->toArray();
 
         $this->assertIsArray($catalogue);
-
-        dd($catalogue);
     }
 }
