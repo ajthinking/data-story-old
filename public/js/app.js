@@ -92872,7 +92872,7 @@ var ManipulatorNodeWidget = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
-        className: "font-mono text-xxs text-gray-200"
+        className: "font-mono text-xxs text-gray-200 " + (this.props.node.isSelected() ? '-ml-3 -mt-3 p-2 border-dashed border-2 border-gray-400' : '')
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
         className: "flex-grow-0 w-32"
       }, this.renderHeading(), this.renderInPorts(), this.renderOutPorts()));

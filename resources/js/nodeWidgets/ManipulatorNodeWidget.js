@@ -35,7 +35,7 @@ export default class ManipulatorNodeWidget extends React.Component {
 
 	render() {
 		return (
-            <div className="font-mono text-xxs text-gray-200">
+            <div className={"font-mono text-xxs text-gray-200 " + (this.props.node.isSelected() ? '-ml-3 -mt-3 p-2 border-dashed border-2 border-gray-400' : '')}>
                 <div className="flex-grow-0 w-32">
                     {this.renderHeading()}
                     {this.renderInPorts()}                  
