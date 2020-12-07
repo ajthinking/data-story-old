@@ -11,10 +11,9 @@ class Pass extends NodeModel
 
     public function run()
     {
-        $features = $this->getDataAtPortNamed('Input');
-
         // Pass does nothing!
-
-        $this->portNamed('Output')->data = $features;
+        $this->output(
+            $this->input()
+        );
     }
 }

@@ -11,12 +11,20 @@ return [
     |
     */    
     'nodes' => [
-        
         App\DataStory\Nodes\EloquentReader::class,
         App\DataStory\Nodes\Inspector::class,
         App\DataStory\Nodes\Pass::class,
-
         App\DataStory\Nodes\Cloner::class,
         App\DataStory\Nodes\Creator::class,
-    ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Discover Nodes in a directory
+    |--------------------------------------------------------------------------
+    |
+    | Automatically scan this directory for custom nodes
+    |
+    */    
+    'discover-nodes-in-dir' => 'app/DataStory/Nodes',
 ];

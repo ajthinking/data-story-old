@@ -2,6 +2,7 @@
 
 namespace App\DataStory;
 
+use Illuminate\Support\Collection;
 use stdClass;
 
 abstract class NodeModel
@@ -10,7 +11,7 @@ abstract class NodeModel
 
     const OUT_PORTS = ['Output'];
 
-    const CATEGORY = 'UNCATEGORIZED';
+    const CATEGORY = 'Custom';
 
     const NODE_MODEL_REACT = 'NodeModel';
 
@@ -62,7 +63,7 @@ abstract class NodeModel
         return [
             'name' => class_basename(static::class),
             'category' => class_basename(static::CATEGORY),
-            'summary' => 'This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet.',
+            'summary' => 'This node is not documented yet. Add a class const SHORT_DESCRIPTION or implement a static method shortDescription() to fix that.',
             'key' => class_basename(static::CATEGORY) . class_basename(static::class),
             'nodePhp' => static::class,
             'nodeReact' => static::NODE_MODEL_REACT,
@@ -77,4 +78,14 @@ abstract class NodeModel
             static::describe()
         ];
     }
+
+    public function input(string $portName = 'Input')
+    {
+        return $this->getDataAtPortNamed($portName);
+    }
+
+    public function output(Collection $features, string $portName = 'Output')
+    {
+        $this->portNamed($portName)->data = $features;
+    }    
 }

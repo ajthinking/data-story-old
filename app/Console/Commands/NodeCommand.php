@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use Str;
+
 class NodeCommand extends Command
 {
     /**
@@ -37,6 +39,19 @@ class NodeCommand extends Command
      */
     public function handle()
     {
+        $stub = file_get_contents(
+            base_path('app/DataStory/stubs/node.php')
+        );
+
+        $contents = Str::of($stub)->replaceFirst('NodeName', $this->argument('name'));
+
+        file_put_contents(
+            base_path('app/DataStory/Nodes/' . $this->argument('name') . '.php'),
+            $contents
+        );
+
+        $this->info('Successfully created node ' . $this->argument('name'));
+
         return 0;
     }
 }

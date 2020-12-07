@@ -11,17 +11,13 @@ class Cloner extends NodeModel
 
     public function run()
     {
-        $features = $this->getDataAtPortNamed('Input');
-
-        // Pass does nothing!
-
-        $features = $features->map(function($feature) {
+        $features = $this->input()->map(function($feature) {
             return collect([
                 $feature,
                 clone $feature
             ]);
         })->flatten(1);
 
-        $this->portNamed('Output')->data = $features;
+        $this->output($features);
     }
 }

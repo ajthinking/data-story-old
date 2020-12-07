@@ -13,10 +13,9 @@ class EloquentReader extends NodeModel
 
     public function run()
     {
-        $out = $this->portNamed('Output');
-        // $out->data = collect()->times(10);
-
-        $out->data = $this->getQueryResults();
+        $this->output(
+            $this->getQueryResults()            
+        );
     }
 
     protected function getQueryResults()
@@ -66,8 +65,6 @@ class EloquentReader extends NodeModel
     {
         $models = [
             \App\Models\User::class,
-            \App\Models\Comment::class,
-            \App\Models\Post::class,
         ];
 
         return [

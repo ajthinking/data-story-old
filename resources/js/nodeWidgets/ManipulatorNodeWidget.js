@@ -8,6 +8,7 @@ const customStyles = {
       'top': '110px',
       'left': '120px',
       'padding': '0px',
+      'backgroundColor': '#F3F4F6',
       //top                   : '25%',
       //left                  : '25%',
       //right                 : 'auto',
