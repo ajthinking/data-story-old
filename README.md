@@ -7,9 +7,12 @@ Alpha in development
 This is still just a standard Laravel app
 
 ## Create custom node
+Run the command
 ```bash
 php artisan story:node Translate
 ```
+
+To generate a node boilerplate:
 
 ```php
 <?php
@@ -28,3 +31,5 @@ class Translate extends NodeModel
     }
 }
 ```
+
+After refreshing the page it is available in the story workbench.
