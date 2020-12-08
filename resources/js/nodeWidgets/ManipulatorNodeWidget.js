@@ -62,13 +62,13 @@ export default class ManipulatorNodeWidget extends React.Component {
     renderInPorts() {
         return Object.values(this.props.node.getInPorts()).map((port) => {
             return (
-                <PortWidget key={port.options.name} engine={this.props.engine} port={port}>
-                    <div className="flex items-center text-gray-200 mx-2 py-1 px-4 border border-gray-900 rounded-lg bg-gray-500">
-                        <div className="w-full">
-                            <span>{port.options.label}</span>
-                        </div>
+                <div key={port.options.name} className="flex items-center text-gray-200 mx-2 py-1 border border-gray-900 rounded-lg bg-gray-500">
+                    <div className="flex justify-between w-full">
+                        <PortWidget className="flex w-4 hover:bg-gray-400 rounded rounded-full" engine={this.props.engine} port={port} />
+                        <span className="flex-1">{port.options.label}</span>
+                        <span className="p-1">{/* just a counter weight */}</span>
                     </div>
-                </PortWidget>
+                </div>                
             )
         })
     }
@@ -76,13 +76,13 @@ export default class ManipulatorNodeWidget extends React.Component {
     renderOutPorts() {
         return Object.values(this.props.node.getOutPorts()).map((port) => {
             return (
-                <PortWidget key={port.options.name} engine={this.props.engine} port={port}>
-                    <div className="flex items-center text-gray-200 mx-2 py-1 px-4 border border-gray-900 rounded-lg bg-gray-500">
-                        <div className="w-full">
-                            <span>{port.options.label}</span>
-                        </div>
+                <div key={port.options.name} className="flex items-center text-gray-200 mx-2 py-1 border border-gray-900 rounded-lg bg-gray-500">
+                    <div className="flex justify-between w-full">
+                        <span className="p-1">{/* just a counter weight */}</span>
+                        <span className="flex-1">{port.options.label}</span>
+                        <PortWidget className="flex w-4 hover:bg-gray-400 rounded rounded-full" engine={this.props.engine} port={port} />
                     </div>
-                </PortWidget> 
+                </div>                
             )
         })
     }

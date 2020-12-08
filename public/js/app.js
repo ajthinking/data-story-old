@@ -91904,7 +91904,6 @@ var RunControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"
     value: function onClick() {
       var _this2 = this;
 
-      console.log(Object(_utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_4__["nonCircularJsonStringify"])(this.props.store.diagram.engine.model.serialize()));
       this.props.store.setRunning();
       axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/datastory/api/run', {
         model: Object(_utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_4__["nonCircularJsonStringify"])(this.props.store.diagram.engine.model.serialize())
@@ -92894,15 +92893,20 @@ var ManipulatorNodeWidget = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return Object.values(this.props.node.getInPorts()).map(function (port) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1__["PortWidget"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
           key: port.options.name,
+          className: "flex items-center text-gray-200 mx-2 py-1 border border-gray-900 rounded-lg bg-gray-500"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+          className: "flex justify-between w-full"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1__["PortWidget"], {
+          className: "flex w-4 hover:bg-gray-400 rounded rounded-full",
           engine: _this2.props.engine,
           port: port
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
-          className: "flex items-center text-gray-200 mx-2 py-1 px-4 border border-gray-900 rounded-lg bg-gray-500"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
-          className: "w-full"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", null, port.options.label))));
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
+          className: "flex-1"
+        }, port.options.label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
+          className: "p-1"
+        })));
       });
     }
   }, {
@@ -92911,15 +92915,20 @@ var ManipulatorNodeWidget = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       return Object.values(this.props.node.getOutPorts()).map(function (port) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1__["PortWidget"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
           key: port.options.name,
+          className: "flex items-center text-gray-200 mx-2 py-1 border border-gray-900 rounded-lg bg-gray-500"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+          className: "flex justify-between w-full"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
+          className: "p-1"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
+          className: "flex-1"
+        }, port.options.label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1__["PortWidget"], {
+          className: "flex w-4 hover:bg-gray-400 rounded rounded-full",
           engine: _this3.props.engine,
           port: port
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
-          className: "flex items-center text-gray-200 mx-2 py-1 px-4 border border-gray-900 rounded-lg bg-gray-500"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
-          className: "w-full"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", null, port.options.label))));
+        })));
       });
     }
   }, {
