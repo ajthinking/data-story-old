@@ -1,6 +1,7 @@
 import React from 'react';
 import Diagram from '../Diagram';
 import { inject, observer } from "mobx-react"
+import InspectorTable from '../InspectorTable';
 
 @inject('store') @observer
 export default class Inspectors extends React.Component {
@@ -21,7 +22,17 @@ export default class Inspectors extends React.Component {
 
 
         return (
-            <div>THJOHOHOJO</div>
+            <div className="mt-4 ml-4 border-l">
+                <div className="flex w-full text-gray-100 font-mono text-xs border-b">
+                    <div className="px-2 py-1 border-t border-r">Users</div>
+                    <div className="px-2 py-1 border-t border-r">Problem Users</div>
+                    <div className="px-2 py-1 border-t border-r">Dumped</div>
+                </div>
+                <div class="p-4">
+                    <InspectorTable />    
+                </div>
+                
+            </div>
         );
 
         //console.log('INSPECTABLES', this.props.store.inspectables[0].features)

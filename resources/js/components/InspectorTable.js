@@ -1,5 +1,5 @@
 import React from 'react';
-import Diagram from '../Diagram';
+import Diagram from './Diagram';
 import { inject, observer } from "mobx-react"
 
 @inject('store') @observer
@@ -7,7 +7,28 @@ export default class InspectorTable extends React.Component {
 
     sample() {
         return {
-            users: this.props.store.inspectables[0].features
+            users: [
+                {
+                    name: 'Anders',
+                    age: 15,
+                },
+                {
+                    name: 'Anders',
+                    age: 15,
+                },
+                {
+                    name: 'Anders',
+                    age: 15,
+                },
+                {
+                    name: 'Anders',
+                    age: 19,
+                },
+                {
+                    name: 'Anders',
+                    age: 15,
+                },                                                                
+            ]
         }
     }
 
