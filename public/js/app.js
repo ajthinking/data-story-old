@@ -96147,22 +96147,17 @@ var RunControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"
       axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/datastory/api/run', {
         model: Object(_utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_4__["nonCircularJsonStringify"])(this.props.store.diagram.engine.model.serialize())
       }).then(function (response) {
-        var processedDiagram = response.data.diagram;
-        var inspectables = processedDiagram.nodes.filter(function (node) {
-          return node.features;
-        });
+        response.data.diagram.nodes.filter(function (phpNode) {
+          return phpNode.features;
+        }).forEach(function (phpNode) {
+          var reactNode = _this2.props.store.diagram.engine.model.getNode(phpNode.id);
 
-        _this2.props.store.setInspectables(inspectables);
+          reactNode.features = phpNode.features;
+        }); // this.props.store.setInspectables(
+        //     inspectables
+        // )
 
-        react_toastify__WEBPACK_IMPORTED_MODULE_5__["toast"].info('Successfully ran story!', {
-          position: "bottom-right",
-          transition: react_toastify__WEBPACK_IMPORTED_MODULE_5__["Slide"],
-          autoClose: 3500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true
-        });
+        _this2.showSuccessToast();
 
         _this2.props.store.setNotRunning();
       })["catch"](function (error) {
@@ -96183,6 +96178,19 @@ var RunControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"
       });
       Mousetrap.bind('shift+r', function (e) {
         _this3.onClick();
+      });
+    }
+  }, {
+    key: "showSuccessToast",
+    value: function showSuccessToast() {
+      react_toastify__WEBPACK_IMPORTED_MODULE_5__["toast"].info('Successfully ran story!', {
+        position: "bottom-right",
+        transition: react_toastify__WEBPACK_IMPORTED_MODULE_5__["Slide"],
+        autoClose: 3500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
       });
     }
   }]);
@@ -96344,7 +96352,13 @@ var Inspectors = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_2__["inject"
   }, {
     key: "render",
     value: function render() {
-      //console.log('INSPECTABLES', this.props.store.inspectables[0].features)
+      var inspectables = this.props.store.nodesWithInspectables().reduce(function (result, node) {
+        result[node.getDisplayName()] = node.features;
+        return result;
+      }, {});
+      console.log(inspectables);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "THJOHOHOJO"); //console.log('INSPECTABLES', this.props.store.inspectables[0].features)
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "flex flex-col"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -97483,6 +97497,13 @@ var Store = /*#__PURE__*/function () {
   }
 
   _createClass(Store, [{
+    key: "nodesWithInspectables",
+    value: function nodesWithInspectables() {
+      return this.diagram.engine.model.getNodes().filter(function (phpNode) {
+        return phpNode.features;
+      });
+    }
+  }, {
     key: "addNode",
     value: function addNode(data) {
       console.log(data);

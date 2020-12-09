@@ -25,25 +25,18 @@ export default class RunControl extends BaseControl {
                 )
           })
           .then((response) => {
-                let processedDiagram = response.data.diagram;
-
-                let inspectables = processedDiagram.nodes.filter(node => {
-                    return node.features
+                response.data.diagram.nodes.filter(phpNode => {
+                    return phpNode.features
+                }).forEach(phpNode => {
+                    let reactNode = this.props.store.diagram.engine.model.getNode(phpNode.id)
+                    reactNode.features = phpNode.features;
                 })
 
-                this.props.store.setInspectables(
-                    inspectables
-                )
-
-                toast.info('Successfully ran story!', {
-                    position: "bottom-right",
-                    transition: Slide,
-                    autoClose: 3500,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                });
+                // this.props.store.setInspectables(
+                //     inspectables
+                // )
+                
+                this.showSuccessToast();
 
                 this.props.store.setNotRunning()
           })
@@ -70,5 +63,18 @@ export default class RunControl extends BaseControl {
                 this.onClick()
             }
         );        
-    }    
+    }
+
+    showSuccessToast()
+    {
+        toast.info('Successfully ran story!', {
+            position: "bottom-right",
+            transition: Slide,
+            autoClose: 3500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+    }
 }

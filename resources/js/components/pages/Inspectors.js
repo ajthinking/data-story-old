@@ -12,6 +12,17 @@ export default class Inspectors extends React.Component {
     }
 
     render() {
+        let inspectables = this.props.store.nodesWithInspectables().reduce((result, node) => {
+            result[node.getDisplayName()] = node.features;
+            return result
+        }, {})
+
+        console.log(inspectables);
+
+
+        return (
+            <div>THJOHOHOJO</div>
+        );
 
         //console.log('INSPECTABLES', this.props.store.inspectables[0].features)
 

@@ -42,6 +42,12 @@ export class Store {
         })
     }
 
+    nodesWithInspectables() {
+        return this.diagram.engine.model.getNodes().filter(phpNode => {
+            return phpNode.features
+        })
+    }
+
     addNode(data) {
         console.log(data)
         let nodeType = nodeModels[data.nodeReact]
