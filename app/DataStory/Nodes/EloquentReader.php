@@ -54,7 +54,7 @@ class EloquentReader extends NodeModel
             'summary' => "$shortModel::where(...)",
             'inPorts' => static::IN_PORTS,
             'outPorts' => static::OUT_PORTS,
-
+            'parameters' => [],
             'targetEloquentModel' => $data['model'],
             'scopes' => [],
             'whereStatements' => [],

@@ -32,6 +32,11 @@ abstract class NodeModel
         return $node;
     }
 
+    public static function getParameters()
+    {
+        return [];
+    }
+
     public function portNamed($name)
     {
         return collect($this->ports)->where('name', $name)->first();
@@ -69,6 +74,7 @@ abstract class NodeModel
             'nodeReact' => static::NODE_MODEL_REACT,
             'inPorts' => static::IN_PORTS,
             'outPorts' => static::OUT_PORTS,
+            'parameters' => static::getParameters(),
         ];
     }
     
