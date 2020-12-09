@@ -31712,6 +31712,16 @@ foreignObject > div > div {
   top: 3px !important;
 }
 
+.Toastify__toast-body {
+  background: #E5E7EB;
+  font-family: monospace;
+  color: #4499AF;
+}
+
+.Toastify__toast {
+  background: #E5E7EB !important;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

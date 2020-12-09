@@ -37,7 +37,7 @@ export default class Toolbar extends React.Component {
                     <RunControl />
                     <AddNodeControl />                                       
                 </div>
-                {this.props.store.metadata.running ? (
+                {false && this.props.store.metadata.running ? (
                     <div className="ml-12 w-full">
                         <div className="relative pt-1">
                             <div className="h-6 mb-4 text-xs flex rounded bg-malibu-600">

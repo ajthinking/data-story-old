@@ -3,6 +3,9 @@ import { inject, observer } from "mobx-react"
 import BaseControl from './BaseControl'
 import axios from 'axios';
 import {nonCircularJsonStringify} from '../../utils/nonCircularJsonStringify'
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import Toaster from '../Toaster';
+
 
 @inject('store') @observer
 export default class RunControl extends BaseControl {
@@ -31,6 +34,16 @@ export default class RunControl extends BaseControl {
                 this.props.store.setInspectables(
                     inspectables
                 )
+
+                toast.info('Successfully ran story!', {
+                    position: "bottom-right",
+                    transition: Slide,
+                    autoClose: 3500,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
 
                 this.props.store.setNotRunning()
           })

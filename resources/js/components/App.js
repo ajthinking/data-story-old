@@ -5,6 +5,9 @@ import StoryWorkbench from './pages/StoryWorkbench'
 import Inspectors from './pages/Inspectors'
 import Diagram from './Diagram';
 import { inject, observer } from "mobx-react"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 @inject('store') @observer
 export default class App extends React.Component {
@@ -14,6 +17,9 @@ export default class App extends React.Component {
                 <Header />
                 <Toolbar />
                 {this.renderActivePage()}
+                <ToastContainer
+                    style={{paddingTop: '0px'}}
+                ></ToastContainer>
             </div>
         );
     }
