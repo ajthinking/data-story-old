@@ -91310,7 +91310,7 @@ var Toolbar = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"])(
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "relative pt-1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "h-8 mb-4 text-xs flex rounded bg-malibu-600"
+        className: "h-6 mb-4 text-xs flex rounded bg-malibu-600"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: this.progressWidth(),
         className: "shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-malibu-700"
@@ -93309,7 +93309,11 @@ var Store = /*#__PURE__*/function () {
   }, {
     key: "setNotRunning",
     value: function setNotRunning() {
-      this.metadata.running = false;
+      var _this = this;
+
+      setTimeout(function () {
+        _this.metadata.running = false;
+      }, 500);
     }
   }, {
     key: "setRunning",

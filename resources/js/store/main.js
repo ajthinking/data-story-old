@@ -115,7 +115,9 @@ export class Store {
     }
 
     setNotRunning() {
-        this.metadata.running = false
+        setTimeout(() => {
+            this.metadata.running = false
+        }, 500)
     }
 
     setRunning() {

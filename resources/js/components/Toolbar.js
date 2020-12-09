@@ -40,7 +40,7 @@ export default class Toolbar extends React.Component {
                 {this.props.store.metadata.running ? (
                     <div className="ml-12 w-full">
                         <div className="relative pt-1">
-                            <div className="h-8 mb-4 text-xs flex rounded bg-malibu-600">
+                            <div className="h-6 mb-4 text-xs flex rounded bg-malibu-600">
                                 <div style={this.progressWidth()} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-malibu-700"></div>
                             </div>
                         </div>                    
