@@ -32,7 +32,7 @@ abstract class NodeModel
         return $node;
     }
 
-    public static function getParameters()
+    public static function describeParameters()
     {
         return [];
     }
@@ -74,7 +74,7 @@ abstract class NodeModel
             'nodeReact' => static::NODE_MODEL_REACT,
             'inPorts' => static::IN_PORTS,
             'outPorts' => static::OUT_PORTS,
-            'parameters' => static::getParameters(),
+            'parameters' => static::describeParameters(),
         ];
     }
     
@@ -93,5 +93,15 @@ abstract class NodeModel
     public function output(Collection $features, string $portName = 'Output')
     {
         $this->portNamed($portName)->data = $features;
-    }    
+    }
+
+    public function getParameter($name)
+    {
+        return $this->data->options->parameters->$name;
+    }
+
+    public function getParameters()
+    {
+        return $this->data->options->parameters;
+    }
 }
