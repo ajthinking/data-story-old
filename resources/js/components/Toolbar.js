@@ -16,26 +16,20 @@ export default class Toolbar extends React.Component {
     }
 
     render() {
-        let navigation = [
-            "fas fa-project-diagram",
-            "fas fa-table",  
-            "fas fa-cog",
-        ];
-
-        let controls = [
-            "fas fa-play",
-            "fas fa-plus",       
-            "fas fa-folder-open",       
-            "fab fa-github",        
-        ]
-
         return (
             <div className={this.style()}>
-                <div className="flex flex-1 w-full px-2 py-2">
+                <div className="flex items-center flex-1 w-full px-2 py-2">
                     <StoryWorkbenchControl />
-                    <InspectorsControl />
+                    {/* <InspectorsControl /> */}
                     <RunControl />
-                    <AddNodeControl />                                       
+                    <AddNodeControl />
+                    <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
+                        Inspector 1
+                    </span>
+                    <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
+                        Bad users
+                    </span>                    
+
                 </div>
                 {false && this.props.store.metadata.running ? (
                     <div className="ml-12 w-full">

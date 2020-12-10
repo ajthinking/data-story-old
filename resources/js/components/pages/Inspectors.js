@@ -28,7 +28,7 @@ export default class Inspectors extends React.Component {
                     <div className="px-2 py-1 border-t border-r">Problem Users</div>
                     <div className="px-2 py-1 border-t border-r">Dumped</div>
                 </div>
-                <div class="p-4">
+                <div className="p-4">
                     <InspectorTable />    
                 </div>
                 
