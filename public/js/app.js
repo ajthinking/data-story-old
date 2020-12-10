@@ -97320,7 +97320,7 @@ var NodeWidget = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_3__["inject"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
           className: "flex items-center justify-between w-full"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1__["PortWidget"], {
-          className: "flex w-4 hover:bg-gray-400 rounded rounded-full",
+          className: "flex w-4 h-4 hover:bg-gray-400 rounded rounded-full",
           engine: _this2.props.engine,
           port: port
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
@@ -97350,7 +97350,7 @@ var NodeWidget = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_3__["inject"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", {
           className: "pl-2 flex-1"
         }, port.options.label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_1__["PortWidget"], {
-          className: "flex w-4 hover:bg-gray-400 rounded rounded-full",
+          className: "flex w-4 h-4 hover:bg-gray-400 rounded rounded-full",
           engine: _this3.props.engine,
           port: port
         })));
