@@ -3,31 +3,8 @@ import { PortWidget } from '@projectstorm/react-diagrams';
 import Modal from 'react-modal';
 
 import { inject, observer } from "mobx-react"
-import NodeWidgetModal from './NodeWidgetModal';
-
-const customStyles = {
-    content : {
-      'maxWidth': '800px',
-      'top': '110px',
-      'left': '120px',
-      'padding': '0px',
-      'backgroundColor': '#F3F4F6',
-      //top                   : '25%',
-      //left                  : '25%',
-      //right                 : 'auto',
-      //bottom                : 'auto',
-      //marginRight           : '-50%',
-      //transform             : 'translate(-50%, -50%)'
-    },
-    overlay: {
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: 'rgba(255, 255, 255, 0.15)'
-    },  
-  };
+import NodeWidgetModal from './modals/NodeWidgetModal';
+import modalStyle from '../utils/modalStyle'
 
 @inject('store')
 export default class NodeWidget extends React.Component {
@@ -98,7 +75,7 @@ export default class NodeWidget extends React.Component {
             <Modal
                 isOpen={this.state.isOpen}
                 onRequestClose={this.closeModal.bind(this)}
-                style={customStyles}
+                style={modalStyle}
                 contentLabel="HEY EDIT MANIPULATOR"
             >
                     <NodeWidgetModal 

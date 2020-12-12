@@ -3,6 +3,8 @@ import { inject, observer } from "mobx-react"
 
 import StoryWorkbenchControl from './controls/StoryWorkbenchControl';
 import InspectorsControl from './controls/InspectorsControl';
+import OpenControl from './controls/OpenControl';
+import SaveControl from './controls/SaveControl';
 import RunControl from './controls/RunControl';
 import AddNodeControl from './controls/AddNodeControl'
 
@@ -21,11 +23,28 @@ export default class Toolbar extends React.Component {
                 <div className="flex items-center flex-1 w-full px-2 py-2">
                     <StoryWorkbenchControl />
                     {/* <InspectorsControl /> */}
+                    <OpenControl />
+                    <SaveControl />
                     <RunControl />
                     <AddNodeControl />
                     <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
                         Inspector 1
                     </span>
+                    <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
+                        Inspector 1
+                    </span>
+                    <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
+                        Inspector 1
+                    </span>
+                    <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
+                        Inspector 1
+                    </span>
+                    <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
+                        Inspector 1
+                    </span>
+                    <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
+                        Inspector 1
+                    </span>                                                                                                    
                     <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
                         Bad users
                     </span>                    
