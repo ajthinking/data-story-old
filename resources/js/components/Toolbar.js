@@ -25,7 +25,7 @@ export default class Toolbar extends React.Component {
                     <SaveControl />
                     <RunControl />
                     <AddNodeControl />
-                    {this.renderInspectables()}                   
+                    {this.renderInspectables()}       
                 </div>
             </div>
         );
@@ -33,9 +33,9 @@ export default class Toolbar extends React.Component {
     renderInspectables() {
         return (
             <span>
-                
                 {this.props.store.nodesWithInspectables().map(node => {
                     return (
+                        
                         <span
                             key={node.getDisplayName() + node.serial} 
                             onClick={((e) => this.onClickInspectable(node)).bind(node)}
@@ -49,6 +49,13 @@ export default class Toolbar extends React.Component {
     }
 
     onClickInspectable(node) {
+        if(
+            this.props.store.metadata.page == 'Inspector' &&
+            this.props.store.metadata.activeInspector == node.options.id
+        ) {
+            return this.props.store.setPage('Workbench')
+        }
+
         this.props.store.setPage('Inspector')
         this.props.store.setActiveInspector(node.options.id)
     }

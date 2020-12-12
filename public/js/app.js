@@ -96106,6 +96106,10 @@ var Toolbar = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"])(
   }, {
     key: "onClickInspectable",
     value: function onClickInspectable(node) {
+      if (this.props.store.metadata.page == 'Inspector' && this.props.store.metadata.activeInspector == node.options.id) {
+        return this.props.store.setPage('Workbench');
+      }
+
       this.props.store.setPage('Inspector');
       this.props.store.setActiveInspector(node.options.id);
     }
