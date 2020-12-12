@@ -5,31 +5,9 @@ import { inject, observer } from "mobx-react"
 @inject('store') @observer
 export default class InspectorTable extends React.Component {
 
-    sample() {
-        return {
-            users: [
-                {
-                    name: 'Anders',
-                    age: 15,
-                },
-                {
-                    name: 'Anders',
-                    age: 15,
-                },
-                {
-                    name: 'Anders',
-                    age: 15,
-                },
-                {
-                    name: 'Anders',
-                    age: 19,
-                },
-                {
-                    name: 'Anders',
-                    age: 15,
-                },                                                                
-            ]
-        }
+    features() {
+        let id = this.props.store.metadata.activeInspector
+        return this.props.store.diagram.engine.model.getNode(id).features
     }
 
     render() {
@@ -90,11 +68,12 @@ export default class InspectorTable extends React.Component {
     }
 
     getHeaders() {
-        return Object.keys(this.sample().users[0])
+        let keys = this.features().map(i => Object.keys(i)).flat()
+        return [...new Set(keys)];
     }
 
     getRows() {
-        return this.sample().users.map(user => {
+        return this.features().map(user => {
             return Object.values(user)
         })
     }

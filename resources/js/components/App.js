@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Toolbar from './Toolbar';
 import Workbench from './pages/Workbench'
-import Inspectors from './pages/Inspectors'
+import Inspector from './pages/Inspector'
 import Diagram from './Diagram';
 import { inject, observer } from "mobx-react"
 import { ToastContainer, toast, Slide } from 'react-toastify';
@@ -38,7 +38,7 @@ export default class App extends React.Component {
         let page = this.props.store.metadata.page
 
         if(page === 'Workbench') return (<Workbench />);
-        if(page === 'Inspectors') return (<Inspectors />);
+        if(page === 'Inspector') return (<Inspector />);
     }
     
     componentDidMount() {
@@ -57,9 +57,7 @@ export default class App extends React.Component {
 
             this.setState({
                 booted: true
-            })  
-            
-            console.log('asaf');
+            })
         })
         .catch(error => {
             console.log('Boot error', error)
@@ -78,7 +76,7 @@ export default class App extends React.Component {
         Mousetrap.bind(
             'shift+t',
             (e) => {
-                this.props.store.setPage('Inspectors')
+                this.props.store.setPage('Inspector')
             }
         ); 
     }    

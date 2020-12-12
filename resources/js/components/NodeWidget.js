@@ -47,7 +47,7 @@ export default class NodeWidget extends React.Component {
                     <div className="flex items-center justify-between w-full">
                         <PortWidget className="flex w-4 h-4 hover:bg-gray-400 rounded rounded-full" engine={this.props.engine} port={port} />
                         <span className="flex-1">{port.options.label}</span>
-                        <div onClick={e => {this.props.store.setPage('Inspectors')}}>
+                        <div onClick={e => {this.props.store.setPage('Inspector')}}>
                             <i className='mr-2 text-malibu-600 fas fa-search hover:cursor'></i>
                         </div>
                     </div>

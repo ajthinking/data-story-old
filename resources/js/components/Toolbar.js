@@ -2,7 +2,6 @@ import React from 'react';
 import { inject, observer } from "mobx-react"
 
 import WorkbenchControl from './controls/WorkbenchControl';
-import InspectorsControl from './controls/InspectorsControl';
 import OpenControl from './controls/OpenControl';
 import SaveControl from './controls/SaveControl';
 import RunControl from './controls/RunControl';
@@ -32,21 +31,39 @@ export default class Toolbar extends React.Component {
         );
     }
     renderInspectables() {
-        //this.props.store.diagram.refresh // Triggers update as diagram wont ... ????
-
         return (
             <span>
+                
                 {this.props.store.nodesWithInspectables().map(node => {
                     return (
                         <span
                             key={node.getDisplayName() + node.serial} 
-                            className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
-                            {node.getDisplayName()}
+                            onClick={((e) => this.onClickInspectable(node)).bind(node)}
+                            className={this.inspectableLinkStyle(node)}>
+                            {node.getDisplayName() + ' #' + node.serial}
                         </span>                        
                     )
                 })}
             </span>
         );
+    }
+
+    onClickInspectable(node) {
+        this.props.store.setPage('Inspector')
+        this.props.store.setActiveInspector(node.options.id)
+    }
+
+    inspectableLinkStyle(node) {
+        let style = "ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer "
+
+        if(
+            this.props.store.metadata.page == 'Inspector' &&
+            this.props.store.metadata.activeInspector == node.options.id
+        ) {
+            style += 'text-malibu-500'
+        }
+
+        return style
     }
     
 }

@@ -18,6 +18,7 @@ export class Store {
     metadata = {
         running: false,
         page: 'Workbench',
+        activeInspector: null,
     }
 
     constructor() {
@@ -30,6 +31,7 @@ export class Store {
             addNode: action.bound,
             increaseNodeSerial: action.bound,
             refreshDiagram: action.bound,
+            setActiveInspector: action.bound,
             setAvailableNodes: action.bound,
             setLatestNode: action.bound,
             setPage: action.bound,
@@ -104,6 +106,10 @@ export class Store {
 
     increaseNodeSerial() {
         this.diagram.nodeSerial++        
+    }
+
+    setActiveInspector(nodeId) {
+        this.metadata.activeInspector = nodeId
     }
 
     setAvailableNodes(nodes) {
