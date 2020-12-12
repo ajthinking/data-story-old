@@ -33,3 +33,20 @@ class Translate extends NodeModel
 ```
 
 After refreshing the page it is available in the story workbench.
+
+## DataStory A-Z
+
+* Story
+* Workbench
+* Node
+* Control
+* Inspector
+* Feature
+* Invoker
+* Creator
+* Writer
+* Collection
+* Import
+
+
+
