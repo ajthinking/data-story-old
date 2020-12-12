@@ -9,7 +9,7 @@ This is still just a standard Laravel app
 ## Create custom node
 Run the command
 ```bash
-php artisan story:node Translate
+php artisan story:node NewEpicNode
 ```
 
 To generate a node boilerplate:
@@ -21,7 +21,7 @@ namespace App\DataStory\Nodes;
 
 use App\DataStory\NodeModel;
 
-class Translate extends NodeModel
+class NewEpicNode extends NodeModel
 {
     public function run()
     {
@@ -34,7 +34,7 @@ class Translate extends NodeModel
 }
 ```
 
-After refreshing the page it is available in the story workbench.
+After refreshing the page the `NewEpicNode` node is available in the story workbench.
 
 ## DataStory A-Z
 
