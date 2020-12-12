@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { AbstractReactFactory } from '@projectstorm/react-canvas-core';
-import NodeModel from '../nodeModels/NodeModel'
-import NodeWidget from '../components/NodeWidget'
+import NodeModel from './NodeModel'
+import NodeWidget from './components/NodeWidget'
 
-export default class ManipulatorNodeFactory extends AbstractReactFactory {
+export default class NodeFactory extends AbstractReactFactory {
 	constructor() {
 		super('manipulator');
 	}

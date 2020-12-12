@@ -33,9 +33,6 @@ export default class InspectorTable extends React.Component {
     }
 
     render() {
-
-        //console.log('INSPECTABLES', this.props.store.inspectables[0].features)
-
         return (
             <div className="flex flex-col">
               <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -49,7 +46,6 @@ export default class InspectorTable extends React.Component {
                 </div>
               </div>
             </div>
-            
         );
     }
 

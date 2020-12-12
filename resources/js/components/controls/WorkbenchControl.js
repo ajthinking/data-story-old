@@ -4,19 +4,19 @@ import BaseControl from './BaseControl'
 import axios from 'axios';
 
 @inject('store') @observer
-export default class StoryWorkbenchControl extends BaseControl {
+export default class WorkbenchControl extends BaseControl {
     constructor(props) {
         super(props);
         this.title = 'Story workbench'
         this.icon = 'fas fa-project-diagram'
-        this.page = 'StoryWorkbench'
+        this.page = 'Workbench'
     }
 
 
 
     onClick()
     {
-        this.props.store.setPage('StoryWorkbench')
+        this.props.store.setPage('Workbench')
     }
 
     style() {

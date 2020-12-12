@@ -1,10 +1,10 @@
-import { DiagramModel } from '@projectstorm/react-diagrams'
+import { DiagramModel as DefaultDiagramModel } from '@projectstorm/react-diagrams'
 
 /**
  * Sorts model in execution order based on their dependencies
  * Can attach data to links
  */
-export default class DataStoryDiagramModel extends DiagramModel {
+export default class DiagramModel extends DefaultDiagramModel {
 
     cachedNodeDependencyMap = {
         // id1: [d1, d2, ...]
@@ -54,10 +54,3 @@ export default class DataStoryDiagramModel extends DiagramModel {
           });
     }
 }
-
-/*
-* Links have data
-* A Node can get port data by requesting it from the corresponding port connections
-
-[A, B, C, D, E, F]
-*/

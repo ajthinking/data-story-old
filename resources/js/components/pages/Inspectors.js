@@ -18,9 +18,6 @@ export default class Inspectors extends React.Component {
             return result
         }, {})
 
-        console.log(inspectables);
-
-
         return (
             <div className="mt-4 ml-4 border-l">
                 <div className="flex w-full text-gray-100 font-mono text-xs border-b">

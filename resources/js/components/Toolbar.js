@@ -1,7 +1,7 @@
 import React from 'react';
 import { inject, observer } from "mobx-react"
 
-import StoryWorkbenchControl from './controls/StoryWorkbenchControl';
+import WorkbenchControl from './controls/WorkbenchControl';
 import InspectorsControl from './controls/InspectorsControl';
 import OpenControl from './controls/OpenControl';
 import SaveControl from './controls/SaveControl';
@@ -21,7 +21,7 @@ export default class Toolbar extends React.Component {
         return (
             <div className={this.style()}>
                 <div className="flex items-center flex-1 w-full px-2 py-2">
-                    <StoryWorkbenchControl />
+                    <WorkbenchControl />
                     {/* <InspectorsControl /> */}
                     <OpenControl />
                     <SaveControl />
@@ -31,23 +31,8 @@ export default class Toolbar extends React.Component {
                         Inspector 1
                     </span>
                     <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
-                        Inspector 1
-                    </span>
-                    <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
-                        Inspector 1
-                    </span>
-                    <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
-                        Inspector 1
-                    </span>
-                    <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
-                        Inspector 1
-                    </span>
-                    <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
-                        Inspector 1
-                    </span>                                                                                                    
-                    <span className="ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer">
-                        Bad users
-                    </span>                    
+                        Inspector 2
+                    </span>                   
 
                 </div>
                 {false && this.props.store.metadata.running ? (

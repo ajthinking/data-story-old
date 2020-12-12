@@ -1,7 +1,5 @@
 <?php
 
-use App\DataStory\DiagramModel;
-use App\DataStory\Nodes\EloquentReader;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -10,6 +8,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('datastory', function() {
 
     return view('welcome', [
-        'dataStoryCapabilities' => DiagramModel::capabilities()
+        //'dataStoryCapabilities' => DiagramModel::capabilities()
     ]);
 });

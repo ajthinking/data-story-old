@@ -3,8 +3,7 @@ import { inject, observer } from "mobx-react"
 import BaseControl from './BaseControl'
 import axios from 'axios';
 import {nonCircularJsonStringify} from '../../utils/nonCircularJsonStringify'
-import { ToastContainer, toast, Slide } from 'react-toastify';
-import Toaster from '../Toaster';
+import { toast, Slide } from 'react-toastify';
 
 
 @inject('store') @observer
@@ -31,10 +30,6 @@ export default class RunControl extends BaseControl {
                     let reactNode = this.props.store.diagram.engine.model.getNode(phpNode.id)
                     reactNode.features = phpNode.features;
                 })
-
-                // this.props.store.setInspectables(
-                //     inspectables
-                // )
                 
                 this.showSuccessToast();
 

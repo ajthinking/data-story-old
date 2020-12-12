@@ -1,10 +1,9 @@
-import React from 'react';
 import { inject, observer } from "mobx-react"
 import BaseControl from './BaseControl'
-import axios from 'axios';
+
 
 @inject('store') @observer
-export default class StoryWorkbenchControl extends BaseControl {
+export default class InspectorsControl extends BaseControl {
     constructor(props) {
         super(props);
         this.title = 'Inspectors'

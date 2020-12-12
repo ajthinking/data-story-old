@@ -1,7 +1,7 @@
 import { action, observable, makeObservable } from "mobx"
 import { DefaultLinkModel } from '@projectstorm/react-diagrams'
 import engine from './defaultEngine'
-import nodeModels from './nodeModels'
+import NodeModel from '../NodeModel'
 import _ from 'lodash'
 
 
@@ -9,36 +9,36 @@ export class Store {
 
     diagram = {
         engine,
-        availableNodes: window.dataStoryCapabilities.availableNodes,
+        availableNodes: [],
         refresh: 0,
         latestNode: null,
         nodeSerial: 1,
     }
 
-    inspectables = []
-
     metadata = {
         running: false,
-        page: 'StoryWorkbench',
+        page: 'Workbench',
     }
 
     constructor() {
         makeObservable(this, {
+            // Oservables
             diagram: observable,
             metadata: observable,
-            inspectables: observable,
             
+            // Setters
             addNode: action.bound,
             increaseNodeSerial: action.bound,
             refreshDiagram: action.bound,
-            setInspectables: action.bound,
+            setAvailableNodes: action.bound,
             setLatestNode: action.bound,
             setPage: action.bound,
             setResults: action.bound,
             setNotRunning: action.bound,
             setRunning: action.bound,
             setStory: action.bound,
-            
+
+            // Getters 👇
         })
     }
 
@@ -49,10 +49,7 @@ export class Store {
     }
 
     addNode(data) {
-        console.log(data)
-        let nodeType = nodeModels[data.nodeReact]
-
-        var node = new nodeType({
+        var node = new NodeModel({
            serial: this.diagram.nodeSerial++,
            ...data
         });
@@ -104,8 +101,8 @@ export class Store {
         this.diagram.nodeSerial++        
     }
 
-    setInspectables(inspectables) {
-        this.inspectables = inspectables;
+    setAvailableNodes(nodes) {
+        this.diagram.availableNodes = nodes
     }
 
     setLatestNode(node) {
