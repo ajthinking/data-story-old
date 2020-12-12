@@ -31,9 +31,10 @@ export default class RunControl extends BaseControl {
                     reactNode.features = phpNode.features;
                 })
                 
-                this.showSuccessToast();
+                this.showSuccessToast();                
 
                 this.props.store.setNotRunning()
+                this.props.store.refreshDiagram()
           })
           .catch(function (error) {
 

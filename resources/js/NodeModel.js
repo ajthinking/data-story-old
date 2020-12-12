@@ -95,4 +95,8 @@ export default class NodeModel extends DefaultNodeModel {
     dependsOn(n2) {
         return this.dependencies().map(d => d.options.id).includes(n2.options.id)
     }
+
+    isInspectable() {
+        return Boolean(this.features)
+    }
 }

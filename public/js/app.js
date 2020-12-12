@@ -95374,6 +95374,11 @@ var NodeModel = /*#__PURE__*/function (_DefaultNodeModel) {
         return d.options.id;
       }).includes(n2.options.id);
     }
+  }, {
+    key: "isInspectable",
+    value: function isInspectable() {
+      return Boolean(this.features);
+    }
   }]);
 
   return NodeModel;
@@ -96024,7 +96029,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var mobx_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react */ "./node_modules/mobx-react/dist/mobxreact.esm.js");
-/* harmony import */ var _controls_WorkbenchControl__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./controls/WorkbenchControl */ "./resources/js/components/controls/WorkbenchControl.js");
+/* harmony import */ var _controls_WorkbenchControl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./controls/WorkbenchControl */ "./resources/js/components/controls/WorkbenchControl.js");
 /* harmony import */ var _controls_InspectorsControl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./controls/InspectorsControl */ "./resources/js/components/controls/InspectorsControl.js");
 /* harmony import */ var _controls_OpenControl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controls/OpenControl */ "./resources/js/components/controls/OpenControl.js");
 /* harmony import */ var _controls_SaveControl__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./controls/SaveControl */ "./resources/js/components/controls/SaveControl.js");
@@ -96083,40 +96088,21 @@ var Toolbar = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"])(
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: this.style()
+        className: "flex w-full bg-gray-600 border-t-2 border-gray-500 shadow shadow-xl"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "flex items-center flex-1 w-full px-2 py-2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_WorkbenchControl__WEBPACK_IMPORTED_MODULE_8__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_OpenControl__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_SaveControl__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_RunControl__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_AddNodeControl__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer"
-      }, "Inspector 1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer"
-      }, "Inspector 2")),  false ? /*#__PURE__*/undefined : '');
+        className: "flex no-wrap items-center flex-1 w-full px-2 py-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_WorkbenchControl__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_OpenControl__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_SaveControl__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_RunControl__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_controls_AddNodeControl__WEBPACK_IMPORTED_MODULE_7__["default"], null), this.renderInspectables()));
     }
   }, {
-    key: "style",
-    value: function style() {
-      var style = "flex w-full bg-gray-600 border-t-2 border-gray-500 shadow shadow-xl";
-      return style;
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      setInterval(function () {
-        var newTick = (_this2.state.progressTick + 1) % 100;
-
-        _this2.setState({
-          progressTick: newTick
-        });
-      }, 10);
-    }
-  }, {
-    key: "progressWidth",
-    value: function progressWidth() {
-      return {
-        width: this.state.progressTick + '%'
-      };
+    key: "renderInspectables",
+    value: function renderInspectables() {
+      //this.props.store.diagram.refresh // Triggers update as diagram wont ... ????
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.store.nodesWithInspectables().map(function (node) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          key: node.getDisplayName() + node.serial,
+          className: "ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer"
+        }, node.getDisplayName());
+      }));
     }
   }]);
 
@@ -96764,6 +96750,8 @@ var RunControl = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"
         _this2.showSuccessToast();
 
         _this2.props.store.setNotRunning();
+
+        _this2.props.store.refreshDiagram();
       })["catch"](function (error) {
         this.props.store.setNotRunning();
         console.log(error);
@@ -97632,6 +97620,10 @@ var Store = /*#__PURE__*/function () {
   _createClass(Store, [{
     key: "nodesWithInspectables",
     value: function nodesWithInspectables() {
+      // React diagram is not observable outside of its own context
+      // Reference the refresh counter to ensure we have the latest data
+      this.diagram.refresh; // Get all nodes with features
+
       return this.diagram.engine.model.getNodes().filter(function (phpNode) {
         return phpNode.features;
       });

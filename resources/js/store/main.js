@@ -43,6 +43,11 @@ export class Store {
     }
 
     nodesWithInspectables() {
+        // React diagram is not observable outside of its own context
+        // Reference the refresh counter to ensure we have the latest data
+        this.diagram.refresh
+
+        // Get all nodes with features
         return this.diagram.engine.model.getNodes().filter(phpNode => {
             return phpNode.features
         })
