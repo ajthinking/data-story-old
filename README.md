@@ -26,6 +26,8 @@ class Translate extends NodeModel
     public function run()
     {
         $items = $this->input();
+        
+        // your code goes here
 
         $this->output($items);
     }
