@@ -36,7 +36,7 @@ class NewEpicNode extends NodeModel
 
 After refreshing the page the `NewEpicNode` node is available in the story workbench.
 
-## DataStory A-Z
+## DataStory concepts A-Z
 
 * Story
 * Workbench
@@ -50,5 +50,10 @@ After refreshing the page the `NewEpicNode` node is available in the story workb
 * Collection
 * Import
 
-
+## Available nodes
+* Creator
+* Eloquent<Model>
+* Pass
+* Cloner
+* Inspector
 
