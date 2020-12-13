@@ -41,7 +41,9 @@ export default class NodeModel extends DefaultNodeModel {
     }
 
 	deserialize(ob, engine) {
-		super.deserialize(ob, engine);
+        super.deserialize(ob, engine);
+        
+        
     }
 
     getDisplayName() {

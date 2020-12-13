@@ -4,19 +4,36 @@ import DiagramModel from './DiagramModel'
 
 export default class EngineFactory {
     static loadOrCreate(serializedModel = null) {
-        return serializedModel ? 'hahaha' : this.defaultEngine();
+        return serializedModel ? this.load(serializedModel) : this.default();
     }
 
-    static defaultEngine() {        
-        var engine = createEngine();
+    static load(serializedModel) {
+        let engine = this.getEngine()
+        let model = new DiagramModel();
+        
+        model.deserializeModel(JSON.parse(serializedModel), engine);
+
+        return engine
+    }
+
+    static default() {        
+        let engine = this.getEngine()
         
         engine.getNodeFactories().registerFactory(new NodeFactory());
         
-        var model = new DiagramModel();
+        let model = new DiagramModel();
         
         engine.setModel(model)
         
         return engine        
+    }
+
+    static getEngine() {
+        let engine = createEngine();
+        
+        engine.getNodeFactories().registerFactory(new NodeFactory());
+
+        return engine
     }
 
 

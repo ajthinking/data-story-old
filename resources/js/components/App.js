@@ -47,7 +47,7 @@ export default class App extends React.Component {
 
     boot() {
         axios.post('/datastory/api/boot', {
-            context: window.location.href
+            context: window.location.href.includes('demo')
         })
         .then((response) => {
             this.props.store.setEngine(

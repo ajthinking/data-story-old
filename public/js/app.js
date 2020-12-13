@@ -95100,6 +95100,13 @@ var DiagramModel = /*#__PURE__*/function (_DefaultDiagramModel) {
       });
     }
   }, {
+    key: "deserializeModel",
+    value: function deserializeModel(data) {
+      _get(_getPrototypeOf(DiagramModel.prototype), "deserializeModel", this).call(this, data);
+
+      console.log('x?????????', data);
+    }
+  }, {
     key: "hasNode",
     value: function hasNode(node) {
       var _node$options;
@@ -95164,15 +95171,30 @@ var EngineFactory = /*#__PURE__*/function () {
     key: "loadOrCreate",
     value: function loadOrCreate() {
       var serializedModel = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      return serializedModel ? 'hahaha' : this.defaultEngine();
+      return serializedModel ? this.load(serializedModel) : this["default"]();
     }
   }, {
-    key: "defaultEngine",
-    value: function defaultEngine() {
-      var engine = _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0___default()();
+    key: "load",
+    value: function load(serializedModel) {
+      var engine = this.getEngine();
+      var model = new _DiagramModel__WEBPACK_IMPORTED_MODULE_2__["default"]();
+      model.deserializeModel(JSON.parse(serializedModel), engine);
+      return engine;
+    }
+  }, {
+    key: "default",
+    value: function _default() {
+      var engine = this.getEngine();
       engine.getNodeFactories().registerFactory(new _NodeFactory__WEBPACK_IMPORTED_MODULE_1__["default"]());
       var model = new _DiagramModel__WEBPACK_IMPORTED_MODULE_2__["default"]();
       engine.setModel(model);
+      return engine;
+    }
+  }, {
+    key: "getEngine",
+    value: function getEngine() {
+      var engine = _projectstorm_react_diagrams__WEBPACK_IMPORTED_MODULE_0___default()();
+      engine.getNodeFactories().registerFactory(new _NodeFactory__WEBPACK_IMPORTED_MODULE_1__["default"]());
       return engine;
     }
   }]);
@@ -95241,7 +95263,8 @@ var NodeFactory = /*#__PURE__*/function (_AbstractReactFactory) {
   _createClass(NodeFactory, [{
     key: "generateModel",
     value: function generateModel(event) {
-      return new _NodeModel__WEBPACK_IMPORTED_MODULE_2__["default"]();
+      console.log(event);
+      return new _NodeModel__WEBPACK_IMPORTED_MODULE_2__["default"](event.initialConfig.options);
     }
   }, {
     key: "generateReactWidget",
@@ -95573,7 +95596,7 @@ var App = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_6__["inject"])('sto
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_9___default.a.post('/datastory/api/boot', {
-        context: window.location.href
+        context: window.location.href.includes('demo')
       }).then(function (response) {
         var _response$data$serial;
 
@@ -97323,7 +97346,7 @@ var NodeWidgetModal = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["in
 
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/datastory/api/save', {
         model: Object(_utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_3__["nonCircularJsonStringify"])(this.props.store.diagram.engine.model.serialize()),
-        filename: 'epic-flow.story'
+        filename: 'demo.story'
       }).then(function (response) {
         _this2.showSuccessToast();
 

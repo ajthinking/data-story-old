@@ -28,7 +28,7 @@ export default class NodeWidgetModal extends React.Component {
             model: nonCircularJsonStringify(
                 this.props.store.diagram.engine.model.serialize()
             ),
-            filename: 'epic-flow.story'
+            filename: 'demo.story'
         })
         .then((response) => {
             this.showSuccessToast();

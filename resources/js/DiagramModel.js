@@ -30,6 +30,11 @@ export default class DiagramModel extends DefaultDiagramModel {
         }
     }
 
+    deserializeModel(data) {
+        super.deserializeModel(data)
+        console.log('x?????????', data)
+    }
+
     hasNode(node) {
         return Boolean(
             node?.options?.id &&
