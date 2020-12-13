@@ -8,13 +8,14 @@ import { inject, observer } from "mobx-react"
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import EngineFactory from '../EngineFactory'
 
 
 @inject('store') @observer
 export default class App extends React.Component {
     constructor(props) {
         super(props)
-        this.store = {
+        this.state = {
             booted: false
         }
     }
@@ -24,10 +25,8 @@ export default class App extends React.Component {
             <div >
                 <Header />
                 <Toolbar />
-                {this.renderActivePage()}
-                <ToastContainer
-                    style={{paddingTop: '0px'}}
-                ></ToastContainer>
+                {this.state.booted && this.renderActivePage()}
+                <ToastContainer style={{paddingTop: '0px'}} />
             </div>
         );
     }
@@ -51,9 +50,17 @@ export default class App extends React.Component {
             context: window.location.href
         })
         .then((response) => {
+            this.props.store.setEngine(
+                EngineFactory.loadOrCreate(
+                    response.data.serializedModel ?? null
+                )
+            )
+
             this.props.store.setAvailableNodes(
                 response.data.dataStoryCapabilities.availableNodes
             );
+
+
 
             this.setState({
                 booted: true

@@ -45,7 +45,7 @@ export default class NodeModel extends DefaultNodeModel {
     }
 
     getDisplayName() {
-        return this.options.name
+        return this.options.parameters.node_name
     }
 
     getDiagramModel() {
@@ -97,6 +97,6 @@ export default class NodeModel extends DefaultNodeModel {
     }
 
     isInspectable() {
-        return Boolean(this.features)
+        return Boolean(this.options.features)
     }
 }

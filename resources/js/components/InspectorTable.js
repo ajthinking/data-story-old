@@ -7,7 +7,7 @@ export default class InspectorTable extends React.Component {
 
     features() {
         let id = this.props.store.metadata.activeInspector
-        return this.props.store.diagram.engine.model.getNode(id).features
+        return this.props.store.diagram.engine.model.getNode(id).options.features
     }
 
     render() {
@@ -15,11 +15,16 @@ export default class InspectorTable extends React.Component {
             <div className="flex flex-col">
               <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                  <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                  <div className="shadow overflow-hidden border-gray-200 sm:rounded-lg">
                     <table className="min-w-full divide-y divide-gray-200">
                         {this.renderTableHead()}
                         {this.renderTableBody()}
                     </table>
+                    {this.features().length == 0 && 
+                        <div className="flex w-full justify-center p-24 text-gray-300 font-mono text-xl">
+                            No data to show here 😐
+                        </div>
+                    }
                   </div>
                 </div>
               </div>

@@ -32,9 +32,11 @@ abstract class NodeModel
         return $node;
     }
 
-    public static function describeParameters()
+    public static function describeParameters($data = [])
     {
-        return [];
+        return [
+            'node_name' => class_basename(static::class)
+        ];
     }
 
     public function portNamed($name)

@@ -28,15 +28,16 @@ export default class RunControl extends BaseControl {
                     return phpNode.features
                 }).forEach(phpNode => {
                     let reactNode = this.props.store.diagram.engine.model.getNode(phpNode.id)
-                    reactNode.features = phpNode.features;
+                    reactNode.options.features = phpNode.features;
                 })
                 
                 this.showSuccessToast();                
 
                 this.props.store.setNotRunning()
                 this.props.store.refreshDiagram()
+                
           })
-          .catch(function (error) {
+          .catch((error) => {
 
             this.props.store.setNotRunning()
             console.log(error);

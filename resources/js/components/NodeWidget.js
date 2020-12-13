@@ -4,7 +4,14 @@ import Modal from 'react-modal';
 
 import { inject, observer } from "mobx-react"
 import NodeWidgetModal from './modals/NodeWidgetModal';
+import NodeInspectorLink from './NodeInspectorLink'
 import modalStyle from '../utils/modalStyle'
+
+
+/**
+ * Using @observer on this component will break things... :/
+ * Instead put store dependent functionality in child components
+ */
 
 @inject('store')
 export default class NodeWidget extends React.Component {
@@ -47,13 +54,18 @@ export default class NodeWidget extends React.Component {
                     <div className="flex items-center justify-between w-full">
                         <PortWidget className="flex w-4 h-4 hover:bg-gray-400 rounded rounded-full" engine={this.props.engine} port={port} />
                         <span className="flex-1">{port.options.label}</span>
-                        <div onClick={e => {this.props.store.setPage('Inspector')}}>
-                            <i className='mr-2 text-malibu-600 fas fa-search hover:cursor'></i>
-                        </div>
+                        <NodeInspectorLink nodeId={this.props.node.options.id} />
                     </div>
                 </div>                
             )
         })
+    }
+
+    renderInspectIcon() {
+        return this.props.node.isInspectable() && 
+            (<div onClick={(e) => { this.props.store.goToInspector(this.props.node.options.id) }}>
+                <i className='mr-2 text-malibu-600 fas fa-search hover:cursor'></i>
+            </div>)
     }
 
     renderOutPorts() {

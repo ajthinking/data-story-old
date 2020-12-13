@@ -1,6 +1,5 @@
 import { action, observable, makeObservable } from "mobx"
 import { DefaultLinkModel } from '@projectstorm/react-diagrams'
-import engine from './defaultEngine'
 import NodeModel from '../NodeModel'
 import _ from 'lodash'
 
@@ -8,7 +7,7 @@ import _ from 'lodash'
 export class Store {
 
     diagram = {
-        engine,
+        engine: null,
         availableNodes: [],
         refresh: 0,
         latestNode: null,
@@ -30,9 +29,11 @@ export class Store {
             // Setters
             addNode: action.bound,
             increaseNodeSerial: action.bound,
+            goToInspector: action.bound,
             refreshDiagram: action.bound,
             setActiveInspector: action.bound,
             setAvailableNodes: action.bound,
+            setEngine: action.bound,
             setLatestNode: action.bound,
             setPage: action.bound,
             setResults: action.bound,
@@ -41,17 +42,6 @@ export class Store {
             setStory: action.bound,
 
             // Getters 👇
-        })
-    }
-
-    nodesWithInspectables() {
-        // React diagram is not observable outside of its own context
-        // Reference the refresh counter to ensure we have the latest data
-        this.diagram.refresh
-
-        // Get all nodes with features
-        return this.diagram.engine.model.getNodes().filter(phpNode => {
-            return phpNode.features
         })
     }
 
@@ -100,8 +90,22 @@ export class Store {
         return link
     }
 
+    goToInspector(id) {
+        this.metadata.activeInspector = id
+        this.metadata.page = 'Inspector'
+    }
+
+    nodesWithInspectables() {
+        // React diagram is not observable outside of its own context
+        // Reference the refresh counter to ensure we have the latest data
+        this.diagram.refresh
+
+        // Get all nodes with features
+        return this.diagram.engine.model.getNodes().filter(node => node.isInspectable())
+    }    
+
     refreshDiagram() {
-        this.diagram.refresh++        
+        this.diagram.refresh++     
     }
 
     increaseNodeSerial() {
@@ -114,6 +118,10 @@ export class Store {
 
     setAvailableNodes(nodes) {
         this.diagram.availableNodes = nodes
+    }
+
+    setEngine(engine) {
+        this.diagram.engine = engine
     }
 
     setLatestNode(node) {

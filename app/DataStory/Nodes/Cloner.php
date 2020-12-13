@@ -9,9 +9,10 @@ class Cloner extends NodeModel
 {
     const CATEGORY = Workflow::class;
 
-    public static function describeParameters()
+    public static function describeParameters($data = [])
     {
         return [
+            'node_name'                         => 'Clone',
             'number_of_clones'                  => 10,
             'clone_id_attribute'                => 'clone_id',
             'clone_id_attribute_start_value'    => 0,

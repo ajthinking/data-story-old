@@ -42,22 +42,30 @@ class EloquentReader extends NodeModel
     public static function describe($data = [])
     {
         $shortCategory = class_basename(static::CATEGORY);
-        $shortModel = class_basename($data['model']);
-        $shortModelPlural = \Illuminate\Support\Str::of($shortModel)->plural();
+        $data['shortModel'] = class_basename($data['model']);
+        $data['shortModelPlural'] = (string) \Illuminate\Support\Str::of($data['shortModel'])->plural();
 
         return [
             'nodePhp' => static::class,
             'nodeReact' => static::NODE_MODEL_REACT,
-            'key' => $shortCategory . static::class . (string) $shortModelPlural,
-            'name' => (string) $shortModelPlural,
+            'key' => $shortCategory . static::class . (string) $data['shortModelPlural'],
+            'name' => (string) $data['shortModelPlural'],
             'category' => $shortCategory,
-            'summary' => "$shortModel::where(...)",
+            'summary' => $data['shortModel'] . '::where(...)',
             'inPorts' => static::IN_PORTS,
             'outPorts' => static::OUT_PORTS,
             'parameters' => [],
             'targetEloquentModel' => $data['model'],
             'scopes' => [],
             'whereStatements' => [],
+            'parameters' => static::describeParameters($data),            
+        ];
+    }
+
+    public static function describeParameters($data = [])
+    {
+        return [
+            'node_name' => $data['shortModelPlural']
         ];
     }
     

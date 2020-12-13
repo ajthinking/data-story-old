@@ -52,8 +52,11 @@ export default class NodeWidgetModal extends React.Component {
                         <span className="text-indigo-500">{this.props.node.options.category}</span>
                         <span className="">::{this.props.node.getDisplayName()}</span>
                     </p>
-                    <p className="text-sm font-medium text-bold">
-                        <span className="text-gray-400">#{this.props.node.serial}</span>
+                    <p 
+                        className="text-sm font-medium text-bold text-gray-400 hover:text-gray-500"
+                        onClick={this.handleCancel.bind(this)}
+                    >
+                        <i className="fa fa-close"></i>
                     </p>                    
                 </div>                    
             </div>            

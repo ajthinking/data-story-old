@@ -31,8 +31,8 @@ export default class Toolbar extends React.Component {
         );
     }
     renderInspectables() {
-        return (
-            <span>
+        return this.props.store.diagram.engine && (
+            <span className="border-l ml-8 pl-8">
                 {this.props.store.nodesWithInspectables().map(node => {
                     return (
                         
@@ -61,7 +61,7 @@ export default class Toolbar extends React.Component {
     }
 
     inspectableLinkStyle(node) {
-        let style = "ml-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer "
+        let style = "mr-8 text-gray-200 hover:text-malibu-500 font-mono text-xs cursor-pointer "
 
         if(
             this.props.store.metadata.page == 'Inspector' &&
