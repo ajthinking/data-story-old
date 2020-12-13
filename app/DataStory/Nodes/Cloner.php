@@ -4,6 +4,9 @@ namespace App\DataStory\Nodes;
 
 use App\DataStory\Categories\Workflow;
 use App\DataStory\NodeModel;
+use App\DataStory\Parameters\AttributeName;
+use App\DataStory\Parameters\Number;
+use App\DataStory\Parameters\String_;
 
 class Cloner extends NodeModel
 {
@@ -12,12 +15,14 @@ class Cloner extends NodeModel
     public static function describeParameters($data = [])
     {
         return [
-            'node_name'                         => 'Clone',
-            'number_of_clones'                  => 10,
-            'clone_id_attribute'                => 'clone_id',
-            'clone_id_attribute_start_value'    => 0,
+            'node_name' => String_::make()->default('Clone'),
+            'number_of_clones' => String_::make()->default(10),
+            'clone_id_attribute' => String_::make()->default('clone_id'),
+            'clone_id_attribute_start_value' => String_::make()->default(0),
         ];
     }
+
+
 
     public function run()
     {

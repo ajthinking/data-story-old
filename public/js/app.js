@@ -95257,7 +95257,6 @@ var NodeFactory = /*#__PURE__*/function (_AbstractReactFactory) {
   _createClass(NodeFactory, [{
     key: "generateModel",
     value: function generateModel(event) {
-      console.log(event);
       return new _NodeModel__WEBPACK_IMPORTED_MODULE_2__["default"](event.initialConfig.options);
     }
   }, {
@@ -95380,8 +95379,8 @@ var NodeModel = /*#__PURE__*/function (_DefaultNodeModel) {
   }, {
     key: "getDisplayName",
     value: function getDisplayName() {
-      console.log('deserialized', this);
-      return this.options.parameters.node_name;
+      console.log(this.options.parameters);
+      return this.options.parameters.node_name.value;
     }
   }, {
     key: "getDiagramModel",
@@ -97171,8 +97170,10 @@ var NodeWidgetModal = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_3__["in
   _createClass(NodeWidgetModal, [{
     key: "handleChange",
     value: function handleChange(event, parameter) {
+      var parameters = this.state.parameters;
+      parameters[parameter].value = event.target.value;
       this.setState({
-        parameters: _objectSpread(_objectSpread({}, this.state.parameters), {}, _defineProperty({}, parameter, event.target.value))
+        parameters: _objectSpread({}, parameters)
       });
     }
   }, {
@@ -97189,6 +97190,7 @@ var NodeWidgetModal = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_3__["in
   }, {
     key: "render",
     value: function render() {
+      console.log("RENDERING");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, this.renderHeading(), this.renderBody(), this.renderActions());
     }
   }, {
@@ -97229,7 +97231,7 @@ var NodeWidgetModal = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_3__["in
             _this2.handleChange(e, parameter);
           },
           className: "px-2 py-1 rounded",
-          value: _this2.state.parameters[parameter]
+          value: _this2.state.parameters[parameter].value
         }));
       })));
     }

@@ -16,11 +16,11 @@ export default class NodeWidgetModal extends React.Component {
     
 
     handleChange(event, parameter) {
+        let parameters = this.state.parameters
+        parameters[parameter].value = event.target.value
+
         this.setState({
-            parameters: {
-                ...this.state.parameters,
-                [parameter]: event.target.value
-            }
+            parameters: {... parameters}
         })        
     }
     
@@ -34,6 +34,7 @@ export default class NodeWidgetModal extends React.Component {
     }    
 
 	render() {
+        console.log("RENDERING")
 		return (
             <div>
                 {this.renderHeading()}
@@ -75,7 +76,7 @@ export default class NodeWidgetModal extends React.Component {
                                 <input
                                     onChange={e => {this.handleChange(e, parameter)}}
                                     className="px-2 py-1 rounded"
-                                    value={this.state.parameters[parameter]}
+                                    value={this.state.parameters[parameter].value}
                                 />
                             </div>
                         )

@@ -58,16 +58,16 @@ class EloquentReader extends NodeModel
             'targetEloquentModel' => $data['model'],
             'scopes' => [],
             'whereStatements' => [],
-            'parameters' => static::describeParameters($data),            
+            'parameters' => parent::describeParameters($data),            
         ];
     }
 
-    public static function describeParameters($data = [])
-    {
-        return [
-            'node_name' => $data['shortModelPlural']
-        ];
-    }
+    // public static function describeParameters($data = [])
+    // {
+    //     return [
+    //         'node_name' => String_::make()->default('Clone'),
+    //     ];
+    // }
     
     public static function describeVariations($data = [])
     {

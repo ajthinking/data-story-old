@@ -2,6 +2,7 @@
 
 namespace App\DataStory;
 
+use App\DataStory\Parameters\String_;
 use Illuminate\Support\Collection;
 use stdClass;
 
@@ -35,7 +36,7 @@ abstract class NodeModel
     public static function describeParameters($data = [])
     {
         return [
-            'node_name' => class_basename(static::class)
+            'node_name' => String_::make()->default(class_basename(static::class)),
         ];
     }
 
@@ -99,7 +100,7 @@ abstract class NodeModel
 
     public function getParameter($name)
     {
-        return $this->data->options->parameters->$name;
+        return $this->data->options->parameters->$name->value;
     }
 
     public function getParameters()
