@@ -50,6 +50,7 @@ export default class App extends React.Component {
             context: window.location.href.includes('demo')
         })
         .then((response) => {
+            
             this.props.store.setEngine(
                 EngineFactory.loadOrCreate(
                     response.data.serializedModel ?? null
@@ -59,7 +60,6 @@ export default class App extends React.Component {
             this.props.store.setAvailableNodes(
                 response.data.dataStoryCapabilities.availableNodes
             );
-
 
 
             this.setState({

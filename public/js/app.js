@@ -95100,13 +95100,6 @@ var DiagramModel = /*#__PURE__*/function (_DefaultDiagramModel) {
       });
     }
   }, {
-    key: "deserializeModel",
-    value: function deserializeModel(data) {
-      _get(_getPrototypeOf(DiagramModel.prototype), "deserializeModel", this).call(this, data);
-
-      console.log('x?????????', data);
-    }
-  }, {
     key: "hasNode",
     value: function hasNode(node) {
       var _node$options;
@@ -95179,6 +95172,7 @@ var EngineFactory = /*#__PURE__*/function () {
       var engine = this.getEngine();
       var model = new _DiagramModel__WEBPACK_IMPORTED_MODULE_2__["default"]();
       model.deserializeModel(JSON.parse(serializedModel), engine);
+      engine.setModel(model);
       return engine;
     }
   }, {
@@ -95386,6 +95380,7 @@ var NodeModel = /*#__PURE__*/function (_DefaultNodeModel) {
   }, {
     key: "getDisplayName",
     value: function getDisplayName() {
+      console.log('deserialized', this);
       return this.options.parameters.node_name;
     }
   }, {
@@ -96271,7 +96266,7 @@ var Toolbar = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["inject"])(
         className: "border-l ml-8 pl-8"
       }, this.props.store.nodesWithInspectables().map(function (node) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          key: node.getDisplayName() + node.serial,
+          key: node.getDisplayName() + node.options.id,
           onClick: function (e) {
             return _this2.onClickInspectable(node);
           }.bind(node),

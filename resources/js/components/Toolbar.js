@@ -37,7 +37,7 @@ export default class Toolbar extends React.Component {
                     return (
                         
                         <span
-                            key={node.getDisplayName() + node.serial} 
+                            key={node.getDisplayName() + node.options.id} 
                             onClick={((e) => this.onClickInspectable(node)).bind(node)}
                             className={this.inspectableLinkStyle(node)}>
                             {node.getDisplayName() + ' #' + node.serial}

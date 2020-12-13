@@ -10,8 +10,10 @@ export default class EngineFactory {
     static load(serializedModel) {
         let engine = this.getEngine()
         let model = new DiagramModel();
-        
+           
         model.deserializeModel(JSON.parse(serializedModel), engine);
+
+        engine.setModel(model)
 
         return engine
     }

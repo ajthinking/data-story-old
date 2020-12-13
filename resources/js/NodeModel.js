@@ -47,6 +47,7 @@ export default class NodeModel extends DefaultNodeModel {
     }
 
     getDisplayName() {
+        console.log('deserialized', this)
         return this.options.parameters.node_name
     }
 
