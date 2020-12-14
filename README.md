@@ -17,9 +17,9 @@ To generate a node boilerplate:
 ```php
 <?php
 
-namespace App\DataStory\Nodes;
+namespace DataStory\Nodes;
 
-use App\DataStory\NodeModel;
+use DataStory\NodeModel;
 
 class NewEpicNode extends NodeModel
 {

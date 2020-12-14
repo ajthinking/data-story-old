@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataStory\Parameters;
+namespace DataStory\Parameters;
 
 abstract class BaseParameter
 {

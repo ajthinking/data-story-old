@@ -1,7 +1,8 @@
 <?php
 
-namespace App\DataStory;
+namespace DataStory;
 
+use DataStory\Commands\NodeCommand;
 use Illuminate\Support\ServiceProvider;
 
 class DataStoryServiceProvider extends ServiceProvider
@@ -16,6 +17,10 @@ class DataStoryServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/config/defaults.php', 'data-story'
         );
+
+        $this->commands([
+            NodeCommand::class
+        ]);
     }
 
     /**

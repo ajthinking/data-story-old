@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DataStory\API;
+namespace DataStory\API;
 
-use App\DataStory\DiagramModel;
+use DataStory\DiagramModel;
 
 class RunAction
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataStory;
+namespace DataStory;
 
 use stdClass;
 

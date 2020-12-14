@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataStory;
+namespace DataStory;
 
 use Illuminate\Support\Str;
 
@@ -9,6 +9,7 @@ class NodeCatalogue
     public static function make()
     {
         return new static;
+        
     }
 
     public function toArray()
@@ -18,10 +19,10 @@ class NodeCatalogue
         $discovered = $this->discover();
 
         $all = collect($registered)->concat($discovered)->unique();
-        
+
         return $all->map(function($class) {
             $variations = $class::describeVariations();
-
+            
             // Make parameters into associative array for easy access later
             $variations = collect($variations)->map(function($variation) {
                 $variation['parameters'] = collect($variation['parameters'])->flatMap(function($parameter) {
@@ -30,15 +31,18 @@ class NodeCatalogue
 
                 return $variation;
             })->toArray();
-
+            
             return $variations;
-
+            
         })->flatten(1)->toArray();
     }
 
     public function discover()
     {
-        $dirToScan = config('data-story.discover-nodes-in-dir');
+        if(!config('data-story.custom-nodes-scan-dir')) return [];
+
+        $dirToScan = config('data-story.custom-nodes-dir');
+
         $files = glob(base_path($dirToScan . '/*.php'));
         
         return collect($files)->map(function($path) {

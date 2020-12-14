@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataStory\Parameters;
+namespace DataStory\Parameters;
 
 class String_ extends BaseParameter
 {

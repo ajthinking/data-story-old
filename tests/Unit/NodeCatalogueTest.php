@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\DataStory\NodeCatalogue;
+use DataStory\NodeCatalogue;
 use Tests\TestCase;
 
 class NodeCatalogueTest extends TestCase

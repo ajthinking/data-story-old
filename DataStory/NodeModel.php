@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DataStory;
+namespace DataStory;
 
-use App\DataStory\Parameters\String_;
+use DataStory\Parameters\String_;
 use Illuminate\Support\Collection;
 use stdClass;
 

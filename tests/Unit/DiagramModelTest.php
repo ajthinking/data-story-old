@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\DataStory\DiagramModel;
+use DataStory\DiagramModel;
 use Tests\TestCase;
 
 class DiagramModelTest extends TestCase

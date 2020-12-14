@@ -1,6 +1,6 @@
 <?php
 
-use App\DataStory\DiagramModel;
+use DataStory\DiagramModel;
 use Illuminate\Support\Facades\Route;
 
 Route::post('datastory/api/boot', function() {

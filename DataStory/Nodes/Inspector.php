@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DataStory\Nodes;
+namespace DataStory\Nodes;
 
-use App\DataStory\NodeModel;
+use DataStory\NodeModel;
 
 class Inspector extends NodeModel
 {

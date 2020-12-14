@@ -1,9 +1,9 @@
 <?php
 
-namespace App\DataStory\Nodes;
+namespace DataStory\Nodes;
 
-use App\DataStory\Categories\Workflow;
-use App\DataStory\NodeModel;
+use DataStory\Categories\Workflow;
+use DataStory\NodeModel;
 
 class Pass extends NodeModel
 {

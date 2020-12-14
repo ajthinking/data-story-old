@@ -1,9 +1,9 @@
 <?php
 
-namespace App\DataStory\Nodes;
+namespace DataStory\Nodes;
 
-use App\DataStory\Categories\Eloquent;
-use App\DataStory\NodeModel;
+use DataStory\Categories\Eloquent;
+use DataStory\NodeModel;
 
 class EloquentReader extends NodeModel
 {

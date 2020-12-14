@@ -1,12 +1,12 @@
 <?php
 
-namespace App\DataStory\Nodes;
+namespace DataStory\Nodes;
 
-use App\DataStory\Categories\Workflow;
-use App\DataStory\NodeModel;
-use App\DataStory\Parameters\AttributeName;
-use App\DataStory\Parameters\Number;
-use App\DataStory\Parameters\String_;
+use DataStory\Categories\Workflow;
+use DataStory\NodeModel;
+use DataStory\Parameters\AttributeName;
+use DataStory\Parameters\Number;
+use DataStory\Parameters\String_;
 
 class Cloner extends NodeModel
 {
