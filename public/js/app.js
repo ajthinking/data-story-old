@@ -97319,7 +97319,8 @@ var NodeWidgetModal = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["in
     _classCallCheck(this, NodeWidgetModal);
 
     _this = _super.call(this, props);
-    _this.state = {//
+    _this.state = {
+      storyName: ''
     };
     return _this;
   }
@@ -97327,7 +97328,9 @@ var NodeWidgetModal = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["in
   _createClass(NodeWidgetModal, [{
     key: "handleChange",
     value: function handleChange(event) {
-      this.setState({});
+      this.setState({
+        storyName: event.target.value
+      });
     }
   }, {
     key: "handleCancel",
@@ -97340,8 +97343,8 @@ var NodeWidgetModal = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_1__["in
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/datastory/api/save', {
-        model: Object(_utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_3__["nonCircularJsonStringify"])(this.props.store.diagram.engine.model.serialize()),
-        filename: 'demo.story'
+        model: Object(_utils_nonCircularJsonStringify__WEBPACK_IMPORTED_MODULE_3__["nonCircularJsonStringify"])(this.props.store.diagram.engine.model.serialize(), null, 4),
+        filename: this.state.storyName
       }).then(function (response) {
         _this2.showSuccessToast();
 

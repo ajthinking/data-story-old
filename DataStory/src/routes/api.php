@@ -1,6 +1,7 @@
 <?php
 
 use DataStory\DiagramModel;
+use DataStory\Support\SimpleFile;
 use Illuminate\Support\Facades\Route;
 
 Route::post('datastory/api/boot', function() {
@@ -32,8 +33,8 @@ Route::post('datastory/api/save', function() {
     $filename = request()->input('filename'); 
     $content = request()->input('model');
 
-    file_put_contents(
-        app_path("DataStory/stories/$filename"),
+    SimpleFile::put(
+        config('data-story.stories-dir') . '/' . $filename . '.json',
         $content
     );
 });

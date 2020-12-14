@@ -1,0 +1,155 @@
+{
+    "id": "82ece911-e031-4ca3-b8c8-2da44079c312",
+    "offsetX": 0,
+    "offsetY": 0,
+    "zoom": 100,
+    "gridSize": 0,
+    "layers": [
+        {
+            "id": "83f145f4-aaf2-4ecb-b605-22be2ff9e656",
+            "type": "diagram-links",
+            "isSvg": true,
+            "transformed": true,
+            "models": {
+                "63668802-afb8-434b-a958-990a1ce4b558": {
+                    "id": "63668802-afb8-434b-a958-990a1ce4b558",
+                    "type": "default",
+                    "source": "5762f740-69db-40b8-9f1b-169ccd03c74e",
+                    "sourcePort": "a202d1d8-6df1-4f19-97d2-39b656205b43",
+                    "target": "96b55212-30cf-492a-bd55-65b4c7892fb1",
+                    "targetPort": "d9fd1c34-fc43-46df-999f-3cda5a8344dd",
+                    "points": [
+                        {
+                            "id": "857e677b-1285-439b-857b-637e090089f2",
+                            "type": "point",
+                            "x": 211.00851154327393,
+                            "y": 178.93465900421143
+                        },
+                        {
+                            "id": "bd1f04bb-e9d5-4184-908d-98956917ef9e",
+                            "type": "point",
+                            "x": 519.9857759475708,
+                            "y": 379.93182086944586
+                        }
+                    ],
+                    "labels": [],
+                    "width": 3,
+                    "color": "gray",
+                    "curvyness": 50,
+                    "selectedColor": "rgb(0,192,255)"
+                }
+            }
+        },
+        {
+            "id": "dfb02cb1-df3e-4c60-a9b0-70177c47e214",
+            "type": "diagram-nodes",
+            "isSvg": false,
+            "transformed": true,
+            "models": {
+                "5762f740-69db-40b8-9f1b-169ccd03c74e": {
+                    "id": "5762f740-69db-40b8-9f1b-169ccd03c74e",
+                    "type": "manipulator",
+                    "x": 100,
+                    "y": 140.5350101466541,
+                    "ports": [
+                        {
+                            "id": "a202d1d8-6df1-4f19-97d2-39b656205b43",
+                            "type": "default",
+                            "x": 203.0113525390625,
+                            "y": 170.9375,
+                            "name": "Output",
+                            "alignment": "right",
+                            "parentNode": "5762f740-69db-40b8-9f1b-169ccd03c74e",
+                            "links": [
+                                "63668802-afb8-434b-a958-990a1ce4b558"
+                            ],
+                            "in": false,
+                            "label": "Output"
+                        }
+                    ],
+                    "options": {
+                        "id": "5762f740-69db-40b8-9f1b-169ccd03c74e",
+                        "serial": 1,
+                        "nodePhp": "DataStory\\Nodes\\EloquentReader",
+                        "nodeReact": "NodeModel",
+                        "key": "EloquentDataStory\\Nodes\\EloquentReaderUsers",
+                        "name": "Users",
+                        "category": "Eloquent",
+                        "summary": "User::where(...)",
+                        "inPorts": [],
+                        "outPorts": [
+                            "Output"
+                        ],
+                        "parameters": {
+                            "node_name": {
+                                "default": "EloquentReader",
+                                "name": "node_name",
+                                "value": "EloquentReader"
+                            }
+                        },
+                        "targetEloquentModel": "App\\Models\\User",
+                        "scopes": [],
+                        "whereStatements": [],
+                        "type": "manipulator"
+                    },
+                    "incomingPortOrigins": {}
+                },
+                "96b55212-30cf-492a-bd55-65b4c7892fb1": {
+                    "id": "96b55212-30cf-492a-bd55-65b4c7892fb1",
+                    "type": "manipulator",
+                    "selected": true,
+                    "x": 505,
+                    "y": 343.5350101466541,
+                    "ports": [
+                        {
+                            "id": "d9fd1c34-fc43-46df-999f-3cda5a8344dd",
+                            "type": "default",
+                            "x": 511.9886169433594,
+                            "y": 371.9346618652343,
+                            "name": "Input",
+                            "alignment": "left",
+                            "parentNode": "96b55212-30cf-492a-bd55-65b4c7892fb1",
+                            "links": [
+                                "63668802-afb8-434b-a958-990a1ce4b558"
+                            ],
+                            "in": true,
+                            "label": "Input"
+                        }
+                    ],
+                    "options": {
+                        "id": "96b55212-30cf-492a-bd55-65b4c7892fb1",
+                        "serial": 2,
+                        "name": "Inspector",
+                        "category": "Workflow",
+                        "summary": "This node is not documented yet. Add a class const SHORT_DESCRIPTION or implement a static method shortDescription() to fix that.",
+                        "key": "WorkflowInspector",
+                        "nodePhp": "DataStory\\Nodes\\Inspector",
+                        "nodeReact": "NodeModel",
+                        "inPorts": [
+                            "Input"
+                        ],
+                        "outPorts": [],
+                        "parameters": {
+                            "node_name": {
+                                "default": "Inspector",
+                                "name": "node_name",
+                                "value": "Inspector"
+                            }
+                        },
+                        "type": "manipulator",
+                        "selected": true
+                    },
+                    "incomingPortOrigins": {
+                        "d9fd1c34-fc43-46df-999f-3cda5a8344dd": [
+                            "a202d1d8-6df1-4f19-97d2-39b656205b43"
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "executionOrder": [
+        "5762f740-69db-40b8-9f1b-169ccd03c74e",
+        "96b55212-30cf-492a-bd55-65b4c7892fb1"
+    ]
+}

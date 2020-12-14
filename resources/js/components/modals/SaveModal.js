@@ -9,12 +9,13 @@ export default class NodeWidgetModal extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            //
+            storyName: ''
         }
     }
 
     handleChange(event) {
         this.setState({
+            storyName: event.target.value
         })        
     }
     
@@ -26,9 +27,11 @@ export default class NodeWidgetModal extends React.Component {
 
         axios.post('/datastory/api/save', {
             model: nonCircularJsonStringify(
-                this.props.store.diagram.engine.model.serialize()
+                this.props.store.diagram.engine.model.serialize(),
+                null,
+                4
             ),
-            filename: 'demo.story'
+            filename: this.state.storyName
         })
         .then((response) => {
             this.showSuccessToast();
