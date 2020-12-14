@@ -6,16 +6,18 @@ abstract class BaseParameter
 {
     public $default;
 
+    public $name;
+
     public $value;
 
-    public function __construct()
+    public function __construct($name)
     {
-        //
+        $this->name = $name;
     }
 
-    public static function make()
+    public static function make($name)
     {
-        return new static;
+        return new static($name);
     }
 
     public function default($value)

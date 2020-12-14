@@ -15,10 +15,10 @@ class Cloner extends NodeModel
     public static function describeParameters($data = [])
     {
         return [
-            'node_name' => String_::make()->default('Clone'),
-            'number_of_clones' => String_::make()->default(10),
-            'clone_id_attribute' => String_::make()->default('clone_id'),
-            'clone_id_attribute_start_value' => String_::make()->default(0),
+            String_::make('node_name')->default('Clone'),
+            Number::make('number_of_clones')->default(10),
+            String_::make('clone_id_attribute')->default('clone_id'),
+            Number::make('clone_id_attribute_start_value')->default(0),
         ];
     }
 

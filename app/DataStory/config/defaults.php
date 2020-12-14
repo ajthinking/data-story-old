@@ -15,7 +15,6 @@ return [
         App\DataStory\Nodes\Inspector::class,
         App\DataStory\Nodes\Pass::class,
         App\DataStory\Nodes\Cloner::class,
-        App\DataStory\Nodes\Creator::class,
     ],
 
     /*

@@ -36,7 +36,7 @@ abstract class NodeModel
     public static function describeParameters($data = [])
     {
         return [
-            'node_name' => String_::make()->default(class_basename(static::class)),
+            String_::make('node_name')->default(class_basename(static::class)),
         ];
     }
 
