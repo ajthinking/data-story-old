@@ -95379,7 +95379,6 @@ var NodeModel = /*#__PURE__*/function (_DefaultNodeModel) {
   }, {
     key: "getDisplayName",
     value: function getDisplayName() {
-      console.log(this.options.parameters);
       return this.options.parameters.node_name.value;
     }
   }, {
@@ -97190,7 +97189,6 @@ var NodeWidgetModal = (_dec = Object(mobx_react__WEBPACK_IMPORTED_MODULE_3__["in
   }, {
     key: "render",
     value: function render() {
-      console.log("RENDERING");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, this.renderHeading(), this.renderBody(), this.renderActions());
     }
   }, {

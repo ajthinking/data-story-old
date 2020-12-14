@@ -34,7 +34,6 @@ export default class NodeWidgetModal extends React.Component {
     }    
 
 	render() {
-        console.log("RENDERING")
 		return (
             <div>
                 {this.renderHeading()}

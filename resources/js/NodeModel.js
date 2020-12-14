@@ -47,7 +47,6 @@ export default class NodeModel extends DefaultNodeModel {
     }
 
     getDisplayName() {
-        console.log(this.options.parameters)
         return this.options.parameters.node_name.value
     }
 
