@@ -7,6 +7,12 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/Users/anders/Code/data-story/DataStory"
+        }
+    ], 
     "require": {
         "php": "^7.3|^8.0",
         "fideloper/proxy": "^4.4",
