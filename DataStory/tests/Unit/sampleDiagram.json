@@ -125,9 +125,9 @@
                     "options": {
                         "id": "e8f57a22-b0ab-4824-951c-7b5e20c6c4cc",
                         "serial": 1,
-                        "nodePhp": "App\\DataStory\\Nodes\\EloquentReader",
+                        "nodePhp": "DataStory\\Nodes\\EloquentReader",
                         "nodeReact": "NodeModel",
-                        "key": "EloquentApp\\DataStory\\Nodes\\EloquentReaderUsers",
+                        "key": "EloquentDataStory\\Nodes\\EloquentReaderUsers",
                         "name": "Users",
                         "category": "Eloquent",
                         "summary": "User::where(...)",
@@ -184,7 +184,7 @@
                         "category": "Workflow",
                         "summary": "This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet.",
                         "key": "WorkflowPass",
-                        "nodePhp": "App\\DataStory\\Nodes\\Pass",
+                        "nodePhp": "DataStory\\Nodes\\Pass",
                         "nodeReact": "NodeModel",
                         "inPorts": [
                             "Input"
@@ -229,7 +229,7 @@
                         "category": "Workflow",
                         "summary": "This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet.",
                         "key": "WorkflowInspector",
-                        "nodePhp": "App\\DataStory\\Nodes\\Inspector",
+                        "nodePhp": "DataStory\\Nodes\\Inspector",
                         "nodeReact": "NodeModel",
                         "inPorts": [
                             "Input"
@@ -285,7 +285,7 @@
                         "category": "Workflow",
                         "summary": "This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet. This node is not documented yet.",
                         "key": "WorkflowPass",
-                        "nodePhp": "App\\DataStory\\Nodes\\Pass",
+                        "nodePhp": "DataStory\\Nodes\\Pass",
                         "nodeReact": "NodeModel",
                         "inPorts": [
                             "Input"

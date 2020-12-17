@@ -16,7 +16,7 @@
         }
     ],
     "require-dev": {
-
+        "orchestra/testbench": "^6.7"        
     },
     "config": {
         "optimize-autoloader": true,
@@ -33,13 +33,13 @@
     },
     "autoload": {
         "psr-4": {
-            "DataStory\\": "src/",
-            "DataStory\\Tests\\": "tests/"
+            "DataStory\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "DataStory\\": "src/",            
+            "DataStory\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "dev",

@@ -1,9 +1,10 @@
 <?php
 
-namespace Tests\Unit;
+namespace DataStory\Tests\Unit;
 
 use DataStory\DiagramModel;
-use Tests\TestCase;
+use DataStory\Tests\TestCase;
+use App\Models\User;
 
 class DiagramModelTest extends TestCase
 {
@@ -17,11 +18,6 @@ class DiagramModelTest extends TestCase
 
         $this->assertTrue(true);
     }
-
-    // public function test_diagram_capabilities()
-    // {
-    //     $capabilities = DiagramModel::capabilities();
-    // }
 
     protected function sampleDiagram()
     {

@@ -4,8 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e3adb0ace9eeed4c5610ed74967a616",
+    "content-hash": "e6ff75bea03991bb3bfd719b50a6fb98",
     "packages": [
+        {
+            "name": "ajthinking/data-story",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "/Users/anders/Code/data-story/DataStory",
+                "reference": "731f9e7fe252a0d7b12398fbfad01f9c85af1a94"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "dont-discover": [],
+                    "providers": [
+                        "DataStory\\DataStoryServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DataStory\\": "src/",
+                    "DataStory\\Tests\\": "tests/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Anders Jürisoo",
+                    "email": "jurisoo@hotmail.com"
+                }
+            ],
+            "description": "A diagram workflow builder.",
+            "keywords": [
+                "ETL",
+                "Process builder",
+                "Workflow",
+                "laravel",
+                "php"
+            ]
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.2",
@@ -6162,7 +6205,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "ajthinking/data-story": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

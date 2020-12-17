@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Unit;
+namespace DataStory\Tests\Unit;
 
 use DataStory\NodeCatalogue;
-use Tests\TestCase;
+use DataStory\Tests\TestCase;
 
 class NodeCatalogueTest extends TestCase
 {

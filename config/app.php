@@ -165,7 +165,6 @@ return [
         /*
          * Package Service Providers...
          */
-        DataStory\DataStoryServiceProvider::class,
 
         /*
          * Application Service Providers...

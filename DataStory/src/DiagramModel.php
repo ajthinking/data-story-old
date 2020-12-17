@@ -10,11 +10,6 @@ class DiagramModel
 
     public array $links;
 
-    public static function make()
-    {
-        return new static;
-    }
-
     public function find($id)
     {
         return collect(
