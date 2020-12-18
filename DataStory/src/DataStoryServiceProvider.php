@@ -30,6 +30,12 @@ class DataStoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'data-story');
+
+        $this->publishes([
+            __DIR__ . '/dist' => public_path('vendor/data-story'),
+        ], 'public');        
+
         require __DIR__ . '/routes/web.php';
         require __DIR__ . '/routes/api.php';
     }
